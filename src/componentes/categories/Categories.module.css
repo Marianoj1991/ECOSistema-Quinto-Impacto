@@ -1,0 +1,22 @@
+.categoriasContenedor {
+  width: 100%;
+  max-width: 361px;
+  background-color: #acacac;
+  padding: 30px 20px 20px;
+}
+
+.titulo {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.tituloCategoria {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 25px;
+  text-align: center;
+}
