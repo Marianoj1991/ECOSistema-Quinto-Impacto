@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 
-export function CardCategorie() {
+export function CartaCategoria() {
   return (
     <Grid container>
       <Grid item ></Grid>

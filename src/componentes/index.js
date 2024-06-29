@@ -1,2 +1,2 @@
-export * from './categories/Categories'
-export * from './categorie/CardCategorie'
+export * from './categorias/Categorias'
+export * from './carta-categoria/CartaCategoria'

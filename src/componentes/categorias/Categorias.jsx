@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material'
 
 import styles from './Categories.module.css'
 
-export function Categories() {
+export function Categorias() {
   return (
     <Grid
       className={styles.fondoColor}
