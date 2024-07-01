@@ -1,9 +1,10 @@
 .botonContenedor {
     background-color: #eaeaea;
     width: 100%;
-    max-width: 152px;
     height: 64px;
     padding: 5px;
+    border-radius: 16px;
+    gap: 5px;
 }
 
 .contenedorImagen {
@@ -15,6 +16,11 @@
     font-size: 14px;
     font-weight: 700;
     text-transform: none;
+}
+
+.border {
+    width: 48px;
+    border-bottom: 2px solid #4E169D;
 }
 
 .icono {

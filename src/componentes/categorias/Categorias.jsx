@@ -22,7 +22,7 @@ export function Categorias() {
         container
         direction='column'
         alignItems='center'
-        gap={2}
+        gap={1}
       >
         <Grid item>
           <Grid container flexDirection='column'>
@@ -45,8 +45,8 @@ export function Categorias() {
           </Grid>
         </Grid>
 
-        <Grid item>
-          <Grid container justifyContent='space-between' spacing={1} >
+        <Grid item sx={{padding: 1}}>
+          <Grid container rowSpacing={2} columnSpacing={3}  >
             {
               infoBotones.map(dato => (
                 <BotonCategoria key={dato.id} icono={dato.icono} texto={dato.texto} />
