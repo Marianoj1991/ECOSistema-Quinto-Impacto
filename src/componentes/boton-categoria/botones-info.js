@@ -1,12 +1,15 @@
 
-import bienestar from '../../utilidades/categoria-iconos/bienestar.svg'
-import construccion from '../../utilidades/categoria-iconos/construccion.svg'
-import cultivos from '../../utilidades/categoria-iconos/cultiivos.svg'
-import gastronomia from '../../utilidades/categoria-iconos/gastronomia.svg'
-import indumentaria from '../../utilidades/categoria-iconos/indumentaria.svg'
-import reciclaje from '../../utilidades/categoria-iconos/reciclaje.svg'
-import tecnologia from '../../utilidades/categoria-iconos/tecnologia.svg'
-import transporte from '../../utilidades/categoria-iconos/transporte.svg'
+import bienestar from '../../utilidades/icon/bienestar.svg'
+import construccion from '../../utilidades/icon/construccion.svg'
+import cultivos from '../../utilidades/icon/cultiivos.svg'
+import gastronomia from '../../utilidades/icon/gastronomia.svg'
+import indumentaria from '../../utilidades/icon/indumentaria.svg'
+import reciclaje from '../../utilidades/icon/reciclaje.svg'
+import tecnologia from '../../utilidades/icon/tecnologia.svg'
+import transporte from '../../utilidades/icon/transporte.svg'
+import capacitaciones from '../../utilidades/icon/capacitaciones.svg'
+import mueblesDeco from '../../utilidades/icon/muebles-deco.svg'
+import merchandising from '../../utilidades/icon/merchandising.svg'
 
 
 export const infoBotones = [
@@ -18,4 +21,7 @@ export const infoBotones = [
     {id: 6, texto: 'Cultivos', icono:  cultivos},
     {id: 7, texto: 'Transporte', icono:  transporte},
     {id: 8, texto: 'Reciclaje', icono:  reciclaje}, 
+    {id: 9, texto: 'Capacitaciones', icono:  capacitaciones}, 
+    {id: 10, texto: 'Muebles/Deco', icono: mueblesDeco }, 
+    {id: 11, texto: 'Merchandising', icono: merchandising }, 
 ]

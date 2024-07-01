@@ -1,10 +1,12 @@
 
 import './App.css'
-import { Categorias } from './componentes/categorias/Categorias'
+import { Categorias } from './componentes'
 
 function App() {
   return (
-    <Categorias />
+    <>
+      <Categorias />
+    </>
   )
 }
 

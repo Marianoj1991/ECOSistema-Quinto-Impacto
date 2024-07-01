@@ -3,8 +3,12 @@ import { infoBotones } from '../boton-categoria/botones-info'
 import { BotonCategoria } from '../boton-categoria/index'
 
 import styles from './Categorias.module.css'
+import { useState } from 'react'
 
 export function Categorias() {
+
+  const [categorias, setCategorias] = useState(infoBotones.slice(0,8))
+  
   return (
     <Grid
       className={styles.fondoColor}
@@ -25,7 +29,10 @@ export function Categorias() {
         gap={1}
       >
         <Grid item>
-          <Grid container flexDirection='column'>
+          <Grid
+            container
+            flexDirection='column'
+          >
             <Grid item>
               <Typography
                 variant='h6'
@@ -45,26 +52,49 @@ export function Categorias() {
           </Grid>
         </Grid>
 
-        <Grid item sx={{padding: 1}}>
-          <Grid container rowSpacing={2} columnSpacing={3}  >
-            {
-              infoBotones.map(dato => (
-                <BotonCategoria key={dato.id} icono={dato.icono} texto={dato.texto} />
-              ))
-            }
+        <Grid
+          item
+          sx={{ padding: 1 }}
+        >
+          <Grid
+            container
+            rowSpacing={2}
+            columnSpacing={3}
+          >
+            {categorias.map((dato) => (
+              <BotonCategoria
+                key={dato.id}
+                icono={dato.icono}
+                texto={dato.texto}
+              />
+            ))}
           </Grid>
         </Grid>
 
         <Grid item />
-          <Button variant='contained'  sx={{backgroundColor: '#4E169D', width: '184px', height: '40px', borderRadius: '100px', padding: '10px, 24px, 10px, 24px', gap: '10px' }}>
-            <Typography  sx={{
+        <Button
+          variant='contained'
+          sx={{
+            backgroundColor: '#4E169D',
+            width: '184px',
+            height: '40px',
+            borderRadius: '100px',
+            padding: '10px, 24px, 10px, 24px',
+            gap: '10px'
+          }}
+        >
+          <Typography
+            sx={{
               textTransform: 'none',
               fontFamily: 'Nunito',
               fontWeight: 700,
               fontSize: '16px'
-            }}>Ver más categorías</Typography>
-          </Button>
-        </Grid>
+            }}
+          >
+            Ver más categorías
+          </Typography>
+        </Button>
+      </Grid>
     </Grid>
   )
 }

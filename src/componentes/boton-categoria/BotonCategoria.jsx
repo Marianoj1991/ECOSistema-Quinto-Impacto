@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import styles from './BotonCategoria.module.css'
 
 export function BotonCategoria({ icono, texto }) {
@@ -22,13 +22,8 @@ export function BotonCategoria({ icono, texto }) {
             className={styles.icono}
           />
         </Grid>
-        <Grid
-          item
-          direction='column'
-        >
-          <Typography className={styles.botonTexto}>
-            {texto}
-          </Typography>
+        <Grid item>
+          <Typography className={styles.botonTexto}>{texto}</Typography>
           <div className={styles.border}></div>
         </Grid>
       </Grid>
