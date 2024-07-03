@@ -1,0 +1,29 @@
+.botonContenedor {
+    background-color: #eaeaea;
+    width: 100%;
+    height: 64px;
+    padding: 5px;
+    border-radius: 16px;
+    gap: 5px;
+}
+
+.contenedorImagen {
+    margin: 0;
+}
+
+.botonTexto {
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.border {
+    width: 48px;
+    border-bottom: 2px solid #4E169D;
+}
+
+.icono {
+    width: 40px;
+    height: 40px;
+}

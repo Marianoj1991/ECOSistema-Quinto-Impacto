@@ -1,9 +1,12 @@
 
 import './App.css'
+import { Categorias } from './componentes'
 
 function App() {
   return (
-    <h1>Hola Mundo</h1>
+    <>
+      <Categorias />
+    </>
   )
 }
 
