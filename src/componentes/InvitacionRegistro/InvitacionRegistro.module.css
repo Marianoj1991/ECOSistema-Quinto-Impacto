@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+.containerInvitacion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.textContainer{
+    width: 328px;
+height: 81px;
+top: 824px;
+left: 16px;
+gap: 0px;
+opacity: 0px;
+text-align: center;
+
+}
+.containerInvitacion p{
+    font-family: 'Nunito', sans-serif;
+font-size: 24px;
+font-weight: 400;
+line-height: 27px;
+text-align: center;
+color: #222222;
+
+}
+
+.btnInvitacion{
+    
+    align-items: center;
+    justify-content: center;
+    width: 152px;
+height: 40px;
+top: 921px;
+
+padding: 10px 24px 10px 24px;
+gap: 10px;
+border-radius: 100px;
+opacity: 0px;
+background: #4E169D;
+border: none;
+
+
+
+}
+
+.btnContainer{
+padding-top: 20px; 
+} 
+
+.btnInvitacion p{
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    color: #FAFAFA;
+    align-items: center;
+    justify-content: center;
+
+}
