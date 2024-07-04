@@ -1,42 +1,4 @@
-/* .alert {
-    border: 1px solid;
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 328px;
-    margin: 10px auto;
-  }
-  
-  .iconContainer {
-    margin-right: 10px;
-  }
-  
-  .alert-success {
-    border-color: green;
-    color: green;
-  }
-  
-  .alert-error {
-    border-color: red;
-    color: red;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .button {
-    background: none;
-    border: none;
-    color: #4E169D;
-    cursor: pointer;
-  }
-   */
-
-   .overlay {
+ .contenedor {
     position: fixed;
     top: 0;
     left: 0;
@@ -49,7 +11,7 @@
     z-index: 1000;
   }
   
-  /* .modal {
+ .modal {
     background: white;
     padding: 20px;
     border-radius: 28px;
@@ -57,33 +19,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 328px;
-    width: 100%;
-  } */
+    width: 328px;
+    height: auto;
+  } 
 
-  .modal-success {
-    background: white;
-    padding: 20px;
-    border-radius: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 328px;
-    height: auto;
-  }
-  
-  .modal-error {
-    background: white;
-    padding: 20px;
-    border-radius: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 328px;
-    height: auto;
-  }
+
   
   .iconContainer {
     margin-bottom: 10px;

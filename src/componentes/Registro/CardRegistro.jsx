@@ -1,4 +1,4 @@
-import gmailLogo from '../../utilidades/icon/gmail.svg';
+import gmailLogo from '../../utilidades/icon/GmailIcon.jsx';
 import logo from '../../utilidades/icon/logo.svg';
 import style from './CardRegistro.module.css'
 

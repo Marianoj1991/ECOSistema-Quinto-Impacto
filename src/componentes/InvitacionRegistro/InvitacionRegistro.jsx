@@ -1,17 +1,17 @@
-import { Box } from '@mui/material'
+import { Typography, Box} from "@mui/material";
 import style from './InvitacionRegistro.module.css'
 
 function InvitacionRegistro() {
   return (
     <>
     <Box className={style.containerInvitacion}>
-        <div className={style.textContainer}>
-        <p>¿Querés formar parte de la
-        Red de impacto ECO como Proveedor?</p>
-        </div>
+       
+        <Typography color="negro.main" component="p" className={style.textContainer}>¿Querés formar parte de la
+        Red de impacto ECO como Proveedor?</Typography>
+        
         
         <div className={style.btnContainer}>
-            <button className={style.btnInvitacion}><p>Registrate</p></button>
+            <button className={style.btnInvitacion} color="violeta"><Typography color="blanco" component="p">Registrate</Typography></button>
         </div>
     </Box>
     </>

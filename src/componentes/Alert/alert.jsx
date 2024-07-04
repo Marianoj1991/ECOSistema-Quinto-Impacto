@@ -1,8 +1,9 @@
 
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import warnigIcon from '../../utilidades/icon/WarningIcon.svg';
 import errorIcon from '../../utilidades/icon/error.svg';
-import successIcon from '../../utilidades/icon/success.svg';
+import successIcon from '../../utilidades/icon/SuccessIcon.svg';
 import styles from './Alert.module.css';
 
 const Alert = ({ type, message, onClose }) => {
@@ -12,13 +13,15 @@ const Alert = ({ type, message, onClose }) => {
         return <img src={successIcon} alt="Éxito" className={styles.icon} />;
       case 'error':
         return <img src={errorIcon} alt="Error" className={styles.icon} />;
+        case 'warnig':
+            return <img src={warnigIcon} alt="Error" className={styles.icon} />;
       default:
         return null;
     }
   };
 
   return ReactDOM.createPortal(
-    <div className={styles.overlay}>
+    <div className={styles.contenedor}>
       <div className={`${styles.modal} ${styles[`modal-${type}`]}`}>
         <div className={styles.iconContainer}>
           {getIcon()}
@@ -49,7 +52,7 @@ const Alert = ({ type, message, onClose }) => {
 };
 
 Alert.propTypes = {
-  type: PropTypes.oneOf(['success', 'error']).isRequired,
+  type: PropTypes.oneOf(['success', 'error', 'warnig']).isRequired,
   message: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
 };
