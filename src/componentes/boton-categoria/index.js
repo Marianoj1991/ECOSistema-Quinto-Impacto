@@ -1,1 +1,1 @@
-export * from './BotonCategoria'
+export * from "./BotonCategoria";
