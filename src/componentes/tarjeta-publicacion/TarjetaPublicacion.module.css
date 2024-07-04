@@ -1,0 +1,39 @@
+.contenedor {
+  margin: 20px;
+}
+
+.tarjeta {
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.titulo {
+  text-align: center;
+}
+
+.fecha {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.cuerpo {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  white-space: pre-wrap;
+}
+
+.contenedorBoton {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.boton {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: none;
+}
