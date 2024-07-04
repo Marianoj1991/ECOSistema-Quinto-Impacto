@@ -1,6 +1,6 @@
 
-import gmailLogo from '../../iconos/gmail.svg';
-import logo from '../../iconos/logo.svg';
+import gmailLogo from '../../utilidades/icon/gmail.svg';
+import logo from '../../utilidades/icon/logo.svg';
 import style from './CardInicioDeSesion.module.css';
 
 const CardInicioSesion = () => {
