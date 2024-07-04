@@ -1,0 +1,98 @@
+.contenedor {
+  margin: 20px;
+}
+
+.tarjeta {
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.contenedorBotonCerrar {
+  margin: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contenedorCategoria {
+  margin-right: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.categoria {
+  padding: 2px 15px;
+  border-radius: 4px 4px 0px 0px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.contenedorImagen {
+  padding: 0px 15px;
+}
+
+.imagen {
+  height: 128px;
+  border-radius: 16px 0px 16px 16px;
+}
+
+.titulo {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.tipo {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.contenedorUbicacion {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.ubicacion {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.descripcion {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.contactanos {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.contenedorBotonesRedesSociales {
+  padding-top: 0px;
+  margin: 0px 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.botonRedSocial {
+  height: 48px;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.redSocial {
+  margin-top: 3px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
