@@ -15,9 +15,9 @@ import styles from "./TarjetaProveedor.module.css";
 
 function TarjetaProveedor({
   categoria,
-  url,
-  alt,
-  titulo,
+  imagenUrl,
+  imagenAlt,
+  nombre,
   tipo,
   ubicacion,
   descripcion,
@@ -41,6 +41,7 @@ function TarjetaProveedor({
         <Box className={styles.contenedorCategoria}>
           <Typography
             color="violeta.main"
+            backgroundColor="blanco.main"
             border={2}
             borderColor="verde.main"
             component="h6"
@@ -52,8 +53,8 @@ function TarjetaProveedor({
         <Box className={styles.contenedorImagen}>
           <CardMedia
             component="img"
-            image={url}
-            alt={alt}
+            image={imagenUrl}
+            alt={imagenAlt}
             className={styles.imagen}
           />
         </Box>
@@ -61,9 +62,9 @@ function TarjetaProveedor({
           <Typography
             color="negro.main"
             component="h5"
-            className={styles.titulo}
+            className={styles.nombre}
           >
-            {titulo}
+            {nombre}
           </Typography>
           <Typography
             color="violeta.main"

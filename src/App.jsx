@@ -5,9 +5,11 @@ import theme from "./conf/theme";
 
 import EmpresasImpacto from "./componentes/empresas-impacto/EmpresasImpacto";
 import { Categorias } from "./componentes";
-import TarjetaPublicacion from "./componentes/tarjeta-publicacion/TarjetaPublicacion";
+import ArregloProveedores from "./componentes/arreglo-proveedores/ArregloProveedores";
 import TarjetaProveedor from "./componentes/tarjeta-proveedor/TarjetaProveedor";
+import PilaPublicaciones from "./componentes/pila-publicaciones/PilaPublicaciones";
 
+import proveedores from "./componentes/arreglo-proveedores/proveedores";
 import proveedor from "./componentes/tarjeta-proveedor/proveedor";
 import publicaciones from "./componentes/tarjeta-publicacion/publicaciones";
 
@@ -17,24 +19,17 @@ function App() {
       <ThemeProvider theme={theme}>
         <EmpresasImpacto />
         <Categorias />
+        <ArregloProveedores proveedores={proveedores} />
         <TarjetaProveedor
           categoria={proveedor.categoria}
-          url={proveedor.url}
-          alt={proveedor.alt}
-          titulo={proveedor.titulo}
+          imagenUrl={proveedor.imagenUrl}
+          imagenAlt={proveedor.imagenAlt}
+          nombre={proveedor.nombre}
           tipo={proveedor.tipo}
           ubicacion={proveedor.ubicacion}
           descripcion={proveedor.descripcion}
         />
-        {publicaciones.map((publicacion, index) => (
-          <TarjetaPublicacion
-            titulo={publicacion.titulo}
-            fecha={publicacion.fecha}
-            cuerpo={publicacion.cuerpo}
-            imagenes={publicacion.imagenes}
-            key={index}
-          />
-        ))}
+        <PilaPublicaciones publicaciones={publicaciones} />
       </ThemeProvider>
     </StyledEngineProvider>
   );

@@ -1,0 +1,61 @@
+.contenedor {
+  position: relative;
+  margin: 0px;
+}
+
+.tarjeta {
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.contenedorCategoria {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.categoria {
+  position: absolute;
+  top: -7px;
+  padding: 2px 15px;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.contenedorImagen {
+  padding: 7px;
+}
+
+.imagen {
+  height: 136px;
+  border-radius: 16px 0px 16px 16px;
+}
+
+.contenedorContenido {
+  padding: 0px 7px 10px 7px !important;
+}
+
+.nombre {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.tipo {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.contenedorUbicacion {
+  display: flex;
+  align-items: center;
+}
+
+.ubicacion {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+}
