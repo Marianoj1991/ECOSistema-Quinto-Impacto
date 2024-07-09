@@ -1,0 +1,29 @@
+.navbar-collapse {
+    background: var(--clr-violeta);
+    color: var(--clr-blanco);
+    height: 100vh;
+    max-width: 70%;
+    position: absolute;
+    z-index: 3;
+    
+}
+.navbar-nav {
+    padding: 24px 16px 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-wrap: balance;
+    font-style: italic;
+    /* text-align: justify; */
+}
+.nav-item:last-child {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.nav-link {
+    color: var(--clr-blanco);
+    font-weight: 700;
+    font-style: normal;
+}
