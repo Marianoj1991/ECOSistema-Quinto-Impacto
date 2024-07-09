@@ -3,6 +3,8 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
 import theme from "./conf/theme";
 
+import Header from "./componentes/header/Header";
+import SeccionTitulo from "./componentes/seccion-titulo/SeccionTitulo";
 import EmpresasImpacto from "./componentes/empresas-impacto/EmpresasImpacto";
 import { Categorias } from "./componentes";
 import ArregloProveedores from "./componentes/arreglo-proveedores/ArregloProveedores";
@@ -17,6 +19,8 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
+        <Header />
+        <SeccionTitulo />
         <EmpresasImpacto />
         <Categorias />
         <ArregloProveedores proveedores={proveedores} />

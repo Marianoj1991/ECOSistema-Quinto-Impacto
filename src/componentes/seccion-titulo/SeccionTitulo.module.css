@@ -1,0 +1,46 @@
+.titulo {
+    position: relative;
+    height: 488px;
+    background-image: url("../../utilidades/icon/red-de-impacto.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  .titulo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(34, 34, 34, 0.3);
+  }
+  
+  .titulo > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .contenedorTitulo {
+    margin: 10px 10px;
+    padding: 5px;
+    color: #FAFAFA;
+    font-family: "Nunito", sans-serif;
+    gap: 5rem;
+  }
+  
+  .contenedorTitulo h1 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .cajaTexto {
+    width: 240px;
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: 400;
+  }
+  
