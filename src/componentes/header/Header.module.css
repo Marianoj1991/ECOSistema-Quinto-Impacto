@@ -1,0 +1,27 @@
+.header{
+    background: #FAFAFA;
+    height: 56px;
+}
+.menuIcon, .icon{
+    color: #222222;
+}
+.iconContainer{
+    display:flex;
+    flex-direction: column;
+}
+.cuentaIcon, .inicioSesion{
+    background: transparent;
+    border: none;
+    font-size: 8px;
+    color: #222222;
+}
+.inicioSesion{
+    display: flex;
+    flex-direction: column;
+    font-family: "Nunito", sans-serif;
+    font-size: 12px;
+}
+.logoHeader {
+    height: 32px;
+    text-align: center;
+}

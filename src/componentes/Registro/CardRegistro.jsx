@@ -1,5 +1,5 @@
 import gmailLogo from '../../utilidades/icon/GmailIcon.jsx';
-import logo from '../../utilidades/icon/logo.svg';
+import logo from '../../utilidades/icon/logo-simple.svg';
 import style from './CardRegistro.module.css'
 
 
