@@ -6,20 +6,9 @@ import styles from "./Categorias.module.css";
 import { useState } from "react";
 
 export function Categorias() {
-  const [categorias, setCategorias] = useState(infoBotones.slice(0, 8));
+  const [categorias, setCategorias] = useState(infoBotones.slice());
 
   return (
-    <Grid
-      className={styles.fondoColor}
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      sx={{
-        backgroundColor: "#111",
-        height: "100vh",
-      }}
-    >
       <Grid
         className={styles.categoriasContenedor}
         container
@@ -43,7 +32,7 @@ export function Categorias() {
         </Grid>
 
         <Grid item sx={{ padding: 1 }}>
-          <Grid container rowSpacing={2} columnSpacing={3}>
+          <Grid container rowSpacing={2} columnSpacing={2}>
             {categorias.map((dato) => (
               <BotonCategoria
                 key={dato.id}
@@ -78,6 +67,5 @@ export function Categorias() {
           </Typography>
         </Button>
       </Grid>
-    </Grid>
   );
 }

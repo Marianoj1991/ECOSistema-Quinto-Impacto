@@ -1,8 +1,9 @@
-import React from 'react';
+
 import styles from "./SeccionTitulo.module.css";
 import Buscador from '../buscador/Buscador';
 
-function SeccionTitulo() {
+function SeccionTitulo({}) {
+
   return (
     <section className={styles.titulo}>
       <Buscador />
@@ -13,7 +14,7 @@ function SeccionTitulo() {
         </p>
       </div>
     </section>
-  );
-};
+  );     
+}
 
 export default SeccionTitulo;

@@ -10,15 +10,12 @@ import Typography from "@mui/material/Typography";
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import CloseIcon from '@mui/icons-material/Close';
 
 import logo from '../../utilidades/icon/logo.svg';
-import cuenta from '../../utilidades/icon/cuenta.svg';
-import theme from '../../conf/theme';
 import styles from "./Header.module.css";
 
 const drawerWidth = 240;
@@ -56,7 +53,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
 }));
 
-export default function PersistentDrawerLeft() {
+export default function BarraNavegacion() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);

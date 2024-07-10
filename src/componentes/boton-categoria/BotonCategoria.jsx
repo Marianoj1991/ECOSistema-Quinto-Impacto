@@ -21,8 +21,8 @@ export function BotonCategoria({ icono, texto }) {
           alignItems="center"
           className={styles.botonContenedor}
         >
-          <Grid item>
-            <img src={icono} alt={texto} className={styles.icono} />
+          <Grid item display='flex'>
+            {icono}
           </Grid>
           <Grid item>
             <Typography className={styles.botonTexto}>{texto}</Typography>
