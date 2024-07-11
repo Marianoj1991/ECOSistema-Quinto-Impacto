@@ -1,0 +1,6 @@
+.gridPublicaciones {
+  width: 360px;
+  padding-top: 10px;
+  background-image: url('../../utilidades/icon/fondo-publicaciones.svg');
+  background-repeat: no-repeat;
+}

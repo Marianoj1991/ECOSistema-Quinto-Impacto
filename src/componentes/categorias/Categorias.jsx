@@ -6,7 +6,7 @@ import styles from "./Categorias.module.css";
 import { useState } from "react";
 
 export function Categorias() {
-  const [categorias, setCategorias] = useState(infoBotones.slice());
+  const [categorias, setCategorias] = useState(infoBotones.slice(0, 8));
 
   return (
       <Grid

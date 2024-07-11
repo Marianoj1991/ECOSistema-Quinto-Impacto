@@ -5,7 +5,6 @@ import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
 import PaginaRegistro from "../paginas/Registro/PaginaRegistro";
 import PageInicioSesion from "../paginas/inicioSesion/inicioSesion";
 
-
 const router = createBrowserRouter([
   {
     path: '/login',
