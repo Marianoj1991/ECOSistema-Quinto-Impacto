@@ -5,6 +5,7 @@ import theme from "./conf/theme";
 
 import Header from "./componentes/header/Header";
 import SeccionTitulo from "./componentes/seccion-titulo/SeccionTitulo";
+import InvitacionRegistro from './componentes/InvitacionRegistro/InvitacionRegistro'
 import EmpresasImpacto from "./componentes/empresas-impacto/EmpresasImpacto";
 import { Categorias } from "./componentes";
 import ArregloProveedores from "./componentes/arreglo-proveedores/ArregloProveedores";
@@ -15,13 +16,15 @@ import proveedores from "./componentes/arreglo-proveedores/proveedores";
 import proveedor from "./componentes/tarjeta-proveedor/proveedor";
 import publicaciones from "./componentes/tarjeta-publicacion/publicaciones";
 
+
 function App() {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <Header />
+         <Header /> 
         <SeccionTitulo />
         <EmpresasImpacto />
+        <InvitacionRegistro />
         <Categorias />
         <ArregloProveedores proveedores={proveedores} />
         <TarjetaProveedor
@@ -33,9 +36,13 @@ function App() {
           ubicacion={proveedor.ubicacion}
           descripcion={proveedor.descripcion}
         />
-        <PilaPublicaciones publicaciones={publicaciones} />
+        <PilaPublicaciones publicaciones={publicaciones} /> 
+        
+
       </ThemeProvider>
     </StyledEngineProvider>
+
+        
   );
 }
 

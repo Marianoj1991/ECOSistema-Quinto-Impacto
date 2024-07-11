@@ -16,8 +16,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import CloseIcon from '@mui/icons-material/Close';
 
-import logo from '../../utilidades/icon/logo.svg';
-import cuenta from '../../utilidades/icon/cuenta.svg';
+import Logo from '@/utilidades/icon/Logo';
 import theme from '../../conf/theme';
 import styles from "./Header.module.css";
 
@@ -56,7 +55,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({ hideUserIcon }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
@@ -89,10 +88,10 @@ export default function PersistentDrawerLeft() {
           >
             {open ? <CloseIcon className={styles.menuIcon} /> : <MenuIcon className={styles.menuIcon} />}
           </IconButton>
-          <Box>
-            <img src={logo} alt="Logo" className={styles.logoHeader} />
+          <Box className={`${styles.logoContainer} ${!hideUserIcon ? '' : styles.centerLogo}`}>
+            <Logo alt="Logo" className={styles.logoHeader} sx={{width: "152px",height: "56px"}}/>
           </Box>
-          {auth && (
+          {auth && !hideUserIcon &&  (
             <div>
               <IconButton
                 size="large"
