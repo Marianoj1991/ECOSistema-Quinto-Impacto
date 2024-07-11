@@ -2,17 +2,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "../ui/ErrorPage";
 import { Inicio } from "../paginas/inicio/Inicio";
 import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
+import PaginaRegistro from "../paginas/Registro/PaginaRegistro";
+import PageInicioSesion from "../paginas/inicioSesion/inicioSesion";
 
 
 const router = createBrowserRouter([
   {
     path: '/login',
-    element: <h1>LOGIN PAGE</h1>,
+    element: <PageInicioSesion />,
     error: <ErrorPage />
   },
   {
     path: '/registro',
-    element: <h1>REGISTRO PAGE</h1>,
+    element: <PaginaRegistro />,
     error: <ErrorPage />
   },
   {

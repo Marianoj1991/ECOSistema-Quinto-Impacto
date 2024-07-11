@@ -1,16 +1,15 @@
 import CardInicioSesion from "@/componentes/InicioSesion/CardInicioDeSesion"
 import style from './PaginaInicioSesion.module.css';
-import Header from '@/componentes/header/Header'
- const PageInicioSesion= () =>  {
+import BarraNavegacion from '@/componentes/header/BarraNavegacion'
+
+const PageInicioSesion= () =>  {
   return (
     <div className={style.container}>
-      <Header hideUserIcon={true}/>
+      <BarraNavegacion hideUserIcon={true} />
       <div className={style.CardSesion}>
-      <CardInicioSesion />
+        <CardInicioSesion />
       </div>
-      
-      
-      </div>
+    </div>
   )
 }
 export default PageInicioSesion

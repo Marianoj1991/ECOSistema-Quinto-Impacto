@@ -1,17 +1,15 @@
 import CardRegistro from "@/componentes/Registro/CardRegistro"
 import style from './PaginaRegistro.module.css'
-import Header from '@/componentes/header/Header'
+import BarraNavegacion from '@/componentes/header/BarraNavegacion'
 
 function PaginaRegistro() {
   return (
     <div className={style.container}>
-      <Header hideUserIcon={true}/>
+      <BarraNavegacion hideUserIcon={true} />
       <div className={style.CardRegistro}>
-      <CardRegistro/>
+        <CardRegistro />
       </div>
-      
-      
-      </div>
+    </div>
   )
 }
 

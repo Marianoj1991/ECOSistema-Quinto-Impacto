@@ -4,8 +4,6 @@ import Buscador from '../buscador/Buscador';
 
 function SeccionTitulo({ categoria, texto, titulo, imagen }) {
 
-  console.log(texto)
-
   return (
     <section className={styles.titulo} style={{ backgroundImage: `url(${imagen})`}}>
       <Buscador />
