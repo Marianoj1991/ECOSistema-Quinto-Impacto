@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import TarjetaPublicacion from "../tarjeta-publicacion/TarjetaPublicacion";
-import styles from "./PilaPublicaciones.module.css";
 
 function PilaPublicaciones({ publicaciones }) {
   return (
-    <Box className={styles.contenedor}>
+    <Box>
       {publicaciones.map((publicacion, index) => (
         <TarjetaPublicacion
           titulo={publicacion.titulo}
