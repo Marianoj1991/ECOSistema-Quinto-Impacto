@@ -7,6 +7,12 @@
   box-shadow: none;
 }
 
+.tarjetaExpandible {
+  padding-top: 15px;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
 .contenedorBotonCerrar {
   margin: 5px;
   display: flex;
@@ -27,13 +33,8 @@
   line-height: 18px;
 }
 
-.contenedorImagen {
-  padding: 0px 15px;
-}
-
-.imagen {
-  height: 128px;
-  border-radius: 16px 0px 16px 16px;
+.contenedorContenido1 {
+  padding-bottom: 10px;
 }
 
 .nombre {
@@ -50,7 +51,6 @@
 }
 
 .contenedorUbicacion {
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
 }
@@ -59,6 +59,10 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
+}
+
+.contenedorContenido2 {
+  padding-top: 10px;
 }
 
 .descripcion {
@@ -95,4 +99,9 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
+}
+
+.contenedorBotonDesplegable {
+  display: flex;
+  justify-content: center;
 }

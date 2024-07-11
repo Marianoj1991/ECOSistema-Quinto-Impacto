@@ -15,6 +15,11 @@ function CarruselImagenes({ imagenes }) {
             color: "#4E169D",
           },
         }}
+        indicatorContainerProps={{
+          style: {
+            marginTop: "0px",
+          },
+        }}
       >
         {imagenes.map((imagen, index) => (
           <CardMedia

@@ -22,7 +22,7 @@ function TarjetaPublicacion({ titulo, fecha, cuerpo, imagenes }) {
         className={styles.tarjeta}
       >
         <CardHeader title={titulo} className={styles.titulo} />
-        <CarruselImagenes imagenes={imagenes} className={styles.carrusel} />
+        <CarruselImagenes imagenes={imagenes} />
         <CardContent>
           <Typography
             color="negro.main"

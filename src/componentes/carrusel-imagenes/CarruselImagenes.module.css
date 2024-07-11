@@ -3,5 +3,5 @@
 }
 .imagen {
   height: 128px;
-  border-radius: 16px;
+  border-radius: 16px 0px 16px 16px;
 }
