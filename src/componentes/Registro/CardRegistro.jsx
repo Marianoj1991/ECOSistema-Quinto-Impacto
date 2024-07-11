@@ -1,5 +1,5 @@
-import gmailLogo from '../../utilidades/icon/GmailIcon.jsx';
-import logo from '../../utilidades/icon/logo-simple.svg';
+import GmailLogo from '@/utilidades/icon/GmailIcon';
+import Logo from '@/utilidades/icon/LogoSimple';
 import style from './CardRegistro.module.css'
 
 
@@ -11,15 +11,15 @@ const CardRegistro= () =>  {
       
       <div><p>Sumate a ECOSistema</p></div>
     
-    <div>
-      <img src={logo} alt="" />
-    </div>
+   
+    <Logo sx={{ width: "80px", height: "75px"}}/>
+    
     </div>
     
     <div className={style.containerBtn}>
     <p>Registrate con tu cuenta de Gmail</p>
     <button className={style.btnRegistro}>
-      <div className={style.imglogo}><img src={gmailLogo} alt="Gmail logo" /></div>
+    <div className={style.imglogo}><GmailLogo sx={{ width: "16px", height: "16px"}} /></div>
       <p>Continuá con Google</p>
     </button>
     </div>

@@ -1,6 +1,6 @@
 
-import GmailLogo from '../../utilidades/icon/GmailIcon.svg';
-import logo from '../../utilidades/icon/logo-simple.svg';
+import GmailLogo from '@/utilidades/icon/GmailIcon';
+import Logo from '@/utilidades/icon/LogoSimple';
 import style from './CardInicioDeSesion.module.css';
 
 const CardInicioSesion = () => {
@@ -11,15 +11,15 @@ const CardInicioSesion = () => {
         
         <div><p>Seguí disfrutando de ECOSistema</p></div>
       
-      <div>
-        <img src={logo} alt="" />
-      </div>
+      
+        <Logo sx={{ width: "80px", height: "75px"}}/>
+      
       </div>
       
       <div className={style.containerBtn}>
       <p>Ingresá con tu cuenta de Gmail</p>
       <button className={style.btnSesion}>
-        <div className={style.imglogo}><img src={GmailLogo} alt="Gmail logo" /></div>
+        <div className={style.imglogo}><GmailLogo sx={{ width: "16px", height: "16px"}} /></div>
         <p>Continuá con Google</p>
       </button>
       </div>
