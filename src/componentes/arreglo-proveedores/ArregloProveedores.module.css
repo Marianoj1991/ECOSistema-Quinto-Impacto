@@ -1,3 +1,19 @@
-.contenedor {
-  margin: 40px 12px 10px;
+.contenedorTexto {
+  margin: 40px 20px 30px 20px;
+}
+
+.textoRecomendaciones {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.textoProveedores {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 25px;
+}
+
+.contenedorArreglo {
+  margin: 0px 12px 40px 12px;
 }

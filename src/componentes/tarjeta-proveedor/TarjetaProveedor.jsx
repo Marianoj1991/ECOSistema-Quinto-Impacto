@@ -1,11 +1,14 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import CarruselImagenes from "../carrusel-imagenes/CarruselImagenes";
 import CloseIcon from "@mui/icons-material/Close";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import WhatsAppIcon from "../../utilidades/icon/WhatsAppIcon";
 import InstagramIcon from "../../utilidades/icon/InstagramIcon";
@@ -14,30 +17,37 @@ import MailIcon from "../../utilidades/icon/MailIcon";
 import styles from "./TarjetaProveedor.module.css";
 
 function TarjetaProveedor({
+  expandible,
   categoria,
-  imagenUrl,
-  imagenAlt,
+  imagenes,
   nombre,
   tipo,
   ubicacion,
   descripcion,
 }) {
+  const [expandido, setExpandido] = useState(false);
+
+  const manejarExpansion = () => setExpandido(!expandido);
+
   return (
     <Box className={styles.contenedor}>
       <Card
         sx={{ backgroundColor: "grisClaro.main" }}
-        className={styles.tarjeta}
+        className={!expandible ? styles.tarjeta : styles.tarjetaExpandible}
       >
-        <Box className={styles.contenedorBotonCerrar}>
-          <IconButton
-            color="negro"
-            size="medium"
-            onClick={() => console.log("Cerrado")}
-            aria-label="close"
-          >
-            <CloseIcon />
-          </IconButton>
-        </Box>
+        {!expandible && (
+          <Box className={styles.contenedorBotonCerrar}>
+            <IconButton
+              color="negro"
+              size="medium"
+              onClick={() => console.log("Cerrado")}
+              aria-label="cerrar"
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        )}
+
         <Box className={styles.contenedorCategoria}>
           <Typography
             color="violeta.main"
@@ -50,15 +60,8 @@ function TarjetaProveedor({
             {categoria}
           </Typography>
         </Box>
-        <Box className={styles.contenedorImagen}>
-          <CardMedia
-            component="img"
-            image={imagenUrl}
-            alt={imagenAlt}
-            className={styles.imagen}
-          />
-        </Box>
-        <CardContent>
+        <CarruselImagenes imagenes={imagenes} />
+        <CardContent className={styles.contenedorContenido1}>
           <Typography
             color="negro.main"
             component="h5"
@@ -83,63 +86,154 @@ function TarjetaProveedor({
               {ubicacion}
             </Typography>
           </Box>
-          <Typography
-            color="negro.main"
-            component="p"
-            className={styles.descripcion}
-          >
-            {descripcion}
-          </Typography>
-          <Typography
-            color="negro.main"
-            component="p"
-            className={styles.contactanos}
-          >
-            Contactanos
-          </Typography>
         </CardContent>
-        <CardActions className={styles.contenedorBotonesRedesSociales}>
-          <Box className={styles.botonRedSocial}>
-            <WhatsAppIcon />
-            <Typography
-              color="negro.main"
-              component="p"
-              className={styles.redSocial}
-            >
-              WhatsApp
-            </Typography>
-          </Box>
-          <Box className={styles.botonRedSocial}>
-            <InstagramIcon />
-            <Typography
-              color="negro.main"
-              component="p"
-              className={styles.redSocial}
-            >
-              Instagram
-            </Typography>
-          </Box>
-          <Box className={styles.botonRedSocial}>
-            <FacebookIcon />
-            <Typography
-              color="negro.main"
-              component="p"
-              className={styles.redSocial}
-            >
-              Facebook
-            </Typography>
-          </Box>
-          <Box className={styles.botonRedSocial}>
-            <MailIcon />
-            <Typography
-              color="negro.main"
-              component="p"
-              className={styles.redSocial}
-            >
-              Mail
-            </Typography>
-          </Box>
-        </CardActions>
+
+        {!expandible && (
+          <>
+            <CardContent className={styles.contenedorContenido2}>
+              <Typography
+                color="negro.main"
+                component="p"
+                className={styles.descripcion}
+              >
+                {descripcion}
+              </Typography>
+              <Typography
+                color="negro.main"
+                component="p"
+                className={styles.contactanos}
+              >
+                Contactanos
+              </Typography>
+            </CardContent>
+            <CardActions className={styles.contenedorBotonesRedesSociales}>
+              <Box className={styles.botonRedSocial}>
+                <WhatsAppIcon />
+                <Typography
+                  color="negro.main"
+                  component="p"
+                  className={styles.redSocial}
+                >
+                  WhatsApp
+                </Typography>
+              </Box>
+              <Box className={styles.botonRedSocial}>
+                <InstagramIcon />
+                <Typography
+                  color="negro.main"
+                  component="p"
+                  className={styles.redSocial}
+                >
+                  Instagram
+                </Typography>
+              </Box>
+              <Box className={styles.botonRedSocial}>
+                <FacebookIcon />
+                <Typography
+                  color="negro.main"
+                  component="p"
+                  className={styles.redSocial}
+                >
+                  Facebook
+                </Typography>
+              </Box>
+              <Box className={styles.botonRedSocial}>
+                <MailIcon />
+                <Typography
+                  color="negro.main"
+                  component="p"
+                  className={styles.redSocial}
+                >
+                  Mail
+                </Typography>
+              </Box>
+            </CardActions>
+          </>
+        )}
+
+        {expandible && (
+          <>
+            <Collapse in={expandido} timeout="auto" collapsedSize={0}>
+              <CardContent className={styles.contenedorContenido2}>
+                <Typography
+                  color="negro.main"
+                  component="p"
+                  className={styles.descripcion}
+                >
+                  {descripcion}
+                </Typography>
+                <Typography
+                  color="negro.main"
+                  component="p"
+                  className={styles.contactanos}
+                >
+                  Contactanos
+                </Typography>
+              </CardContent>
+              <CardActions className={styles.contenedorBotonesRedesSociales}>
+                <Box className={styles.botonRedSocial}>
+                  <WhatsAppIcon />
+                  <Typography
+                    color="negro.main"
+                    component="p"
+                    className={styles.redSocial}
+                  >
+                    WhatsApp
+                  </Typography>
+                </Box>
+                <Box className={styles.botonRedSocial}>
+                  <InstagramIcon />
+                  <Typography
+                    color="negro.main"
+                    component="p"
+                    className={styles.redSocial}
+                  >
+                    Instagram
+                  </Typography>
+                </Box>
+                <Box className={styles.botonRedSocial}>
+                  <FacebookIcon />
+                  <Typography
+                    color="negro.main"
+                    component="p"
+                    className={styles.redSocial}
+                  >
+                    Facebook
+                  </Typography>
+                </Box>
+                <Box className={styles.botonRedSocial}>
+                  <MailIcon />
+                  <Typography
+                    color="negro.main"
+                    component="p"
+                    className={styles.redSocial}
+                  >
+                    Mail
+                  </Typography>
+                </Box>
+              </CardActions>
+            </Collapse>
+            <CardActions className={styles.contenedorBotonDesplegable}>
+              <IconButton
+                color="violeta"
+                size="small"
+                onClick={manejarExpansion}
+                aria-label="expandir"
+              >
+                <ExpandMoreIcon
+                  sx={{
+                    width: "30px",
+                    height: "30px",
+                    transform: `${
+                      !expandido ? "rotate(0deg)" : "rotate(180deg)"
+                    }`,
+                    transition: "transform 300ms ease-in-out",
+                  }}
+                />
+              </IconButton>
+            </CardActions>
+          </>
+        )}
       </Card>
     </Box>
   );
