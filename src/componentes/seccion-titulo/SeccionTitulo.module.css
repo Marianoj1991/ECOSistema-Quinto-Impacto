@@ -1,7 +1,6 @@
 .titulo {
     position: relative;
     height: 488px;
-    background-image: url("../../utilidades/icon/red-de-impacto.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -35,6 +34,7 @@
     line-height: 24px;
     font-weight: 600;
     text-transform: uppercase;
+    margin-bottom: 10px;
   }
   
   .cajaTexto {
@@ -42,5 +42,10 @@
     font-size: 28px;
     line-height: 30px;
     font-weight: 400;
+  }
+
+  .textoCondicional {
+    width: 180px;
+    margin-top: 15px;
   }
   

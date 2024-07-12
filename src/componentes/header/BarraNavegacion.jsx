@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -55,7 +54,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
 }));
 
-export default function PersistentDrawerLeft({ hideUserIcon }) {
+export default function BarraNavegacion ({ hideUserIcon }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);

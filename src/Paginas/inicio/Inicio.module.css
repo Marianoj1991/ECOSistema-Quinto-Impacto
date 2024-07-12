@@ -1,0 +1,15 @@
+.gridPublicaciones {
+  margin: 10px 20px 0px;
+}
+
+.gridTitulo {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.gridSubtitulo {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 25px;
+}
+
