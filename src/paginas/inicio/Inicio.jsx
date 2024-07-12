@@ -22,6 +22,9 @@ export function Inicio() {
   const navigate = useNavigate()
 
   const manejarBusqueda = (nombreProveedor) => {
+    if(!nombreProveedor) {
+      return
+    }
     navigate(`busquedas/${nombreProveedor}`)
   }
 

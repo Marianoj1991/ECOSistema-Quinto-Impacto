@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import BarraNavegacion from "../../componentes/header/BarraNavegacion";
 import Buscador from "../../componentes/buscador/Buscador";
 import SinResultados from "../../componentes/Sin-resultados/SinResultados"; 
@@ -7,14 +7,15 @@ import SinResultados from "../../componentes/Sin-resultados/SinResultados";
 import styles from './Busquedas.module.css'
 import { useParams } from "react-router-dom";
 import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import PilaProveedores from "../../componentes/pila-proveedores/PilaProveedores";
+
 
 
 export function Busquedas() {
 
   const [ proveedores, setProveedores ] = useState([])
-  const { nombre } = useParams()
-  const esPrimerRenderizado = useRef(true)
+  let { nombre } = useParams()
 
   const manejarBusqueda = (nombreProveedorParam) => {
     console.log(nombreProveedorParam)
@@ -22,46 +23,25 @@ export function Busquedas() {
     setProveedores(proveedor)
   }
 
-    useEffect(() => {
-      if (esPrimerRenderizado.current) {
-        esPrimerRenderizado.current = false
-        manejarBusqueda(nombre)
-      }
-    }, [nombre])
+  useEffect(() => {
+      manejarBusqueda(nombre)
+  }, [nombre])
 
   return (
     <>
       <BarraNavegacion />
-      <Grid
-        container
-        direction='column'
-        rowSpacing={4}
-        p={2}
-      >
-        <Grid
-          item
-          mb={-2}
-        >
-          <Buscador
-            manejarBusqueda={manejarBusqueda}
-            color='#eaeaea'
-          />
-        </Grid>
-
-        <Grid item>
-          <Typography className={styles.textoResultados}>
-            Resultados de tu búsqueda
-          </Typography>
-        </Grid>
-
-        <Grid item>
-          {proveedores.length > 0 ? (
-            <p>Hola</p>
-          ) : (
-            <SinResultados></SinResultados>
-          )}
-        </Grid>
-      </Grid>
+      <Buscador
+        manejarBusqueda={manejarBusqueda}
+        color='#eaeaea'
+      />
+      <Typography className={styles.textoResultados}>
+        Resultados de tu búsqueda
+      </Typography>
+      {proveedores.length > 0 ? (
+            <PilaProveedores proveedores={proveedores} />
+      ) : (
+        <SinResultados />      
+      )}
     </>
   )
 }

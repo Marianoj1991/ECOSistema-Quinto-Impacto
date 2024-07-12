@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import TarjetaProveedor from "../tarjeta-proveedor/TarjetaProveedor";
 
-function PilaPublicaciones({ proveedores }) {
+function PilaProveedores({ proveedores }) {
   return (
     <Box>
       {proveedores.map((proveedor, index) => (
@@ -20,4 +20,4 @@ function PilaPublicaciones({ proveedores }) {
   );
 }
 
-export default PilaPublicaciones;
+export default PilaProveedores;
