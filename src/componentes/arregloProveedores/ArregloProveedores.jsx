@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
+import MiniaturaProveedor from "../miniaturaProveedor/MiniaturaProveedor";
 import Typography from "@mui/material/Typography";
-import MiniaturaProveedor from "../miniatura-proveedor/MiniaturaProveedor";
 import vectorVerde1 from "../../utilidades/icon/vector-verde-1.svg";
 import styles from "./ArregloProveedores.module.css";
 
@@ -28,8 +28,8 @@ function Proveedores({ recomendacionesLocales, proveedores }) {
       </Box>
       <Box sx={{ backgroundImage: `url(${vectorVerde1})` }}>
         <Grid container spacing={2} className={styles.contenedorArreglo}>
-          {proveedores.map((proveedor, index) => (
-            <Grid xs={6} key={index}>
+          {proveedores.map((proveedor) => (
+            <Grid xs={6} key={proveedor.id}>
               <MiniaturaProveedor
                 categoria={proveedor.categoria}
                 imagenUrl={proveedor.imagenes[0].url}

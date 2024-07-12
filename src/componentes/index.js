@@ -1,2 +1,2 @@
-export * from './categorias'
-export * from './boton-categoria/'
+export * from "./categorias";
+export * from "./botonCategoria";

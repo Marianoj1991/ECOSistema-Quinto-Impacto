@@ -1,42 +1,39 @@
+import { Busquedas } from "../paginas/busquedas/Busquedas";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "../ui/ErrorPage";
-import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
-import PaginaRegistro from "../paginas/Registro/PaginaRegistro";
-import PageInicioSesion from "../paginas/inicioSesion/inicioSesion";
 import { Inicio } from "../paginas/inicio/Inicio";
-import { Busquedas } from "../paginas/busquedas/Busquedas";
+import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
+import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
+import Registro from "../Paginas/registro/Registro";
 
 const router = createBrowserRouter([
   {
-    path: '/login',
-    element: <PageInicioSesion />,
-    error: <ErrorPage />
-  },
-  {
-    path: '/registro',
-    element: <PaginaRegistro />,
-    error: <ErrorPage />
-  },
-  {
-    path: '/',
+    path: "/",
     element: <Inicio />,
-    error: <ErrorPage />
+    error: <ErrorPage />,
   },
   {
-    path: '/visitantes/publicaciones',
+    path: "/login",
+    element: <InicioSesion />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/registro",
+    element: <Registro />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/visitantes/publicaciones",
     element: <Publicaciones />,
-    error: <ErrorPage />
+    error: <ErrorPage />,
   },
   {
-    path: '/busquedas/:nombre',
+    path: "/busquedas/:nombre",
     element: <Busquedas />,
-    error: <ErrorPage />
-  }
-])
-
+    error: <ErrorPage />,
+  },
+]);
 
 export default function AppRouter() {
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }

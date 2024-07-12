@@ -1,27 +1,31 @@
-import { Grid } from '@mui/material'
-import Header from '../../componentes/header/BarraNavegacion'
-import PilaPublicaciones from '../../componentes/pila-publicaciones/PilaPublicaciones'
-import SeccionTitulo from '../../componentes/seccion-titulo/SeccionTitulo'
-import publicaciones from '../../componentes/pila-publicaciones/publicaciones'
-import { info } from './publicacionesContenido'
+import { Grid } from "@mui/material";
+import { info } from "./publicacionesContenido";
+import Buscador from "../../componentes/buscador/Buscador";
+import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
+import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
+import publicaciones from "../../componentes/pilaPublicaciones/publicaciones";
+import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 
 // Estilos CSS
-import styles from './Publicaciones.module.css'
-import Buscador from '../../componentes/buscador/Buscador'
+import styles from "./Publicaciones.module.css";
 
-const { categoria, texto, titulo, imagen } = info
+const { categoria, texto, titulo, imagen } = info;
 
 export function Publicaciones() {
-
   return (
     <>
-      <Header />
-      <SeccionTitulo categoria={categoria} titulo={titulo} texto={texto} imagen={imagen}>
-        { <Buscador /> }
+      <BarraNavegacion />
+      <SeccionTitulo
+        categoria={categoria}
+        titulo={titulo}
+        texto={texto}
+        imagen={imagen}
+      >
+        {<Buscador />}
       </SeccionTitulo>
-      <Grid className={styles.gridPublicaciones}  >
-        <PilaPublicaciones publicaciones={publicaciones}/>
+      <Grid className={styles.gridPublicaciones}>
+        <PilaPublicaciones publicaciones={publicaciones} />
       </Grid>
     </>
-  )
+  );
 }

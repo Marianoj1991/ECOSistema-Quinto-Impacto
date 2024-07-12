@@ -1,16 +1,16 @@
 import Box from "@mui/material/Box";
-import TarjetaPublicacion from "../tarjeta-publicacion/TarjetaPublicacion";
+import TarjetaPublicacion from "../tarjetaPublicacion/TarjetaPublicacion";
 
 function PilaPublicaciones({ publicaciones }) {
   return (
     <Box>
-      {publicaciones.map((publicacion, index) => (
+      {publicaciones.map((publicacion) => (
         <TarjetaPublicacion
           titulo={publicacion.titulo}
           fecha={publicacion.fecha}
           cuerpo={publicacion.cuerpo}
           imagenes={publicacion.imagenes}
-          key={index}
+          key={publicacion.id}
         />
       ))}
     </Box>

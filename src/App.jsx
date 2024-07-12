@@ -1,9 +1,8 @@
-import "./App.css";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
-import theme from "./conf/theme";
-
 import AppRouter from "./router/AppRouter";
+import theme from "./conf/theme";
+import "./App.css";
 
 function App() {
   return (
