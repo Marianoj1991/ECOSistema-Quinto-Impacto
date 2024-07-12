@@ -1,47 +1,40 @@
+import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
 import { Typography } from "@mui/material";
-import BarraNavegacion from "../../componentes/header/BarraNavegacion";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import Buscador from "../../componentes/buscador/Buscador";
-import SinResultados from "../../componentes/Sin-resultados/SinResultados"; 
+import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
+import SinResultados from "../../componentes/sinResultados/SinResultados";
 
 // Estilos CSS
-import styles from './Busquedas.module.css'
-import { useParams } from "react-router-dom";
-import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
-import { useEffect, useState } from "react";
-import PilaProveedores from "../../componentes/pila-proveedores/PilaProveedores";
-
-
+import styles from "./Busquedas.module.css";
 
 export function Busquedas() {
-
-  const [ proveedores, setProveedores ] = useState([])
-  let { nombre } = useParams()
+  const [proveedores, setProveedores] = useState([]);
+  let { nombre } = useParams();
 
   const manejarBusqueda = (nombreProveedorParam) => {
-    console.log(nombreProveedorParam)
-    const proveedor = buscarProveedorPorNombre(nombreProveedorParam)
-    setProveedores(proveedor)
-  }
+    const proveedor = buscarProveedorPorNombre(nombreProveedorParam);
+    setProveedores(proveedor);
+  };
 
   useEffect(() => {
-      manejarBusqueda(nombre)
-  }, [nombre])
+    manejarBusqueda(nombre);
+  }, [nombre]);
 
   return (
     <>
       <BarraNavegacion />
-      <Buscador
-        manejarBusqueda={manejarBusqueda}
-        color='#eaeaea'
-      />
+      <Buscador manejarBusqueda={manejarBusqueda} color="#EAEAEA" />
       <Typography className={styles.textoResultados}>
         Resultados de tu búsqueda
       </Typography>
       {proveedores.length > 0 ? (
-            <PilaProveedores proveedores={proveedores} />
+        <PilaProveedores proveedores={proveedores} />
       ) : (
-        <SinResultados />      
+        <SinResultados />
       )}
     </>
-  )
+  );
 }

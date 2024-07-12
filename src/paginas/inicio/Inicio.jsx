@@ -1,57 +1,50 @@
-import { Categorias } from "../../componentes"
-import Proveedores from "../../componentes/arreglo-proveedores/ArregloProveedores"
-import EmpresasImpacto from "../../componentes/empresas-impacto/EmpresasImpacto"
-import BarraNavegacion from "../../componentes/header/BarraNavegacion"
-import SeccionTitulo from "../../componentes/seccion-titulo/SeccionTitulo"
-import proveedores from '../../componentes/pila-proveedores/proveedores'
-import { info } from './inicioContenido'
-import InvitacionRegistro from "../../componentes/InvitacionRegistro/InvitacionRegistro"
-import PilaPublicaciones from "../../componentes/pila-publicaciones/PilaPublicaciones"
-import publicaciones from "../../componentes/pila-publicaciones/publicaciones"
-import { Grid, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom";
+import { Categorias } from "../../componentes";
+import { info } from "./inicioContenido";
+import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
+import Box from "@mui/material/Box";
+import Buscador from "../../componentes/buscador/Buscador";
+import EmpresasImpacto from "../../componentes/empresasImpacto/EmpresasImpacto";
+import InvitacionRegistro from "../../componentes/invitacionRegistro/InvitacionRegistro";
+import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
+import Proveedores from "../../componentes/arregloProveedores/ArregloProveedores";
+import proveedores from "../../componentes/pilaProveedores/proveedores";
+import publicaciones from "../../componentes/pilaPublicaciones/publicaciones";
+import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
+import Typography from "@mui/material/Typography";
+
 // Estilos CSS
-import styles from './Inicio.module.css'
-import Buscador from "../../componentes/buscador/Buscador"
-import { useNavigate } from "react-router-dom"
+import styles from "./Inicio.module.css";
 
-
-const { categoria, titulo, imagen } = info
+const { categoria, titulo, imagen } = info;
 
 export function Inicio() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const manejarBusqueda = (nombreProveedor) => {
-    if(!nombreProveedor) {
-      return
+    if (!nombreProveedor) {
+      return;
     }
-    navigate(`busquedas/${nombreProveedor}`)
-  }
+    navigate(`busquedas/${nombreProveedor}`);
+  };
 
   return (
     <>
       <BarraNavegacion />
-      <SeccionTitulo
-        categoria={categoria}
-        titulo={titulo}
-        imagen={imagen}
-      >
-        <Buscador
-          manejarBusqueda={manejarBusqueda}
-          color='#FAFAFA'
-        />
+      <SeccionTitulo categoria={categoria} titulo={titulo} imagen={imagen}>
+        <Buscador manejarBusqueda={manejarBusqueda} color="#FAFAFA" />
       </SeccionTitulo>
       <EmpresasImpacto />
       <InvitacionRegistro />
       <Proveedores proveedores={proveedores} />
       <Categorias />
-      <Grid className={styles.gridPublicaciones}>
-        <Typography className={styles.gridTitulo}>Publicaciones</Typography>
-        <Typography className={styles.gridSubtitulo}>
+      <Box className={styles.publicaciones}>
+        <Typography className={styles.titulo}>Publicaciones</Typography>
+        <Typography className={styles.subtitulo}>
           Impulsando transformaciones
         </Typography>
-      </Grid>
+      </Box>
       <PilaPublicaciones publicaciones={publicaciones} />
     </>
-  )
+  );
 }

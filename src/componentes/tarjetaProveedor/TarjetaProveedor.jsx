@@ -3,17 +3,17 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import CarruselImagenes from "../carrusel-imagenes/CarruselImagenes";
+import CarruselImagenes from "../carruselImagenes/CarruselImagenes";
 import CloseIcon from "@mui/icons-material/Close";
+import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import WhatsAppIcon from "../../utilidades/icon/WhatsAppIcon";
-import InstagramIcon from "../../utilidades/icon/InstagramIcon";
 import FacebookIcon from "../../utilidades/icon/FacebookIcon";
+import IconButton from "@mui/material/IconButton";
+import InstagramIcon from "../../utilidades/icon/InstagramIcon";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import MailIcon from "../../utilidades/icon/MailIcon";
+import Typography from "@mui/material/Typography";
+import WhatsAppIcon from "../../utilidades/icon/WhatsAppIcon";
 import styles from "./TarjetaProveedor.module.css";
 
 function TarjetaProveedor({

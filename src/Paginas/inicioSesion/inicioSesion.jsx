@@ -1,15 +1,15 @@
-import CardInicioSesion from "@/componentes/InicioSesion/CardInicioDeSesion"
-import style from './PaginaInicioSesion.module.css';
-import BarraNavegacion from '@/componentes/header/BarraNavegacion'
+import TarjetaInicioSesion from "@/componentes/tarjetaInicioSesion/TarjetaInicioSesion";
+import BarraNavegacion from "@/componentes/barraNavegacion/BarraNavegacion";
+import style from "./InicioSesion.module.css";
 
-const PageInicioSesion= () =>  {
+const InicioSesion = () => {
   return (
     <div className={style.container}>
       <BarraNavegacion hideUserIcon={true} />
       <div className={style.CardSesion}>
-        <CardInicioSesion />
+        <TarjetaInicioSesion />
       </div>
     </div>
-  )
-}
-export default PageInicioSesion
+  );
+};
+export default InicioSesion;

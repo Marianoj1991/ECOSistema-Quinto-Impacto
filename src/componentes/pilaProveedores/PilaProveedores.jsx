@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
-import TarjetaProveedor from "../tarjeta-proveedor/TarjetaProveedor";
+import TarjetaProveedor from "../tarjetaProveedor/TarjetaProveedor";
 
 function PilaProveedores({ proveedores }) {
   return (
     <Box>
-      {proveedores.map((proveedor, index) => (
+      {proveedores.map((proveedor) => (
         <TarjetaProveedor
           expandible={true}
           categoria={proveedor.categoria}
@@ -13,7 +13,7 @@ function PilaProveedores({ proveedores }) {
           tipo={proveedor.tipo}
           ubicacion={proveedor.ubicacion}
           descripcion={proveedor.descripcion}
-          key={index}
+          key={proveedor.id}
         />
       ))}
     </Box>

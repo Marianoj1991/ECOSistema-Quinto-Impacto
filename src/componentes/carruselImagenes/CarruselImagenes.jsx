@@ -21,13 +21,13 @@ function CarruselImagenes({ imagenes }) {
           },
         }}
       >
-        {imagenes.map((imagen, index) => (
+        {imagenes.map((imagen) => (
           <CardMedia
             component="img"
             image={imagen.url}
             alt={imagen.alt}
             className={styles.imagen}
-            key={index}
+            key={imagen.id}
           />
         ))}
       </Carousel>
