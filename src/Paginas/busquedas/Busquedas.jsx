@@ -1,7 +1,7 @@
 import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import Buscador from "../../componentes/buscador/Buscador";
 import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
@@ -12,7 +12,9 @@ import styles from "./Busquedas.module.css";
 
 export function Busquedas() {
   const [proveedores, setProveedores] = useState([]);
-  let { nombre } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const nombre = searchParams.get('nombre')
 
   const manejarBusqueda = (nombreProveedorParam) => {
     const proveedor = buscarProveedorPorNombre(nombreProveedorParam);
@@ -21,7 +23,8 @@ export function Busquedas() {
 
   useEffect(() => {
     manejarBusqueda(nombre);
-  }, [nombre]);
+    setSearchParams('')
+  }, []);
 
   return (
     <>

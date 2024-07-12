@@ -1,5 +1,6 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import styles from "./BotonCategoria.module.css";
+import { Link } from "react-router-dom";
 
 export function BotonCategoria({ icono, texto }) {
   return (
@@ -9,10 +10,8 @@ export function BotonCategoria({ icono, texto }) {
       sx={{ padding: "0px", width: "152px", cursor: "pointer" }}
     >
       <Link
-        sx={{
-          textDecoration: "none",
-          color: "inherit",
-        }}
+        to={`/categorias?categoria=${texto}`}
+        className={styles.categoriaLink}
       >
         <Grid
           container

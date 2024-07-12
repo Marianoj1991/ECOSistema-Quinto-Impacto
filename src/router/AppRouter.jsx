@@ -28,8 +28,13 @@ const router = createBrowserRouter([
     error: <ErrorPage />,
   },
   {
-    path: "/busquedas/:nombre",
+    path: "/busquedas",
     element: <Busquedas />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/categorias",
+    element: <h1>Categorias</h1>,
     error: <ErrorPage />,
   },
 ]);

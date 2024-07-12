@@ -17,3 +17,8 @@
   line-height: 25px;
   text-align: center;
 }
+
+.linkCategorias{
+  text-decoration: none;
+  color: inherit;
+}

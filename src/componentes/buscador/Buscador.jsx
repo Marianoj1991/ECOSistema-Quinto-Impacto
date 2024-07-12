@@ -5,6 +5,7 @@ function Buscador({ manejarBusqueda, color }) {
 
   const onKeyUp = (e) => {
     const { value } = e.target
+    if (value.length === 0) return
     if(e.key === 'Enter') {
       manejarBusqueda(value)
       e.target.value = ''

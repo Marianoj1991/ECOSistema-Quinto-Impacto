@@ -23,9 +23,9 @@ export function Inicio() {
 
   const manejarBusqueda = (nombreProveedor) => {
     if (!nombreProveedor) {
-      return;
+      return
     }
-    navigate(`busquedas/${nombreProveedor}`);
+    navigate(`busquedas?nombre=${nombreProveedor}`);
   };
 
   return (
