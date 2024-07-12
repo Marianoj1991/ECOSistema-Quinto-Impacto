@@ -12,7 +12,7 @@ import styles from "./Busquedas.module.css";
 
 export function Busquedas() {
   const [proveedores, setProveedores] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [ searchParams ] = useSearchParams()
 
   const nombre = searchParams.get('nombre')
 
@@ -23,13 +23,12 @@ export function Busquedas() {
 
   useEffect(() => {
     manejarBusqueda(nombre);
-    setSearchParams('')
   }, []);
 
   return (
     <>
       <BarraNavegacion />
-      <Buscador manejarBusqueda={manejarBusqueda} color="#EAEAEA" />
+      <Buscador color="#EAEAEA" />
       <Typography className={styles.textoResultados}>
         Resultados de tu búsqueda
       </Typography>

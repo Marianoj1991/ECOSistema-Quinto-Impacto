@@ -1,7 +1,17 @@
 
+import { useNavigate } from "react-router-dom";
 import styles from "./Buscador.module.css";
 
-function Buscador({ manejarBusqueda, color }) {
+function Buscador({ color }) {
+
+  const navigate = useNavigate();
+
+  const manejarBusqueda = (nombreProveedor) => {
+    if (!nombreProveedor) {
+      return
+    }
+    navigate(`/busquedas?nombre=${nombreProveedor}`);
+  };
 
   const onKeyUp = (e) => {
     const { value } = e.target
