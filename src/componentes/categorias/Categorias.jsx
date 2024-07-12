@@ -5,10 +5,11 @@ import { BotonCategoria } from "../boton-categoria/index";
 import styles from "./Categorias.module.css";
 import { useState } from "react";
 
+
 export function Categorias() {
   const [categorias, setCategorias] = useState(infoBotones.slice(0, 8));
 
-  return (
+  return ( 
       <Grid
         className={styles.categoriasContenedor}
         container

@@ -54,7 +54,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
 }));
 
-export default function BarraNavegacion({ hideUserIcon }) {
+export default function BarraNavegacion ({ hideUserIcon }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);

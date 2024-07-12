@@ -1,0 +1,20 @@
+.container {
+  background-color: #eaeaea;
+  padding: 24px 0px;
+  border-radius: 8px;
+}
+
+.textoColor {
+  color: #4e169d;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.textoNegro {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+}

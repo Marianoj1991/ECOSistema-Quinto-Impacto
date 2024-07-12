@@ -1,12 +1,11 @@
 
 import styles from "./SeccionTitulo.module.css";
-import Buscador from '../buscador/Buscador';
 
-function SeccionTitulo({ categoria, texto, titulo, imagen }) {
+function SeccionTitulo({ categoria, texto, titulo, imagen, children }) {
 
   return (
     <section className={styles.titulo} style={{ backgroundImage: `url(${imagen})`}}>
-      <Buscador />
+      { children }
       <div className={styles.contenedorTitulo}>
         <h1>{categoria}</h1>
         <p className={styles.cajaTexto}>

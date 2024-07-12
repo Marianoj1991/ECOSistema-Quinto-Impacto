@@ -7,7 +7,6 @@ import theme from "./conf/theme";
 // import publicaciones from "./componentes/tarjeta-publicacion/publicaciones";
 import AppRouter from "./router/AppRouter";
 
-
 function App() {
   return (
     <StyledEngineProvider injectFirst>
