@@ -40,6 +40,8 @@ export function Categorias() {
               key={dato.id}
               icono={dato.icono}
               texto={dato.texto}
+              border={true}
+              seccCategorias={false}
             />
           ))}
         </Grid>
