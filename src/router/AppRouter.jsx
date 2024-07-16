@@ -5,7 +5,7 @@ import { Inicio } from "../paginas/inicio/Inicio";
 import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
 import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Registro from "../Paginas/registro/Registro";
-import CateogoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
+import CategoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/categorias",
-    element: <CateogoriasPagina />,
+    element: <CategoriasPagina />,
     error: <ErrorPage />,
   },
 ]);
