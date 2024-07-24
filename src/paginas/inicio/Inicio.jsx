@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Categorias } from "../../componentes";
 import { info } from "./inicioContenido";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
@@ -19,20 +18,12 @@ import styles from "./Inicio.module.css";
 const { categoria, titulo, imagen } = info;
 
 export function Inicio() {
-  const navigate = useNavigate();
-
-  const manejarBusqueda = (nombreProveedor) => {
-    if (!nombreProveedor) {
-      return;
-    }
-    navigate(`busquedas/${nombreProveedor}`);
-  };
 
   return (
     <>
       <BarraNavegacion />
       <SeccionTitulo categoria={categoria} titulo={titulo} imagen={imagen}>
-        <Buscador manejarBusqueda={manejarBusqueda} color="#FAFAFA" />
+        <Buscador color="#FAFAFA" />
       </SeccionTitulo>
       <EmpresasImpacto />
       <InvitacionRegistro />

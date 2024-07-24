@@ -28,7 +28,7 @@ const proveedores = [
   },
   {
     id: 2,
-    categoria: "Bienestar",
+    categoria: "Tecnologia",
     imagenes: [
       {
         id: 1,
@@ -46,11 +46,11 @@ const proveedores = [
         alt: "Imagen 3",
       },
     ],
-    nombre: "Lavanda",
-    tipo: "Cosmética natural",
+    nombre: "TecnoStore",
+    tipo: "Venta de articulos tecnologicos",
     ubicacion: "Godoy Cruz, Mendoza, Argentina",
     descripcion:
-      "Lavanda es un proyecto familiar. Perseguimos una cosmética efectiva, magistral y con personalidad. Nuestro objetivo es hacer productos que enamoren, que cuiden al planeta, con principios activos que dejen el pelo sano y la piel bella.",
+      "TecnoStore es un proyecto que surgio de la idea de un grupo de amigos que querian ser sus propios jefes, cansados de seguir un estilo de vida comun y corriente.",
   },
   {
     id: 3,

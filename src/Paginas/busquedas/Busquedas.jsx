@@ -1,7 +1,7 @@
 import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
 import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import Buscador from "../../componentes/buscador/Buscador";
 import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
@@ -12,21 +12,23 @@ import styles from "./Busquedas.module.css";
 
 export function Busquedas() {
   const [proveedores, setProveedores] = useState([]);
-  let { nombre } = useParams();
+  const [ searchParams ] = useSearchParams()
 
-  const manejarBusqueda = (nombreProveedorParam) => {
+  const queryNombre = searchParams.get('nombre')
+
+  const manejarBusqueda = useCallback((nombreProveedorParam) => {
     const proveedor = buscarProveedorPorNombre(nombreProveedorParam);
     setProveedores(proveedor);
-  };
+  }, []);
 
   useEffect(() => {
-    manejarBusqueda(nombre);
-  }, [nombre]);
+    manejarBusqueda(queryNombre)
+  }, [queryNombre, manejarBusqueda])
 
   return (
     <>
       <BarraNavegacion />
-      <Buscador manejarBusqueda={manejarBusqueda} color="#EAEAEA" />
+      <Buscador color="#EAEAEA" />
       <Typography className={styles.textoResultados}>
         Resultados de tu búsqueda
       </Typography>

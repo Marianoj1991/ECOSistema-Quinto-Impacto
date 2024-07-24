@@ -5,6 +5,7 @@ import { infoBotones } from "../botonCategoria/botones-info";
 
 // Estilos CSS
 import styles from "./Categorias.module.css";
+import { Link } from "react-router-dom";
 
 export function Categorias() {
   const [categorias, setCategorias] = useState(infoBotones.slice(0, 8));
@@ -39,6 +40,8 @@ export function Categorias() {
               key={dato.id}
               icono={dato.icono}
               texto={dato.texto}
+              border={true}
+              seccCategorias={false}
             />
           ))}
         </Grid>
@@ -56,6 +59,7 @@ export function Categorias() {
           gap: "10px",
         }}
       >
+      <Link className={styles.linkCategorias} to='/categorias'>
         <Typography
           sx={{
             textTransform: "none",
@@ -66,6 +70,7 @@ export function Categorias() {
         >
           Ver más categorías
         </Typography>
+      </Link>
       </Button>
     </Grid>
   );

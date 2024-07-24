@@ -1,35 +1,49 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import styles from "./BotonCategoria.module.css";
+import { Link } from "react-router-dom";
 
-export function BotonCategoria({ icono, texto }) {
+export function BotonCategoria({
+  icono,
+  texto,
+  border,
+  seccCategorias,
+}) {
   return (
     <Grid
       item
       xs={6}
-      sx={{ padding: "0px", width: "152px", cursor: "pointer" }}
+      sx={{ padding: '0px', cursor: 'pointer' }}
     >
       <Link
-        sx={{
-          textDecoration: "none",
-          color: "inherit",
-        }}
+        to={`/categorias?categoria=${texto}`}
+        className={styles.categoriaLink}
       >
-        <Grid
-          container
-          flexDirection="row"
-          justifyContent="center"
-          alignItems="center"
-          className={styles.botonContenedor}
+        <Box
+          className={
+            seccCategorias ? styles.botonSeccCategorias : styles.botonContenedor
+          }
         >
-          <Grid item display='flex'>
-            {icono}
-          </Grid>
-          <Grid item>
-            <Typography className={styles.botonTexto}>{texto}</Typography>
-            <div className={styles.border}></div>
-          </Grid>
-        </Grid>
+          {icono}
+          <Box>
+            <Typography
+              className={
+                seccCategorias ? styles.botonTextoSeccCateg : styles.botonTexto
+              }
+            >
+              {texto}
+            </Typography>
+            <div
+              style={
+                border
+                  ? { width: '48px', borderBottom: '2px solid #4e169d' }
+                  : {}
+              }
+            ></div>
+          </Box>
+        </Box>
       </Link>
     </Grid>
-  );
+  )
 }
+
+

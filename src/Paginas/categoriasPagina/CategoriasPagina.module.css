@@ -1,0 +1,33 @@
+.contenedorCategorias {
+    padding: 30px 20px;
+    background-image: url('../../utilidades/icon/categoriasFondo.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top top;
+}
+
+.titulo {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 25px;
+}
+
+.contenedorBotones { 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tituloCategoriaResultados {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 20px; 
+    font-weight: 600;
+    color: #4e199d
+}
+
+.cuerpoCategoriaResultados {
+    text-align: center;
+}

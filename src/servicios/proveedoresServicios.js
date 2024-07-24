@@ -27,7 +27,7 @@ export const proveedoresServicios = [
   },
   {
     id: 2,
-    categoria: "Bienestar",
+    categoria: "Tecnologia",
     imagenes: [
       {
         id: 1,
@@ -53,7 +53,7 @@ export const proveedoresServicios = [
   },
   {
     id: 3,
-    categoria: "Bienestar",
+    categoria: "Gastronomia",
     imagenes: [
       {
         id: 1,

@@ -5,6 +5,7 @@ import { Inicio } from "../paginas/inicio/Inicio";
 import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
 import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Registro from "../Paginas/registro/Registro";
+import CategoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,13 @@ const router = createBrowserRouter([
     error: <ErrorPage />,
   },
   {
-    path: "/busquedas/:nombre",
+    path: "/busquedas",
     element: <Busquedas />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/categorias",
+    element: <CategoriasPagina />,
     error: <ErrorPage />,
   },
 ]);
