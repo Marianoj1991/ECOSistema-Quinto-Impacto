@@ -1,0 +1,37 @@
+.contenedor {
+  margin: 40px 20px;
+}
+
+.nombre {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.boton {
+  margin-top: 30px;
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+  text-transform: none;
+}
+
+.titulo {
+  margin-top: 60px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.subtitulo {
+  margin-top: 40px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+}

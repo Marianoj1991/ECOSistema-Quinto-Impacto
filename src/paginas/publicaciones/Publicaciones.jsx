@@ -3,7 +3,7 @@ import { info } from "./publicacionesContenido";
 import Buscador from "../../componentes/buscador/Buscador";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
-import publicaciones from "../../componentes/pilaPublicaciones/publicaciones";
+import publicaciones from "../../datosPrueba/publicaciones";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 
 // Estilos CSS

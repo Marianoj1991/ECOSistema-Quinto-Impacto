@@ -7,8 +7,8 @@ import EmpresasImpacto from "../../componentes/empresasImpacto/EmpresasImpacto";
 import InvitacionRegistro from "../../componentes/invitacionRegistro/InvitacionRegistro";
 import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
 import Proveedores from "../../componentes/arregloProveedores/ArregloProveedores";
-import proveedores from "../../componentes/pilaProveedores/proveedores";
-import publicaciones from "../../componentes/pilaPublicaciones/publicaciones";
+import proveedores from "../../datosPrueba/proveedores";
+import publicaciones from "../../datosPrueba/publicaciones";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Typography from "@mui/material/Typography";
 
@@ -18,7 +18,6 @@ import styles from "./Inicio.module.css";
 const { categoria, titulo, imagen } = info;
 
 export function Inicio() {
-
   return (
     <>
       <BarraNavegacion />
