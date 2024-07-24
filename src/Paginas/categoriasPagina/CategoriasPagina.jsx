@@ -1,17 +1,18 @@
+import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Buscador from "../../componentes/buscador/Buscador";
 import { info } from "./categoriasContenido";
-import { Typography } from "@mui/material";
 import { infoBotones } from "../../componentes/botonCategoria/botones-info";
 import { BotonCategoria } from "../../componentes";
-import { useEffect, useState } from "react";
 import { obtenerProvPorCat } from "../../servicios/buscarProveedoresPorCategoria";
 
 // ESTILOS CSS
 import styles from "./CategoriasPagina.module.css";
-import { useSearchParams } from "react-router-dom";
 import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
 
 const { categoria, titulo, texto, imagen } = info;
@@ -23,13 +24,13 @@ export default function CategoriasPagina() {
   
   const categoriaParam = searchParam.get('categoria')
 
-  const buscarProveeCat = (categoria) => {
+  const buscarProveeCat = useCallback((categoria) => {
     setProveedores(obtenerProvPorCat(categoria))
-  } 
+  }, []) 
 
   useEffect(() => {
     buscarProveeCat(categoriaParam)
-  }, [categoriaParam])
+  }, [categoriaParam, buscarProveeCat])
   
   return (
     <Box>
