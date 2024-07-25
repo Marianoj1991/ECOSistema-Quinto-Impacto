@@ -1,0 +1,74 @@
+.contenedor {
+  margin-top: 30px;
+}
+
+.tarjeta {
+  border-radius: 16px 16px 4px 4px;
+  box-shadow: none;
+}
+
+.encabezado {
+  padding: 8px 16px 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contenidoTarjeta {
+  border-radius: 0px 0px 4px 4px;
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+}
+
+.tituloProductoServicio {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.botonEditar {
+  padding: 0px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: none;
+}
+
+.estadoPostulacion {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.textoEstadoPostulacion {
+  margin-left: 5px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: capitalize;
+}
+
+.textoTarjeta1 {
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.textoTarjeta2 {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.textoTarjeta3 {
+  margin-top: 20px;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  white-space: pre-wrap;
+}

@@ -14,6 +14,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import MailIcon from "../../utilidades/icon/MailIcon";
 import Typography from "@mui/material/Typography";
 import WhatsAppIcon from "../../utilidades/icon/WhatsAppIcon";
+
 import styles from "./TarjetaProveedor.module.css";
 
 function TarjetaProveedor({
