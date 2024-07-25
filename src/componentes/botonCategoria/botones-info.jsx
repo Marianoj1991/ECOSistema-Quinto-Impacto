@@ -1,14 +1,14 @@
-import { Tecnologia } from "../../utilidades/icon/Tecnologia";
-import { Indumentaria } from "../../utilidades/icon/Indumentaria";
-import { Bienestar } from "../../utilidades/icon/Bienestar";
-import { Gastronomia } from "../../utilidades/icon/Gastronomia";
-import { Cultivos } from "../../utilidades/icon/Cultivos";
-import { Transporte } from "../../utilidades/icon/Trasnporte";
-import { Reciclaje } from "../../utilidades/icon/Reciclaje";
-import { Capacitaciones } from "../../utilidades/icon/Capacitaciones";
-import { MueblesDeco } from "../../utilidades/icon/MueblesDeco";
-import { Merchandising } from "../../utilidades/icon/Merchandising";
-import { Construccion } from "../../utilidades/icon/Construccion";
+import { Tecnologia } from "../../estaticos/icon/Tecnologia";
+import { Indumentaria } from "../../estaticos/icon/Indumentaria";
+import { Bienestar } from "../../estaticos/icon/Bienestar";
+import { Gastronomia } from "../../estaticos/icon/Gastronomia";
+import { Cultivos } from "../../estaticos/icon/Cultivos";
+import { Transporte } from "../../estaticos/icon/Trasnporte";
+import { Reciclaje } from "../../estaticos/icon/Reciclaje";
+import { Capacitaciones } from "../../estaticos/icon/Capacitaciones";
+import { MueblesDeco } from "../../estaticos/icon/MueblesDeco";
+import { Merchandising } from "../../estaticos/icon/Merchandising";
+import { Construccion } from "../../estaticos/icon/Construccion";
 
 
 export const infoBotones = [

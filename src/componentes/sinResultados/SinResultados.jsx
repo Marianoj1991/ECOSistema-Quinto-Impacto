@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import styles from './SinResultados.module.css'
-import { SinResultadosIcon } from '../../utilidades/icon/SinResultadosIcon'
+import { SinResultadosIcon } from '../../estaticos/icon/SinResultadosIcon'
 
 export default function SinResultados() {
   return (

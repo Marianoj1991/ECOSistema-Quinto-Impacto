@@ -29,8 +29,8 @@ export function Busquedas() {
   return (
     <>
       <BarraNavegacion />
-      <Box className={styles.contenedor}>
         <Buscador color="#EAEAEA" />
+      <Box className={styles.contenedor}>
         <Typography className={styles.textoResultados}>
           Resultados de tu búsqueda
         </Typography>

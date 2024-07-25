@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import errorIcon from "@/utilidades/icon/ErrorIcon.jsx";
-import successIcon from "@/utilidades/icon/SuccessIcon.jsx";
-import warnigIcon from "@/utilidades/icon/WarningIcon.jsx";
+import errorIcon from "@/estaticos/icon/ErrorIcon.jsx";
+import successIcon from "@/estaticos/icon/SuccessIcon.jsx";
+import warnigIcon from "@/estaticos/icon/WarningIcon.jsx";
 import styles from "./Alerta.module.css";
 
 const Alerta = ({ type, message, onClose }) => {

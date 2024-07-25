@@ -7,13 +7,13 @@ import CarruselImagenes from "../carruselImagenes/CarruselImagenes";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FacebookIcon from "../../utilidades/icon/FacebookIcon";
+import FacebookIcon from "../../estaticos/icon/FacebookIcon";
 import IconButton from "@mui/material/IconButton";
-import InstagramIcon from "../../utilidades/icon/InstagramIcon";
+import InstagramIcon from "../../estaticos/icon/InstagramIcon";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import MailIcon from "../../utilidades/icon/MailIcon";
+import MailIcon from "../../estaticos/icon/MailIcon";
 import Typography from "@mui/material/Typography";
-import WhatsAppIcon from "../../utilidades/icon/WhatsAppIcon";
+import WhatsAppIcon from "../../estaticos/icon/WhatsAppIcon";
 
 import styles from "./TarjetaProveedor.module.css";
 

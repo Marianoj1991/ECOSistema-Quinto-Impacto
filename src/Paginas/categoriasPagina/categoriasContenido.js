@@ -1,4 +1,4 @@
-import imagenHeroCategorias from "../../utilidades/img/categoriasImagenHero.avif";
+import imagenHeroCategorias from "../../estaticos/img/categoriasImagenHero.avif";
 
 export const info = {
   categoria: "Proveedores ",
