@@ -24,6 +24,7 @@ function Perfil() {
           sx={{ color: "blanco.main" }}
           className={styles.boton}
           disableElevation
+          fullWidth
         >
           Cargar Producto/Servicio
         </Button>
