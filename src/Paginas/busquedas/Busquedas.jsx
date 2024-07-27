@@ -15,6 +15,7 @@ import { obtenerProveedoresPorNombreAxios } from "../../servicios/getAxios";
 export function Busquedas() {
   const [proveedores, setProveedores] = useState([]);
   const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const queryNombre = searchParams.get("nombre");
   
@@ -27,10 +28,24 @@ export function Busquedas() {
   useEffect(() => {
     manejarBusqueda(queryNombre);
   }, [queryNombre, manejarBusqueda]);
+    manejarBusqueda(queryNombre);
+  }, [queryNombre, manejarBusqueda]);
 
   return (
     <>
       <BarraNavegacion />
+        <Buscador color="#EAEAEA" />
+      <Box className={styles.contenedor}>
+        <Typography className={styles.textoResultados}>
+          Resultados de tu búsqueda
+        </Typography>
+
+        {proveedores.length > 0 ? (
+          <PilaProveedores proveedores={proveedores} />
+        ) : (
+          <SinResultados />
+        )}
+      </Box>
         <Buscador color="#EAEAEA" />
       <Box className={styles.contenedor}>
         <Typography className={styles.textoResultados}>
