@@ -3,17 +3,18 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CarruselImagenes from "../carruselImagenes/CarruselImagenes";
+// import CarruselImagenes from "../carruselImagenes/CarruselImagenes";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FacebookIcon from "../../utilidades/icon/FacebookIcon";
+import FacebookIcon from "../../estaticos/icon/FacebookIcon";
 import IconButton from "@mui/material/IconButton";
-import InstagramIcon from "../../utilidades/icon/InstagramIcon";
+import InstagramIcon from "../../estaticos/icon/InstagramIcon";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import MailIcon from "../../utilidades/icon/MailIcon";
+import MailIcon from "../../estaticos/icon/MailIcon";
 import Typography from "@mui/material/Typography";
-import WhatsAppIcon from "../../utilidades/icon/WhatsAppIcon";
+import WhatsAppIcon from "../../estaticos/icon/WhatsAppIcon";
+
 import styles from "./TarjetaProveedor.module.css";
 
 function TarjetaProveedor({
@@ -22,7 +23,10 @@ function TarjetaProveedor({
   imagenes,
   nombre,
   tipo,
-  ubicacion,
+  // ubicacion,
+  ciudad,
+  provincia,
+  pais,
   descripcion,
 }) {
   const [expandido, setExpandido] = useState(false);
@@ -60,7 +64,12 @@ function TarjetaProveedor({
             {categoria}
           </Typography>
         </Box>
-        <CarruselImagenes imagenes={imagenes} />
+        {/* <CarruselImagenes imagenes={imagenes} /> */}
+
+        {/* ESTE DIV ES TEMPORAL */}
+        <div className={styles.contenedorImagen}>
+          <img src={imagenes} className={styles.imagen} />
+        </div>
         <CardContent className={styles.contenedorContenido1}>
           <Typography
             color="negro.main"
@@ -83,7 +92,8 @@ function TarjetaProveedor({
               component="p"
               className={styles.ubicacion}
             >
-              {ubicacion}
+              { ciudad }, { provincia }, { pais }
+              {/* {ubicacion} */}
             </Typography>
           </Box>
         </CardContent>

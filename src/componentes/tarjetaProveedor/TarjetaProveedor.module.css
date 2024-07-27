@@ -1,5 +1,5 @@
 .contenedor {
-  margin: 40px 20px;
+  margin-top: 40px;
 }
 
 .tarjeta {
@@ -104,4 +104,18 @@
 .contenedorBotonDesplegable {
   display: flex;
   justify-content: center;
+}
+
+
+/* ESTO DEBERIA SER TEMPORAL TAMBIEN */
+
+.imagen {
+  width: 100%;
+  aspect-ratio: 19/9;
+  object-fit: cover;
+  border-radius: 20px 0px 20px 20px;
+}
+
+.contenedorImagen {
+  margin: 0px 15px;
 }

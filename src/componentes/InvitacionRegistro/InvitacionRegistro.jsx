@@ -1,5 +1,6 @@
 import { Typography, Box} from "@mui/material";
 import style from './InvitacionRegistro.module.css'
+import { Link } from "react-router-dom";
 
 function InvitacionRegistro() {
   return (
@@ -10,9 +11,9 @@ function InvitacionRegistro() {
         Red de impacto ECO como Proveedor?</Typography>
         
         
-        <div className={style.btnContainer}>
+        <Link to={'/registro'} className={style.btnContainer}>
             <button className={style.btnInvitacion} color="violeta"><Typography color="blanco" component="p">Registrate</Typography></button>
-        </div>
+        </Link>
     </Box>
     </>
   )
