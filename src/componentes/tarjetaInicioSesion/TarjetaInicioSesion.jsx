@@ -1,5 +1,5 @@
-import GmailLogo from "@/utilidades/icon/GmailIcon";
-import Logo from "@/utilidades/icon/LogoSimple";
+import GmailLogo from "@/estaticos/icon/GmailIcon";
+import Logo from "@/estaticos/icon/LogoSimple";
 import style from "./TarjetaInicioSesion.module.css";
 
 const TarjetaInicioSesion = () => {

@@ -11,14 +11,16 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import Logo from "@/utilidades/icon/Logo";
+import Logo from "@/estaticos/icon/Logo";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import styles from "./BarraNavegacion.module.css";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 const drawerHeight = "56px";
+
 
 const Main = styled("main")(({ theme }) => ({
   flexGrow: 1,
@@ -91,7 +93,8 @@ export default function BarraNavegacion({ hideUserIcon }) {
               <MenuIcon className={styles.menuIcon} />
             )}
           </IconButton>
-          <Box
+          <Link
+            to={'/'}
             className={`${styles.logoContainer} ${
               !hideUserIcon ? "" : styles.centerLogo
             }`}
@@ -101,7 +104,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
               className={styles.logoHeader}
               sx={{ width: "152px", height: "56px" }}
             />
-          </Box>
+          </Link>
           {auth && !hideUserIcon && (
             <div>
               <IconButton
@@ -150,15 +153,26 @@ export default function BarraNavegacion({ hideUserIcon }) {
           )}
         </List>
         <List>
-          {[
-            "¿Querés formar parte de la Red de impacto ECO como Proveedor?",
-            "Registrate",
-          ].map((text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton onClick={handleDrawerClose}>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+          {[{
+            text: "¿Querés formar parte de la Red de impacto ECO como Proveedor?",
+            link: null
+          }, {
+            text: "Registrate",
+            link: '/registro'
+          }
+          ].map(({text, link}) => (
+              link ? 
+              <ListItem key={text} component={Link} to={link} style={{textDecoration: 'none', color: 'inherit'}} disablePadding>
+                <ListItemButton onClick={handleDrawerClose}>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem> 
+              :
+              <ListItem key={text} disablePadding>
+                <ListItemButton onClick={handleDrawerClose}>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
           ))}
         </List>
       </Drawer>

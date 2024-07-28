@@ -1,4 +1,4 @@
-import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
+// import { buscarProveedorPorNombre } from "../../servicios/buscarProveedores";
 import { Typography } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -10,15 +10,17 @@ import SinResultados from "../../componentes/sinResultados/SinResultados";
 
 // Estilos CSS
 import styles from "./Busquedas.module.css";
+import { obtenerProveedoresPorNombreAxios } from "../../servicios/getAxios";
 
 export function Busquedas() {
   const [proveedores, setProveedores] = useState([]);
   const [searchParams] = useSearchParams();
 
   const queryNombre = searchParams.get("nombre");
-
-  const manejarBusqueda = useCallback((nombreProveedorParam) => {
-    const proveedor = buscarProveedorPorNombre(nombreProveedorParam);
+  
+  const manejarBusqueda = useCallback(async (nombreProveedorParam) => {
+    // const proveedor = buscarProveedorPorNombre(nombreProveedorParam);
+    const proveedor = await obtenerProveedoresPorNombreAxios(nombreProveedorParam)
     setProveedores(proveedor);
   }, []);
 
@@ -29,8 +31,8 @@ export function Busquedas() {
   return (
     <>
       <BarraNavegacion />
-      <Box className={styles.contenedor}>
         <Buscador color="#EAEAEA" />
+      <Box className={styles.contenedor}>
         <Typography className={styles.textoResultados}>
           Resultados de tu búsqueda
         </Typography>

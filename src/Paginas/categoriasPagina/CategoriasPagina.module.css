@@ -1,6 +1,6 @@
 .contenedorCategorias {
     padding: 30px 20px;
-    background-image: url('../../utilidades/icon/categoriasFondo.svg');
+    background-image: url('../../estaticos/icon/categoriasFondo.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top top;
@@ -30,4 +30,12 @@
 
 .cuerpoCategoriaResultados {
     text-align: center;
+}
+
+.sinResultadosContainer {
+    margin-top: 20px
+}
+
+.sinResultados {
+    margin:-20px 10px 20px;
 }
