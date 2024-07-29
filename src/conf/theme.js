@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 
 const theme = createTheme({
   palette: {
@@ -35,6 +36,37 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Nunito",
+  },
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        outlined: {
+          color: "#222222",
+          "&.Mui-focused": {
+            color: "#4E169D",
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: "#222222",
+        },
+        root: {
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: "#4E169D",
+          },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        contained: {
+          color: "#222222",
+        },
+      },
+    },
   },
 });
 

@@ -1,14 +1,12 @@
-import { useState } from "react";
 import { BotonCategoria } from "../botonCategoria/index";
 import { Button, Grid, Typography } from "@mui/material";
-import { infoBotones } from "../botonCategoria/botones-info";
+import { categorias as nombresCategorias } from "../botonCategoria/botones-info";
 
 // Estilos CSS
 import styles from "./Categorias.module.css";
 import { Link } from "react-router-dom";
 
 export function Categorias() {
-  const [categorias, setCategorias] = useState(infoBotones.slice(0, 8));
 
   return (
     <Grid
@@ -35,7 +33,7 @@ export function Categorias() {
 
       <Grid item sx={{ padding: 1 }}>
         <Grid container rowSpacing={2} columnSpacing={2}>
-          {categorias.map((dato) => (
+          {nombresCategorias.slice(0,8).map((dato) => (
             <BotonCategoria
               key={dato.id}
               icono={dato.icono}

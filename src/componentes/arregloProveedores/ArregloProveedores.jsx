@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import MiniaturaProveedor from "../miniaturaProveedor/MiniaturaProveedor";
 import Typography from "@mui/material/Typography";
-import vectorVerde1 from "../../utilidades/icon/vector-verde-1.svg";
+import vectorVerde1 from "../../estaticos/icon/vector-verde-1.svg";
 import styles from "./ArregloProveedores.module.css";
 
 function Proveedores({ recomendacionesLocales, proveedores }) {

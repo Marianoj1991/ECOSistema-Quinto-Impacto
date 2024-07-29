@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "../ui/ErrorPage";
 import { Inicio } from "../paginas/inicio/Inicio";
 import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
+import CargaProductoServicio from "../Paginas/cargaProductoServicio/CargaProductoServicio";
 import CategoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
 import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Perfil from "../Paginas/perfil/Perfil";
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
   {
     path: "/perfil",
     element: <Perfil />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/cargar",
+    element: <CargaProductoServicio />,
     error: <ErrorPage />,
   },
 ]);

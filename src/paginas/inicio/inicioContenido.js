@@ -1,4 +1,4 @@
-import imagenHeroInicio from "../../utilidades/img/red-de-impacto.avif";
+import imagenHeroInicio from "../../estaticos/img/red-de-impacto.avif";
 
 export const info = {
   categoria: "Red de Impacto",

@@ -1,35 +1,49 @@
 import { useCallback, useEffect, useState } from "react";
+import { obtenerProveedoresPorCategoriaAxios } from "../../servicios/getAxios";
 import { useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+import { info } from "./categoriasContenido";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Buscador from "../../componentes/buscador/Buscador";
-import { info } from "./categoriasContenido";
-import { infoBotones } from "../../componentes/botonCategoria/botones-info";
+import { categorias as nombresCategorias } from "../../componentes/botonCategoria/botones-info";
 import { BotonCategoria } from "../../componentes";
-import { obtenerProvPorCat } from "../../servicios/buscarProveedoresPorCategoria";
+import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
+import SinResultados from "../../componentes/sinResultados/SinResultados";
+// import { obtenerProvPorCat } from "../../servicios/buscarProveedoresPorCategoria";
 
 // ESTILOS CSS
 import styles from "./CategoriasPagina.module.css";
-import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
 
 const { categoria, titulo, texto, imagen } = info;
 
 export default function CategoriasPagina() {
   
   const [ proveedores, setProveedores ] = useState([])
-  const [searchParam] = useSearchParams()
-  
+  const [ searchParam ] = useSearchParams()
+
   const categoriaParam = searchParam.get('categoria')
 
-  const buscarProveeCat = useCallback((categoria) => {
-    setProveedores(obtenerProvPorCat(categoria))
+
+  const buscarProveeCat = useCallback(async (categoria) => {
+    try {
+      const proveedor = await obtenerProveedoresPorCategoriaAxios(categoria)
+      setProveedores(proveedor)
+    } catch (err) {
+      console.log(err.message)
+      setProveedores([])
+    }
+    // setProveedores(obtenerProvPorCat(categoria))
   }, []) 
 
   useEffect(() => {
-    buscarProveeCat(categoriaParam)
+    if(categoriaParam){
+      buscarProveeCat(categoriaParam)
+    } else {
+      setProveedores([])
+    }
   }, [categoriaParam, buscarProveeCat])
   
   return (
@@ -43,12 +57,11 @@ export default function CategoriasPagina() {
       >
         {<Buscador />}
       </SeccionTitulo>
-      {
-        proveedores.length === 0 
-          ? <Box className={styles.contenedorCategorias}>
+      {categoriaParam === null ? (
+        <Box className={styles.contenedorCategorias}>
           <Typography className={styles.titulo}>Categorías</Typography>
           <Box className={styles.contenedorBotones}>
-            {infoBotones.map((boton) => (
+            {nombresCategorias.map((boton) => (
               <BotonCategoria
                 key={boton.id}
                 icono={boton.icono}
@@ -59,16 +72,45 @@ export default function CategoriasPagina() {
             ))}
           </Box>
         </Box>
-          :
-          <>
-            <Typography className={styles.titulo} sx={{mt: 4, textAlign: 'center', }}>Categorías</Typography>
-            <Box className={styles.contenedorCategorias}>
-              <Typography variant="h4" className={styles.tituloCategoriaResultados}>{categoriaParam}</Typography>
-              <Typography variant="body1" className={styles.cuerpoCategoriaResultados} >Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusantium mollitia quos nihil laudantium asperiores sapiente porro doloribus perferendis explicabo.</Typography>
-              <PilaProveedores proveedores={proveedores} />
-            </Box>
-          </> 
-      }
+      ) : proveedores.length === 0 ? (
+        <Box className={styles.sinResultadosContainer}>
+          <Typography
+            variant='h4'
+            className={styles.tituloCategoriaResultados}
+          >
+            {categoriaParam}
+          </Typography>
+          <Box className={styles.sinResultados}>
+            <SinResultados />
+          </Box>
+        </Box>
+      ) : (
+        <>
+          <Typography
+            className={styles.titulo}
+            sx={{ mt: 4, textAlign: 'center' }}
+          >
+            Categorías
+          </Typography>
+          <Box className={styles.contenedorCategorias}>
+            <Typography
+              variant='h4'
+              className={styles.tituloCategoriaResultados}
+            >
+              {categoriaParam}
+            </Typography>
+            <Typography
+              variant='body1'
+              className={styles.cuerpoCategoriaResultados}
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              accusantium mollitia quos nihil laudantium asperiores sapiente
+              porro doloribus perferendis explicabo.
+            </Typography>
+            <PilaProveedores proveedores={proveedores} />
+          </Box>
+        </>
+      )}
     </Box>
   )
 }

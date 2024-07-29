@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import GmailLogo from "@/utilidades/icon/GmailIcon";
-import Logo from "@/utilidades/icon/LogoSimple";
+import GmailLogo from "@/estaticos/icon/GmailIcon";
+import Logo from "@/estaticos/icon/LogoSimple";
 import style from "./TarjetaInicioSesion.module.css";
-import { login } from '@/servicios/getRequest.js';
-import {jwtDecode} from 'jwt-decode';
+import { login } from '@/servicios/getAxios.js';
+import {decodeJWT} from '@/utilidades/decodedToken';
 
 const TarjetaInicioSesion = () => {
   useEffect(() => {
@@ -34,11 +34,17 @@ const TarjetaInicioSesion = () => {
     try {
       const { token} = await login(idToken);
 
-      const decodedToken = jwtDecode(token);
+      const decodedToken = decodeJWT(token);
+
+      if (!decodedToken) {
+        throw new Error("Error decoding token");
+      }
+
+      sessionStorage.setItem('user', JSON.stringify(decodedToken));
       console.log(decodedToken);
-      const rol =decodedToken.rol
+      const rol =decodedToken?.rol
   
-       if (rol === 'admin') {
+       if (rol === 'ADMIN') {
          window.location.href = '/dashboard';
        } else {
          window.location.href = '/';
