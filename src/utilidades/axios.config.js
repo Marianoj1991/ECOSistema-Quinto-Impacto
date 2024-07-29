@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/', // Reemplaza con la URL base de tu API
+  baseURL: 'http://localhost:8080', // Reemplaza con la URL base de tu API
   timeout: 1000, // Tiempo de espera en milisegundos
   headers: {
     'Content-Type': 'application/json'
@@ -10,34 +10,54 @@ const instance = axios.create({
 })
 
 //  CONFIGURAR LOS INTERCEPTORES PARA TOKENS
-// instance.interceptors.request.use(
-//   (config) => {
-//     // Realiza algo antes de enviar la solicitud
-//     // Por ejemplo, agregar un token de autenticación
-//     const token = localStorage.getItem('token')
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`
-//     }
-//     return config
-//   },
-//   (error) => {
-//     // Maneja el error de solicitud
-//     return Promise.reject(error)
-//   }
-// )
+instance.interceptors.request.use(
+  (config) => {
+    if (config.url !== '/login') {
+      const token = localStorage.getItem('token');
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
+    }
+    console.log('Request Headers:', config.headers);
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-// instance.interceptors.response.use(
-//   (response) => {
-//     // Realiza algo con la respuesta de datos
-//     return response
-//   },
-//   (error) => {
-//     // Maneja el error de respuesta
-//     if (error.response && error.response.status === 401) {
-//       // Redirigir al usuario a la página de inicio de sesión, por ejemplo 
-//     }
-//     return Promise.reject(error)
-//   }
-// )
+// Interceptor de respuesta
+instance.interceptors.response.use(
+  (response) => {
+    if (response.headers['authorization']) {
+      const token = response.headers['authorization'].split(' ')[1];
+      localStorage.setItem('token', token);
+    }
+    return response;
+  },
+  (error) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+          break;
+        case 403:
+          console.error('Acceso denegado');
+          break;
+        case 500:
+          console.error('Error del servidor');
+          break;
+        default:
+          console.error('Error desconocido');
+      }
+    } else if (error.request) {
+      console.error('Error de red');
+    } else {
+      console.error('Error', error.message);
+    }
+    return Promise.reject(error);
+  }
+);
 
-export default instance
+export default instance;
