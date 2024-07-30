@@ -31,8 +31,13 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-  }
-  
-  .centerLogo {
-    justify-content: center !important;
-  }
+}
+
+.centerLogo {
+  justify-content: center !important;
+}
+
+.iconLink {
+  text-decoration: none;
+  color: inherit;
+}
