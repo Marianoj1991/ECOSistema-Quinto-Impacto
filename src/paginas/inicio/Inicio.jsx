@@ -11,6 +11,7 @@ import proveedores from "../../datosPrueba/proveedores";
 import publicaciones from "../../datosPrueba/publicaciones";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Typography from "@mui/material/Typography";
+import  { useState, useEffect } from 'react';
 
 // Estilos CSS
 import styles from "./Inicio.module.css";
@@ -18,6 +19,14 @@ import styles from "./Inicio.module.css";
 const { categoria, titulo, imagen } = info;
 
 export function Inicio() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userFromSession = sessionStorage.getItem('user');
+    if (userFromSession) {
+      setUser(JSON.parse(userFromSession));
+    }
+  }, []);
   return (
     <>
       <BarraNavegacion />
@@ -25,7 +34,7 @@ export function Inicio() {
         <Buscador color="#FAFAFA" />
       </SeccionTitulo>
       <EmpresasImpacto />
-      <InvitacionRegistro />
+      {user ? null : <InvitacionRegistro />}
       <Proveedores proveedores={proveedores} />
       <Categorias />
       <Box className={styles.publicaciones}>

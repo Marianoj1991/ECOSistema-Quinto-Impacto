@@ -88,6 +88,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
 
   const handleLogout = () => {
     sessionStorage.removeItem('user')
+    localStorage.removeItem('token')
     setUser(null)
     handleClose()
     navigate('/')
@@ -158,7 +159,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
               >
                 <Avatar
                   sx={{
-                    color: theme.palette.blanco.main,
+                    color: `${theme.palette.blanco.main} !important`,
                     bgcolor: theme.palette.negro.main
                   }}
                   className={styles.icon}

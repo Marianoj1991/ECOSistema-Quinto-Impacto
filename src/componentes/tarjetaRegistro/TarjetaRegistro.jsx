@@ -7,33 +7,26 @@ import {decodeJWT} from '@/utilidades/decodedToken';
 
 const TarjetaRegistro = () => {
   useEffect(() => {
-    
-    if (!window.google || !window.google.accounts) {
-      const script = document.createElement('script');
-      script.src = 'https://accounts.google.com/gsi/client';
-      script.async = true;
-      script.onload = () => {
-        window.google.accounts.id.initialize({
-          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-          callback: handleCredentialResponse
-        });
-        
-      };
-      document.body.appendChild(script);
-    } else {
+    // Borra cookies
+    document.cookie.split(";").forEach(cookie => {
+      document.cookie = `${cookie.split("=")[0]}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    });
+
+    if (window.google && window.google.accounts) {
       window.google.accounts.id.initialize({
         client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse
+        callback: handleCredentialResponse,
       });
+    } else {
+      console.error('Google SDK no está cargado');
     }
   }, []);
 
   const handleCredentialResponse = async (response) => {
-     const idToken = response.credential;
-  console.log(idToken)
+    const idToken = response.credential;
+    console.log(idToken);
     try {
-      const { token} = await login(idToken);
-
+      const { token } = await login(idToken);
       const decodedToken = decodeJWT(token);
 
       if (!decodedToken) {
@@ -45,13 +38,8 @@ const TarjetaRegistro = () => {
       const rol = decodedToken?.rol;
       console.log(rol);
 
-  
-       if (rol === 'ADMIN') {
-         window.location.href = '/dashboard';
-       } else {
-         window.location.href = '/';
-       }
-  
+      window.location.href = (rol === 'ADMIN') ? '/dashboard' : '/';
+
     } catch (error) {
       console.error("Error al iniciar sesión con Google: ", error);
     }
@@ -65,6 +53,7 @@ const TarjetaRegistro = () => {
       console.error('Google SDK no está cargado');
     }
   };
+  
   return (
     <div className={style.containerRegistro}>
       <div className={style.containerTop}>
