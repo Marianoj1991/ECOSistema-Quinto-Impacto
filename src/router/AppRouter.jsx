@@ -3,8 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "../ui/ErrorPage";
 import { Inicio } from "../paginas/inicio/Inicio";
 import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
-import CargaProductoServicio from "../Paginas/cargaProductoServicio/CargaProductoServicio";
+import CargarProductoServicio from "../Paginas/cargarProductoServicio/CargarProductoServicio";
 import CategoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
+import EditarProductoServicio from "../Paginas/editarProductoServicio/EditarProductoServicio";
 import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Perfil from "../Paginas/perfil/Perfil";
 import Registro from "../Paginas/registro/Registro";
@@ -47,7 +48,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/cargar",
-    element: <CargaProductoServicio />,
+    element: <CargarProductoServicio />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/editar/:id",
+    element: <EditarProductoServicio />,
     error: <ErrorPage />,
   },
 ]);
