@@ -10,54 +10,54 @@ const instance = axios.create({
 })
 
 //  CONFIGURAR LOS INTERCEPTORES PARA TOKENS
-instance.interceptors.request.use(
-  (config) => {
-    if (config.url !== '/login') {
-      const token = localStorage.getItem('token');
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-      }
-    }
-    console.log('Request Headers:', config.headers);
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+// instance.interceptors.request.use(
+//   (config) => {
+//     if (config.url !== '/login') {
+//       const token = localStorage.getItem('token');
+//       if (token) {
+//         config.headers['Authorization'] = `Bearer ${token}`;
+//       }
+//     }
+//     console.log('Request Headers:', config.headers);
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
 
-// Interceptor de respuesta
-instance.interceptors.response.use(
-  (response) => {
-    if (response.headers['authorization']) {
-      const token = response.headers['authorization'].split(' ')[1];
-      localStorage.setItem('token', token);
-    }
-    return response;
-  },
-  (error) => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 401:
-          localStorage.removeItem('token');
-          window.location.href = '/login';
-          break;
-        case 403:
-          console.error('Acceso denegado');
-          break;
-        case 500:
-          console.error('Error del servidor');
-          break;
-        default:
-          console.error('Error desconocido');
-      }
-    } else if (error.request) {
-      console.error('Error de red');
-    } else {
-      console.error('Error', error.message);
-    }
-    return Promise.reject(error);
-  }
-);
+// // Interceptor de respuesta
+// instance.interceptors.response.use(
+//   (response) => {
+//     if (response.headers['authorization']) {
+//       const token = response.headers['authorization'].split(' ')[1];
+//       localStorage.setItem('token', token);
+//     }
+//     return response;
+//   },
+//   (error) => {
+//     if (error.response) {
+//       switch (error.response.status) {
+//         case 401:
+//           localStorage.removeItem('token');
+//           window.location.href = '/login';
+//           break;
+//         case 403:
+//           console.error('Acceso denegado');
+//           break;
+//         case 500:
+//           console.error('Error del servidor');
+//           break;
+//         default:
+//           console.error('Error desconocido');
+//       }
+//     } else if (error.request) {
+//       console.error('Error de red');
+//     } else {
+//       console.error('Error', error.message);
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
-export default instance;
+ export default instance;
