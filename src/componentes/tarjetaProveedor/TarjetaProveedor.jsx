@@ -23,7 +23,6 @@ function TarjetaProveedor({
   imagenes,
   nombre,
   tipo,
-  // ubicacion,
   ciudad,
   provincia,
   pais,
@@ -92,8 +91,7 @@ function TarjetaProveedor({
               component="p"
               className={styles.ubicacion}
             >
-              { ciudad }, { provincia }, { pais }
-              {/* {ubicacion} */}
+              {ciudad}, {provincia}, {pais}
             </Typography>
           </Box>
         </CardContent>
