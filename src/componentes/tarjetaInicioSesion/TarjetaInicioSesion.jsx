@@ -10,6 +10,7 @@ const TarjetaInicioSesion = () => {
   useEffect(() => {
     // Borra cookies
     document.cookie.split(";").forEach(cookie => {
+      console.log(cookie)
       document.cookie = `${cookie.split("=")[0]}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     });
 
