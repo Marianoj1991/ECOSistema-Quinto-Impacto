@@ -4,7 +4,7 @@ import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 const theme = createTheme({
   palette: {
     blanco: {
-      main: "#FFFFFF",
+      main: "#FAFAFA",
     },
     grisClaro: {
       main: "#EAEAEA",
