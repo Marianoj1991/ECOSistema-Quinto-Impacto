@@ -4,12 +4,12 @@ import TarjetaEstadoProductoServicio from "../tarjetaEstadoProductoServicio/Tarj
 function PilaProductosServicios({ productosServicios }) {
   return (
     <Box>
-      {productosServicios.map((ps) => (
+      {productosServicios.map((ps, index) => (
         <TarjetaEstadoProductoServicio
-          titulo={ps.titulo}
+          titulo={ps.nombre}
           estado={ps.estado}
-          explicacion={ps.explicacion}
-          key={ps.id}
+          explicacion={ps.feedback}
+          key={index}
         />
       ))}
     </Box>

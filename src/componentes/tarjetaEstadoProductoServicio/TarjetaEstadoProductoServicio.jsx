@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -8,24 +9,25 @@ import Typography from "@mui/material/Typography";
 
 import styles from "./TarjetaEstadoProductoServicio.module.css";
 
+// PENDIENTE: Revisar estados. Según Figma, son solamente 4.
 const coloresCirculo = {
-  postulado: "grisOscuro",
-  aprobado: "verdeExito",
-  revisión: "naranja",
-  denegado: "rojo",
+  REVISION_INICIAL: "grisOscuro",
+  ACEPTADO: "verdeExito",
+  REQUIERE_CAMBIOS: "naranja",
+  DENEGADO: "rojo",
 };
 
 const textosTarjeta1 = {
-  postulado: "¡Gracias por querer formar parte de EcoSistema!",
-  aprobado: "¡Felicitaciones! Sos parte de EcoSistema",
-  revisión: "Devolución de la administración",
-  denegado: "Devolución de la administración",
+  REVISION_INICIAL: "¡Gracias por querer formar parte de EcoSistema!",
+  ACEPTADO: "¡Felicitaciones! Sos parte de EcoSistema",
+  REQUIERE_CAMBIOS: "Devolución de la administración",
+  DENEGADO: "Devolución de la administración",
 };
 
 const textosTarjeta2 = {
-  postulado:
+  REVISION_INICIAL:
     "La postulación de tu Producto/Servicio fue enviada correctamente.",
-  aprobado:
+  ACEPTADO:
     "Tu Producto/Servicio está incluído dentro de nuestra Red de Impacto.",
 };
 
@@ -49,14 +51,16 @@ function TarjetaEstadoProductoServicio({ titulo, estado, explicacion }) {
           >
             {titulo}
           </Typography>
-          <Button
-            endIcon={<ChevronRightIcon />}
-            color="blanco"
-            onClick={() => console.log("EDITAR")}
-            className={styles.botonEditar}
-          >
-            Editar
-          </Button>
+          {/* PENDIENTE: Obtener ID de Producto/Servicio. */}
+          <Link to={`/editar/${1}`}>
+            <Button
+              endIcon={<ChevronRightIcon />}
+              color="blanco"
+              className={styles.botonEditar}
+            >
+              Editar
+            </Button>
+          </Link>
         </Box>
         <CardContent
           sx={{
@@ -83,7 +87,7 @@ function TarjetaEstadoProductoServicio({ titulo, estado, explicacion }) {
             {textosTarjeta1[estado]}
           </Typography>
 
-          {(estado === "postulado" || estado === "aprobado") && (
+          {(estado === "REVISION_INICIAL" || estado === "ACEPTADO") && (
             <Typography
               color="negro.main"
               component="h5"
@@ -93,13 +97,13 @@ function TarjetaEstadoProductoServicio({ titulo, estado, explicacion }) {
             </Typography>
           )}
 
-          {estado !== "aprobado" && (
+          {estado !== "ACEPTADO" && (
             <Typography
               color="negro.main"
               component="h5"
               className={styles.textoTarjeta3}
             >
-              {estado === "postulado"
+              {estado === "REVISION_INICIAL"
                 ? "Pronto tendrás más novedades."
                 : explicacion}
             </Typography>
