@@ -1,5 +1,8 @@
-
 import styles from "./SeccionTitulo.module.css";
+
+import * as React from 'react';
+
+
 
 function SeccionTitulo({ categoria, texto, titulo, imagen, children }) {
 
@@ -16,7 +19,7 @@ function SeccionTitulo({ categoria, texto, titulo, imagen, children }) {
         }
       </div>
     </section>
-  );     
+  );
 }
 
 export default SeccionTitulo;

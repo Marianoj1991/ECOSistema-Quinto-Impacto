@@ -23,6 +23,7 @@ function Buscador({ color }) {
   }
 
   return (
+    
     <input
       style={{backgroundColor: color}}
       onKeyUp={onKeyUp}

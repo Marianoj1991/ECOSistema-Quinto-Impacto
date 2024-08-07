@@ -17,7 +17,7 @@ export function Busquedas() {
   const [searchParams] = useSearchParams();
 
   const queryNombre = searchParams.get("nombre");
-  
+
   const manejarBusqueda = useCallback(async (nombreProveedorParam) => {
     // const proveedor = buscarProveedorPorNombre(nombreProveedorParam);
     const proveedor = await obtenerProveedoresPorNombreAxios(nombreProveedorParam)
@@ -31,7 +31,7 @@ export function Busquedas() {
   return (
     <>
       <BarraNavegacion />
-        <Buscador color="#EAEAEA" />
+      <Buscador color="#EAEAEA" />
       <Box className={styles.contenedor}>
         <Typography className={styles.textoResultados}>
           Resultados de tu búsqueda
