@@ -22,8 +22,13 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.1",
     "react-material-ui-carousel": "^3.4.2",
+<<<<<<< HEAD
     "react-router-dom": "^6.24.1",
     "zod": "^3.23.8"
+=======
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.24.1"
+>>>>>>> 481d9a0f3634f14d3b485e2b0f4bdb069ee2760f
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
