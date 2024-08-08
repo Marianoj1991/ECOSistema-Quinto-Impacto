@@ -31,7 +31,8 @@ const textosTarjeta2 = {
     "Tu Producto/Servicio está incluído dentro de nuestra Red de Impacto.",
 };
 
-function TarjetaEstadoProductoServicio({ titulo, estado, explicacion }) {
+function TarjetaEstadoProductoServicio({ titulo, estado, explicacion,id }) {
+  
   return (
     <Box className={styles.contenedor}>
       <Card
@@ -52,7 +53,7 @@ function TarjetaEstadoProductoServicio({ titulo, estado, explicacion }) {
             {titulo}
           </Typography>
           {/* PENDIENTE: Obtener ID de Producto/Servicio. */}
-          <Link to={`/editar/${1}`}>
+          <Link to={`/editar/${id}`}>
             <Button
               endIcon={<ChevronRightIcon />}
               color="blanco"

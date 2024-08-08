@@ -8,22 +8,33 @@ import Button from "@mui/material/Button";
 import PilaProductosServicios from "../../componentes/pilaProductosServicios/PilaProductosServicios";
 import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
 import Typography from "@mui/material/Typography";
-
+import {getStoredUser}from '@/utilidades/getUserSession'
+import {getProvedores} from '@/servicios/getAxios'
 import styles from "./Perfil.module.css";
 
 function Perfil() {
   const [productsServices, setProductsServices] = useState([]);
+  const user = getStoredUser();
+if (user) {
+  console.log('User retrieved:', user);
+} else {
+  console.log('No user found in session storage.');
+}
 
   const getProductsServices = async () => {
-    const productsServicesResponse = await fetch(
-      "http://localhost:8080/proveedores"
-    );
-    const productsServicesData = await productsServicesResponse.json();
-    setProductsServices(productsServicesData);
+    try {
+      const productsServicesResponse = await getProvedores();
+      setProductsServices(productsServicesResponse.data);
+      
+    } catch (error) {
+      console.error('Error fetching providers:', error);
+    }
   };
 
   useEffect(() => {
-    getProductsServices();
+
+      getProductsServices();
+    
   }, []);
 
   console.log(productsServices);
@@ -33,7 +44,7 @@ function Perfil() {
       <BarraNavegacion />
       <Box className={styles.contenedor}>
         <Typography color="negro.main" component="h1" className={styles.nombre}>
-          Julieta Pérez
+          {user.nombre} {user.apellido}
         </Typography>
         <Link to="/cargar">
           <Button

@@ -214,7 +214,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
                 {user.role !== 'admin' && (
                   <MenuItem
                     component={Link}
-                    to='/mi-perfil'
+                    to='/perfil'
                     onClick={handleClose}
                     sx={{
                       fontSize: '16px',

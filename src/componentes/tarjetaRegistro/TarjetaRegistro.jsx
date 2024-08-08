@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GmailLogo from "@/estaticos/icon/GmailIcon";
 import Logo from "@/estaticos/icon/LogoSimple";
 import style from "./TarjetaRegistro.module.css";
@@ -6,6 +7,7 @@ import { login } from '@/servicios/getAxios.js';
 import {decodeJWT} from '@/utilidades/decodedToken';
 
 const TarjetaRegistro = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     // Borra cookies
     document.cookie.split(";").forEach(cookie => {
@@ -38,7 +40,7 @@ const TarjetaRegistro = () => {
       const rol = decodedToken?.rol;
       console.log(rol);
 
-      window.location.href = (rol === 'ADMIN') ? '/dashboard' : '/';
+      navigate( rol === 'ADMIN' ? '/dashboard' : '/');
 
     } catch (error) {
       console.error("Error al iniciar sesión con Google: ", error);
