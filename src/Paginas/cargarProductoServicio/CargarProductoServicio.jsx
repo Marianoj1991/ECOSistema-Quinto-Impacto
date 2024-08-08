@@ -18,7 +18,7 @@ import productServiceSchema from "../../validations/productService";
 import supportedImageFormats from "../../conf/supportedImageFormats";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-
+import {getStoredUser}from '@/utilidades/getUserSession'
 import styles from "./CargarProductoServicio.module.css";
 
 function CargarProductoServicio() {
@@ -146,26 +146,32 @@ function CargarProductoServicio() {
 
     // PENDIENTE: Renombrar campos descripcion y feedback, y permitir que campo imagen reciba un array de archivos.
     const bodyData = {
-      nombre: data.nombre || "string",
-      descripcion: data["descripcion-corta"] || "string",
-      telefono: data.telefono || "string",
-      email: data.email || "string",
-      facebook: data.facebook || "string",
-      instagram: data.instagram || "string",
-      pais: data.pais || "Colombia",
-      provincia: data.provincia || "Risaralda",
-      ciudad: data.ciudad || "string",
-      categoria: data.categoria || "Bienestar",
+      nombre: data.nombre || "",
+      descripcion: data["descripcion-corta"] || "",
+      telefono: data.telefono || "",
+      email: data.email || "",
+      facebook: data.facebook || "",
+      instagram: data.instagram || "",
+      pais: data.pais || "",
+      provincia: data.provincia || "",
+      ciudad: data.ciudad || "",
+      categoria: data.categoria || "",
       imagen:
         "https://www.shutterstock.com/shutterstock/photos/1900942717/display_1500/stock-photo-beautiful-view-of-lago-di-braise-south-tyrol-1900942717.jpg",
-      feedback: data["descripcion-larga"] || "string",
+      feedback: data["descripcion-larga"] || "",
     };
 
     // PENDIENTE: Terminar con recuperación de ID del usuario desde localStorage.
-    localStorage.getItem("user");
+    const user = getStoredUser();
+    if (user) {
+      console.log('User retrieved:', user);
+    } else {
+      console.log('No user found in session storage.');
+    }
+    const idUser = user.id;
 
     const responseData = await fetch(
-      "http://localhost:8080/proveedores?usuarioId=1",
+      `http://localhost:8080/proveedores?usuarioId=${idUser}`,
       {
         method: "POST",
         headers: {
