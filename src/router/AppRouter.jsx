@@ -9,6 +9,7 @@ import EditarProductoServicio from "../Paginas/editarProductoServicio/EditarProd
 import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Perfil from "../Paginas/perfil/Perfil";
 import Registro from "../Paginas/registro/Registro";
+import ProveedoresAdmin from "../paginas/proveedoresAdmin/ProveedoresAdmin";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,16 @@ const router = createBrowserRouter([
   {
     path: "/editar/:id",
     element: <EditarProductoServicio />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/admin/proveedores",
+    element: <ProveedoresAdmin />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/dashboard",
+    element: <h1>ADMIN DASHBOARD</h1>,
     error: <ErrorPage />,
   },
 ]);

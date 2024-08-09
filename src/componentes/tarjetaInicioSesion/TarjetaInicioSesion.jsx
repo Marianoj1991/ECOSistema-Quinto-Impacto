@@ -12,7 +12,6 @@ const TarjetaInicioSesion = () => {
   useEffect(() => {
     // Borra cookies
     document.cookie.split(";").forEach(cookie => {
-      console.log(cookie)
       document.cookie = `${cookie.split("=")[0]}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     });
 
@@ -28,7 +27,7 @@ const TarjetaInicioSesion = () => {
 
   const handleCredentialResponse = async (response) => {
     const idToken = response.credential;
-    console.log(idToken);
+    console.log('GOOGLE TOKEN: ', idToken)
     try {
       const { token } = await login(idToken);
       const decodedToken = decodeJWT(token);
@@ -38,7 +37,7 @@ const TarjetaInicioSesion = () => {
       }
 
       sessionStorage.setItem('user', JSON.stringify(decodedToken));
-      console.log(decodedToken);
+      console.log('DECODED TOKEN: ',decodedToken);
       const rol = decodedToken?.rol;
       console.log(rol);
 

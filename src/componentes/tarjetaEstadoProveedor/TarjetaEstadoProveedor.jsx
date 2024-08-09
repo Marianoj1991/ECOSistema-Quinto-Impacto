@@ -4,18 +4,17 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import CircleIcon from '@mui/icons-material/Circle';
 
-const TarjetaProveedor = ({ nombre, categoria, estado }) => {
-  const getColorByEstado = (estado) => {
-    switch (estado) {
-      case 'Aprobado':
-        return 'verdeExito.main';
-      case 'En revisión':
-        return 'naranja.main';
-      case 'Denegado':
-        return 'rojo.main';
-    }
-  };
-
+const TarjetaProveedor = ({ nombre, descripcion, handleClick }) => {
+  // /* const getColorByEstado = (estado) => {
+  //   switch (estado) {
+  //     case 'Aprobado':
+  //       return 'verdeExito.main';
+  //     case 'En revisión':
+  //       return 'naranja.main';
+  //     case 'Denegado':
+  //       return 'rojo.main';
+  //   }
+  // };
   return (
     <Box
         sx={{
@@ -31,11 +30,11 @@ const TarjetaProveedor = ({ nombre, categoria, estado }) => {
         <Box sx={{ flexGrow: 1 }}>
           <Box sx={{ color: 'violeta.main', fontSize: 18, fontWeight: 'bold', padding: 0.5, borderBottom: 1, borderColor: 'verde.main', marginRight: 10, }}>
             {/* {estado !== 'Nuevo' && (<CircleIcon sx={{ color: getColorByEstado(estado), fontSize: 16, }} />)}   */}
-            Lavanda
+            {nombre}
           </Box>
-          <Box sx={{ fontSize: 16, padding: 0.5, }}>Cosmética natural</Box>
+          <Box sx={{ fontSize: 16, padding: 0.5, }}>{descripcion} </Box>
         </Box>
-        <IconButton>
+        <IconButton onClick={() => handleClick(nombre)}>
           <KeyboardArrowRightIcon sx={{ color: 'negro.main' }} />
         </IconButton>
         {/* {value === 0 &&

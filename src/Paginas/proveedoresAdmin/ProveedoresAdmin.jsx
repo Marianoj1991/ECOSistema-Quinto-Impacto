@@ -1,25 +1,64 @@
-import * as React from 'react';
+import {useEffect, useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import SeleccionEstadoProveedor from '../seleccionEstadoProveedor/SeleccionEstadoProveedor.jsx';
-import TarjetaEstadoProveedor from '../tarjetaEstadoProveedor/TarjetaEstadoProveedor.jsx';
+// import SeleccionEstadoProveedor from '@/componentes/seleccionEstadoProveedor/SeleccionEstadoProveedor.jsx';
+import TarjetaEstadoProveedor from '@/componentes/tarjetaEstadoProveedor/TarjetaEstadoProveedor.jsx';
+import BarraNavegacion from '../../componentes/barraNavegacion/BarraNavegacion';
+import { Box, Typography } from '@mui/material';
 
-export default function ScrollableTabsButtonPrevent() {
-  const [value, setValue] = React.useState(0);
+import styles from './ProveedoresAdmin.module.css'
+import { obtenerProveedoresPorEstado, obtenerProveedoresPorNombreAxios } from '../../servicios/getAxios';
+import SinResultados from '../../componentes/sinResultados/SinResultados';
+import SeleccionEstadoProveedor from '../../componentes/seleccionEstadoProveedor/SeleccionEstadoProveedor';
+
+export default function ProveedoresAdmin() {
+  const [estado, setEstado] = useState('revision_inicial');
+  const [ proveedores, setProveedores ] = useState([])
+  const [error, setError] = useState(false)
+  const [editando, setEditando] = useState(false)
+
+  useEffect(() => {
+    const proveedoresPorEstado = async (estado) => {
+      try{
+        const provs = await obtenerProveedoresPorEstado(estado)
+        setProveedores(provs)
+      } catch (err) {
+        setProveedores([])
+        setError(true)
+      }
+    }
+    proveedoresPorEstado(estado)
+  }, [estado])
+
+  const handleClick = async (nombre) => {
+    try{
+      const prov = await obtenerProveedoresPorNombreAxios(nombre)
+      setProveedores(prov)
+    } catch(err){
+      setEditando(false)
+    } finally{
+      setEditando(true)
+    }
+
+  }
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setEstado(newValue);
   };
 
   return (
     <>
+      <BarraNavegacion />
+      <Box className={styles.tituloContenedor}>
+        <Typography className={styles.titulo}>Proveedores</Typography>
+      </Box>
       <Tabs
-        value={value}
+        value={estado}
         onChange={handleChange}
-        variant="scrollable"
+        variant='scrollable'
         scrollButtons={false}
-        aria-label="scrollable prevent tabs example"
+        aria-label='scrollable prevent tabs example'
         sx={{
           borderBottom: 2,
           borderColor: 'violeta.main',
@@ -27,27 +66,50 @@ export default function ScrollableTabsButtonPrevent() {
           '.MuiTab-root': {
             textTransform: 'none',
             color: 'grisOscuro.main',
-            fontSize: 16,
+            fontSize: 16
           },
           '.Mui-selected': {
             color: 'negro.main',
-            fontWeight: 'bold',
+            fontWeight: 'bold'
           },
           '.MuiTabs-indicator': {
             backgroundColor: 'violeta.main',
-            color: 'negro.main',
-          },
+            color: 'negro.main'
+          }
         }}
       >
-        <Tab label="Nuevos Perfiles" />
-        <Tab label="Aprobados" />
-        <Tab label="En revisión" />
-        <Tab label="Denegados" />
+        <Tab
+          label='Nuevos Perfiles'
+          value='revision_inicial'
+        />
+        <Tab
+          label='Aprobados'
+          value='aprobado'
+        />
+        <Tab
+          label='En revisión'
+          value='en_revision'
+        />
+        <Tab
+          label='Denegados'
+          value='denegado'
+        />
       </Tabs>
+      {
+      !editando 
+        ?
+          proveedores.map((prov) =>(
+            <TarjetaEstadoProveedor key={prov.id} nombre={prov.nombre} descripcion={prov.descripcionCorta} handleClick={handleClick} />
+          ))
+        :
+          proveedores.map(() => {
+            <SeleccionEstadoProveedor />
+          })
+      }
 
-      <SeleccionEstadoProveedor />
-      
-      <TarjetaEstadoProveedor />
     </>
-  );
+  )
 }
+
+
+
