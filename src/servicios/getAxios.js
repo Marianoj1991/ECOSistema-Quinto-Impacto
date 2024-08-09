@@ -27,12 +27,14 @@ export async function obtenerProveedoresPorCategoriaAxios(nombre) {
   }
 }
 
-export async function getCategoriasAxios() {
+// Obtener categorías
+export async function getCategorias() {
   try {
-    const { data } = await axiosInstance.get("/categorias");
-    return data;
+    const response = await axiosInstance.get("/categorias");
+
+    return response;
   } catch (err) {
-    throw new Error(err.message);
+    console.error(err.message);
   }
 }
 
@@ -49,11 +51,13 @@ export async function getProvedores() {
 //proveedor por usuario
 export async function getProvedoresByUser(userId) {
   try {
-    const data = await axiosInstance.get(`/producto-servicio/activo/aceptado/${userId}` );
+    const data = await axiosInstance.get(
+      `/producto-servicio/activo/aceptado/${userId}`
+    );
     console.log(data);
     return data;
   } catch (err) {
-    console.log(err)
+    console.log(err);
     throw new Error(err.message);
   }
 }
@@ -95,7 +99,9 @@ export async function getUser(userId) {
 //producto o sevicio por ID
 export const getProductoById = async (id) => {
   try {
-    const productServiceData = await axiosInstance.get(`/producto-servicio/activo/aceptado/${id}`);
+    const productServiceData = await axiosInstance.get(
+      `/producto-servicio/activo/aceptado/${id}`
+    );
     return productServiceData;
   } catch (error) {
     console.error("Error: ", error);
@@ -104,29 +110,26 @@ export const getProductoById = async (id) => {
   }
 };
 
-//obtener paises
+// Obtener paises
 export const getPaises = async () => {
   try {
-    const paisData = await axiosInstance.get("/pais");
-    return paisData;
-  } catch (error) {
-    console.error("Error: ", error);
+    const response = await axiosInstance.get("/pais");
 
-    throw error;
+    return response;
+  } catch (error) {
+    console.error(error.message);
   }
 };
 
-//obtener provincia
-export const getProvincia = async (country) => {
+// Obtener provincias
+export const getProvincias = async (country) => {
   try {
-    const provinciaData = await axiosInstance.get(
-      `/provincia?nombre=${country}`
+    const response = await axiosInstance.get(
+      `/provincia?nombrePais=${country}`
     );
-    console.log(provinciaData.data);
-    return provinciaData;
-  } catch (error) {
-    console.error("Error provincia: ", error);
 
-    throw error;
+    return response;
+  } catch (error) {
+    console.error(error.message);
   }
 };

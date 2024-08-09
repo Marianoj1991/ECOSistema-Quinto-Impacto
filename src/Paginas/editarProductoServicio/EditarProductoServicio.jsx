@@ -17,11 +17,13 @@ import productServiceSchema from "../../validations/productService";
 import supportedImageFormats from "../../conf/supportedImageFormats";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { getProductoById,  
-  getCategoriasAxios,
+import {
+  getProductoById,
+  getCategorias,
   getPaises,
-  getProvincia } from '@/servicios/getAxios'; 
-  import {  putProducto } from '@/servicios/putAxios';
+  getProvincias,
+} from "@/servicios/getAxios";
+import { putProducto } from "@/servicios/putAxios";
 import styles from "./EditarProductoServicio.module.css";
 
 function EditarProductoServicio() {
@@ -39,7 +41,6 @@ function EditarProductoServicio() {
   const [images, setImages] = useState([]);
   const [imagesUrl, setImagesUrl] = useState([]);
   const [errorImages, setErrorImages] = useState("");
-  
 
   const navigate = useNavigate();
 
@@ -47,31 +48,28 @@ function EditarProductoServicio() {
     try {
       const response = await getProductoById(id);
       setProductService(response.data);
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.error("Error al obtener el producto/servicio: ", error);
     }
   };
 
-  const getCategoriesCountriesStates = async () => {
-    const categoriesResponse = await getCategoriasAxios()
-    setCategories(categoriesResponse);
-    console.log(categoriesResponse)
+  const getCategoriesCountries = async () => {
+    const categories = await getCategorias();
+    setCategories(categories.data);
 
-    const countriesResponse = await getPaises();
-    setCountries(countriesResponse.data);
-    console.log(countriesResponse.data)
+    const countries = await getPaises();
+    setCountries(countries.data);
   };
 
   useEffect(() => {
     getProductService();
-    getCategoriesCountriesStates();
+    getCategoriesCountries();
   }, []);
 
   const getStates = async (country) => {
-    const statesResponse = await getProvincia(country);
+    const statesResponse = await getProvincias(country);
     setStates(statesResponse.data);
-    console.log(statesResponse)
   };
 
   useEffect(() => {
@@ -80,10 +78,15 @@ function EditarProductoServicio() {
     getStates(selectedCountry);
   }, [selectedCountry]);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
     resolver: zodResolver(productServiceSchema),
   });
-  
+
   useEffect(() => {
     if (productService) {
       reset(productService); // Aca actualizo los valores del formulario
@@ -178,12 +181,11 @@ function EditarProductoServicio() {
       imagen:
         "https://www.shutterstock.com/shutterstock/photos/1900942717/display_1500/stock-photo-beautiful-view-of-lago-di-braise-south-tyrol-1900942717.jpg",
       feedback: data["descripcion-larga"] || "",
-      
     };
 
     // PENDIENTE: Terminar con recuperación de ID del usuario desde localStorage.
     // localStorage.getItem("user");
-console.log('Esto se envia a back',bodyData)
+    console.log("Esto se envia a back", bodyData);
     try {
       const response = await putProducto(id, bodyData);
       if (response.status === 200) {

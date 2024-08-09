@@ -1,17 +1,16 @@
-
 import axiosInstance from "../utilidades/axios.config";
 
+// Crear Producto/Servicio
+export const postProductoServicio = async (body) => {
+  try {
+    const response = await axiosInstance.post(`/producto-servicio`, body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-//actualizar publicacion
-export const putProducto= async (data) => {
-    try {
-  const publicacionData = await axiosInstance.put(`/producto-servicio/${data}`)
-  console.log(publicacionData.data)
-  return publicacionData;
-  
-    }catch (error) {
-      console.error("Error: ", error);
-  
-      throw error;
-    }
+    return response;
+  } catch (error) {
+    console.error(error.message);
   }
+};
