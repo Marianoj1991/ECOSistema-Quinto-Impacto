@@ -17,7 +17,13 @@ import productServiceSchema from "../../validations/productService";
 import supportedImageFormats from "../../conf/supportedImageFormats";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-
+import {
+  getProductoById,
+  getCategorias,
+  getPaises,
+  getProvincias,
+} from "@/servicios/getAxios";
+import { putProducto } from "@/servicios/putAxios";
 import styles from "./EditarProductoServicio.module.css";
 
 function EditarProductoServicio() {
@@ -39,37 +45,31 @@ function EditarProductoServicio() {
   const navigate = useNavigate();
 
   const getProductService = async () => {
-    const productServiceResponse = await fetch(
-      `http://localhost:8080/proveedores/${id}`
-    );
-    const productServiceData = await productServiceResponse.json();
-    setProductService(productServiceData);
-    setSelectedCountry(productServiceData.pais);
-
-    return productServiceData;
+    try {
+      const response = await getProductoById(id);
+      setProductService(response.data);
+      console.log(response);
+    } catch (error) {
+      console.error("Error al obtener el producto/servicio: ", error);
+    }
   };
 
-  const getCategoriesCountriesStates = async () => {
-    const categoriesResponse = await fetch("http://localhost:8080/categorias");
-    const categoriesData = await categoriesResponse.json();
-    setCategories(categoriesData);
+  const getCategoriesCountries = async () => {
+    const categories = await getCategorias();
+    setCategories(categories.data);
 
-    const countriesResponse = await fetch("http://localhost:8080/pais");
-    const countriesData = await countriesResponse.json();
-    setCountries(countriesData);
+    const countries = await getPaises();
+    setCountries(countries.data);
   };
 
   useEffect(() => {
     getProductService();
-    getCategoriesCountriesStates();
+    getCategoriesCountries();
   }, []);
 
   const getStates = async (country) => {
-    const statesResponse = await fetch(
-      `http://localhost:8080/provincia?nombre=${country}`
-    );
-    const statesData = await statesResponse.json();
-    setStates(statesData);
+    const statesResponse = await getProvincias(country);
+    setStates(statesResponse.data);
   };
 
   useEffect(() => {
@@ -82,10 +82,16 @@ function EditarProductoServicio() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
-    defaultValues: getProductService,
-    // resolver: zodResolver(productServiceSchema),
+    resolver: zodResolver(productServiceSchema),
   });
+
+  useEffect(() => {
+    if (productService) {
+      reset(productService); // Aca actualizo los valores del formulario
+    }
+  }, [productService, reset]);
 
   const handleAccept = () => {
     setOpenSuccessAlert(false);
@@ -160,36 +166,34 @@ function EditarProductoServicio() {
     // }
 
     // PENDIENTE: Renombrar campos descripcion y feedback, y permitir que campo imagen reciba un array de archivos.
+
     const bodyData = {
-      nombre: data.nombre || "string",
-      descripcion: data["descripcion-corta"] || "string",
-      telefono: data.telefono || "string",
-      email: data.email || "string",
-      facebook: data.facebook || "string",
-      instagram: data.instagram || "string",
+      nombre: data.nombre || "",
+      descripcion: data["descripcion-corta"] || "",
+      telefono: data.telefono || "",
+      email: data.email || "",
+      facebook: data.facebook || "",
+      instagram: data.instagram || "",
       pais: data.pais || "Colombia",
       provincia: data.provincia || "Risaralda",
-      ciudad: data.ciudad || "string",
+      ciudad: data.ciudad || "",
       categoria: data.categoria || "Bienestar",
       imagen:
         "https://www.shutterstock.com/shutterstock/photos/1900942717/display_1500/stock-photo-beautiful-view-of-lago-di-braise-south-tyrol-1900942717.jpg",
-      feedback: data["descripcion-larga"] || "string",
+      feedback: data["descripcion-larga"] || "",
     };
 
     // PENDIENTE: Terminar con recuperación de ID del usuario desde localStorage.
     // localStorage.getItem("user");
-
-    const responseData = await fetch("http://localhost:8080/proveedores/2", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bodyData),
-    });
-
-    if (responseData.ok) {
-      setOpenSuccessAlert(true);
-    } else {
+    console.log("Esto se envia a back", bodyData);
+    try {
+      const response = await putProducto(id, bodyData);
+      if (response.status === 200) {
+        setOpenSuccessAlert(true);
+      } else {
+        setOpenErrorAlert(true);
+      }
+    } catch (error) {
       setOpenErrorAlert(true);
     }
   };

@@ -1,7 +1,3 @@
-// PENDIENTE: Que los endpoints devuelvan el campo id de los datos para no tener que usar el index del método .map.
-// PENDIENTE: Reconsiderar el nombre de la tabla "proveedores" y cambiarlo por "productos_servicios".
-// PENDIENTE: Usar axios en lugar de fetch.
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -12,13 +8,18 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import {
+  getCategorias,
+  getPaises,
+  getProvincias,
+} from "../../servicios/getAxios";
 import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
+import { postProductoServicio } from "../../servicios/postAxios";
 import productServiceSchema from "../../validations/productService";
 import supportedImageFormats from "../../conf/supportedImageFormats";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-
 import styles from "./CargarProductoServicio.module.css";
 
 function CargarProductoServicio() {
@@ -36,26 +37,21 @@ function CargarProductoServicio() {
 
   const navigate = useNavigate();
 
-  const getCategoriesCountriesStates = async () => {
-    const categoriesResponse = await fetch("http://localhost:8080/categorias");
-    const categoriesData = await categoriesResponse.json();
-    setCategories(categoriesData);
+  const getCategoriesCountries = async () => {
+    const categories = await getCategorias();
+    setCategories(categories.data);
 
-    const countriesResponse = await fetch("http://localhost:8080/pais");
-    const countriesData = await countriesResponse.json();
-    setCountries(countriesData);
+    const countries = await getPaises();
+    setCountries(countries.data);
   };
 
   useEffect(() => {
-    getCategoriesCountriesStates();
+    getCategoriesCountries();
   }, []);
 
   const getStates = async (country) => {
-    const statesResponse = await fetch(
-      `http://localhost:8080/provincia?nombre=${country}`
-    );
-    const statesData = await statesResponse.json();
-    setStates(statesData);
+    const states = await getProvincias(country);
+    setStates(states.data);
   };
 
   useEffect(() => {
@@ -144,38 +140,27 @@ function CargarProductoServicio() {
     //   return;
     // }
 
-    // PENDIENTE: Renombrar campos descripcion y feedback, y permitir que campo imagen reciba un array de archivos.
-    const bodyData = {
-      nombre: data.nombre || "string",
-      descripcion: data["descripcion-corta"] || "string",
-      telefono: data.telefono || "string",
-      email: data.email || "string",
-      facebook: data.facebook || "string",
-      instagram: data.instagram || "string",
-      pais: data.pais || "Colombia",
-      provincia: data.provincia || "Risaralda",
-      ciudad: data.ciudad || "string",
-      categoria: data.categoria || "Bienestar",
-      imagen:
-        "https://www.shutterstock.com/shutterstock/photos/1900942717/display_1500/stock-photo-beautiful-view-of-lago-di-braise-south-tyrol-1900942717.jpg",
-      feedback: data["descripcion-larga"] || "string",
-    };
+    const formData = new FormData();
 
-    // PENDIENTE: Terminar con recuperación de ID del usuario desde localStorage.
-    localStorage.getItem("user");
+    formData.append("nombre", data.nombre || "string");
+    formData.append("descripcionCorta", data.descripcionCorta || "string");
+    formData.append("descripcionLarga", data.descripcionLarga || "string");
+    formData.append("telefono", data.telefono || "string");
+    formData.append("email", data.email || "string");
+    formData.append("facebook", data.facebook || "string");
+    formData.append("instagram", data.instagram || "string");
+    formData.append("pais", data.pais || "Colombia");
+    formData.append("provincia", data.provincia || "Antioquia");
+    formData.append("ciudad", data.ciudad || "string");
+    formData.append("categoria", data.categoria || "Bienestar");
 
-    const responseData = await fetch(
-      "http://localhost:8080/proveedores?usuarioId=1",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bodyData),
-      }
-    );
+    for (const i in images) {
+      formData.append(`imagen${Number(i) + 1}`, images[i]);
+    }
 
-    if (responseData.ok) {
+    const response = await postProductoServicio(formData);
+
+    if (response.status === 201) {
       setOpenSuccessAlert(true);
     } else {
       setOpenErrorAlert(true);
@@ -233,27 +218,26 @@ function CargarProductoServicio() {
 
           {/* Descripción Corta */}
           <TextField
-            {...register("descripcion-corta")}
-            id="descripcion-corta"
-            InputLabelProps={{ shrink: true }}
+            {...register("descripcionCorta")}
+            id="descripcionCorta"
             label="Breve descripción del Producto/Servicio*"
-            error={!errors["descripcion-corta"] ? false : true}
+            error={!errors?.descripcionCorta ? false : true}
             margin="dense"
             onInput={(e) => setCharactersCount1(e.target.value.length)}
             fullWidth
           />
           <Box className={styles.containerHelperTextAndErrors}>
             <Typography
-              color={!errors["descripcion-corta"] ? "negro.main" : "rojo.main"}
+              color={!errors?.descripcionCorta ? "negro.main" : "rojo.main"}
               component="p"
               className={styles.helperTextAndErrors}
             >
-              {!errors["descripcion-corta"]
+              {!errors?.descripcionCorta
                 ? "Se visualizará en el subtítulo de la publicación"
-                : errors["descripcion-corta"].message}
+                : errors.descripcionCorta.message}
             </Typography>
             <Typography
-              color={!errors["descripcion-corta"] ? "negro.main" : "rojo.main"}
+              color={!errors?.descripcionCorta ? "negro.main" : "rojo.main"}
               component="p"
               className={styles.helperTextAndErrors}
             >
@@ -445,10 +429,10 @@ function CargarProductoServicio() {
 
           {/* Descripción Larga */}
           <TextField
-            {...register("descripcion-larga")}
-            id="descripcion-larga"
+            {...register("descripcionLarga")}
+            id="descripcionLarga"
             label="Descripción del Producto/Servicio"
-            error={!errors["descripcion-larga"] ? false : true}
+            error={!errors?.descripcionLarga ? false : true}
             rows={6}
             margin="dense"
             onInput={(e) => setCharactersCount2(e.target.value.length)}
@@ -457,16 +441,16 @@ function CargarProductoServicio() {
           />
           <Box className={styles.containerHelperTextAndErrors}>
             <Typography
-              color={!errors["descripcion-larga"] ? "negro.main" : "rojo.main"}
+              color={!errors?.descripcionLarga ? "negro.main" : "rojo.main"}
               component="p"
               className={styles.helperTextAndErrors}
             >
-              {!errors["descripcion-larga"]
+              {!errors?.descripcionLarga
                 ? "Máximo 300 caracteres"
-                : errors["descripcion-larga"].message}
+                : errors.descripcionLarga.message}
             </Typography>
             <Typography
-              color={!errors["descripcion-larga"] ? "negro.main" : "rojo.main"}
+              color={!errors?.descripcionLarga ? "negro.main" : "rojo.main"}
               component="p"
               className={styles.helperTextAndErrors}
             >
