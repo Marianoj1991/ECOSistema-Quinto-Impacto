@@ -23,7 +23,9 @@ export function Inicio() {
 
   useEffect(() => {
     const userFromSession = sessionStorage.getItem('user');
-    if (userFromSession) {
+    if (!userFromSession) {
+      setUser(null);
+    } else {
       setUser(JSON.parse(userFromSession));
     }
   }, []);

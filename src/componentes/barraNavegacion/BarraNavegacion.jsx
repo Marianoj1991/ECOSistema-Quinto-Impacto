@@ -94,25 +94,30 @@ export default function BarraNavegacion({ hideUserIcon }) {
     navigate('/')
   }
 
-  const getInitials = (name, surname, role) => {
-    if (role === 'admin') return 'AD'
+  const getInitials = (name, surname, rol) => {
+    if (rol === 'admin') return 'AD'
     if (!name || !surname) return ''
     return `${name.charAt(0)}${surname.charAt(0)}`
   }
 
-  const menuItems = user
-    ? [
-        { text: 'Dashboard Administrador', link: '/admin', role: 'admin' },
-        { text: 'Proveedores', link: '/proveedores' },
-        { text: 'Publicaciones', link: '/publicaciones' }
-      ]
-    : [
-        { text: 'Inicio', link: '/' },
-        { text: 'Proveedores', link: '/proveedores' },
-        { text: 'Publicaciones', link: '/publicaciones' },
-        { text: 'Inicia Sesión', link: '/login' }
-      ]
-
+  const menuItems = user?.rol === 'ADMIN'
+      ? [
+          { text: 'Dashboard Administrador', link: '/admin', rol: 'ADMIN' },
+          { text: 'Proveedores', link: '/admin/proveedores' },
+          { text: 'Publicaciones', link: '/publicaciones' }
+        ]
+      : user?.rol === 'USUARIO'
+      ? [
+          { text: 'Inicio', link: '/' },
+          { text: 'Proveedores', link: '/proveedores' },
+          { text: 'Publicaciones', link: '/publicaciones' }
+        ]
+      : [
+          { text: 'Inicio', link: '/' },
+          { text: 'Proveedores', link: '/proveedores' },
+          { text: 'Publicaciones', link: '/publicaciones' },
+          { text: 'Inicia Sesión', link: '/login' }
+        ]
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -164,7 +169,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
                   }}
                   className={styles.icon}
                 >
-                  {getInitials(user.nombre, user.apellido, user.role)}
+                  {getInitials(user.nombre, user.apellido, user.rol)}
                 </Avatar>
               </IconButton>
               <Menu
@@ -182,7 +187,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {user.role !== 'admin' && (
+                {user.rol !== 'ADMIN' && (
                   <MenuItem onClick={handleClose}>
                     <AccountCircleOutlinedIcon sx={{ width: 32, height: 32 }} />
                     <div>
@@ -211,7 +216,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
                     </div>
                   </MenuItem>
                 )}
-                {user.role !== 'admin' && (
+                {user.rol !== 'ADMIN' && (
                   <MenuItem
                     component={Link}
                     to='/perfil'
@@ -286,15 +291,14 @@ export default function BarraNavegacion({ hideUserIcon }) {
         onClose={handleDrawerClose}
       >
         <List>
-          {user && user.role === 'admin' && (
-            <ListItem disablePadding>
+          {user && user.rol === 'ADMIN' && (
+            <ListItem>
               <ListItemText primary='ADMINISTRADOR' />
             </ListItem>
           )}
-          ,
           {menuItems.map(
-            ({ text, link, role }) =>
-              (!role || user?.role === role) && (
+            ({ text, link, rol }) =>
+              (!rol || user?.rol === rol) && (
                 <ListItem
                   key={text}
                   disablePadding

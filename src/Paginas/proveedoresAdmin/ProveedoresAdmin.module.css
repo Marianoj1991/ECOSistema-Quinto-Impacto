@@ -1,0 +1,12 @@
+.tituloContenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; 
+}
+
+.titulo {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 35px;
+}

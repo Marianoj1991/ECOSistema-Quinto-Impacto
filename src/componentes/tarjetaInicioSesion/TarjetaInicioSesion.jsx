@@ -23,37 +23,37 @@ const TarjetaInicioSesion = () => {
     } else {
       console.error('Google SDK no está cargado');
     }
-  }, []);
+  }, [])
 
   const handleCredentialResponse = async (response) => {
     const idToken = response.credential;
-    console.log(idToken);
+    console.log('GOOGLE TOKEN: ', idToken)
     try {
       const { token } = await login(idToken);
       const decodedToken = decodeJWT(token);
 
       if (!decodedToken) {
-        throw new Error("Error decoding token");
+        throw new Error('Error decoding token')
       }
 
       sessionStorage.setItem('user', JSON.stringify(decodedToken));
-      console.log(decodedToken);
+      console.log('DECODED TOKEN: ',decodedToken);
       const rol = decodedToken?.rol;
       console.log(rol);
 
       navigate(rol === 'ADMIN' ? '/dashboard' : '/');
 
     } catch (error) {
-      console.error("Error al iniciar sesión con Google: ", error);
+      console.error('Error al iniciar sesión con Google: ', error)
     }
-  };
+  }
 
   const handleGoogleSignIn = () => {
-    console.log("Click en botón de Google Sign-In");
+    console.log('Click en botón de Google Sign-In')
     if (window.google && window.google.accounts) {
-      window.google.accounts.id.prompt(); 
+      window.google.accounts.id.prompt()
     } else {
-      console.error('Google SDK no está cargado');
+      console.error('Google SDK no está cargado')
     }
   };
 
@@ -70,16 +70,19 @@ const TarjetaInicioSesion = () => {
       </div>
       <div className={style.containerBtn}>
         <p>Ingresá con tu cuenta de Gmail</p>
-        <button className={style.btnSesion} onClick={handleGoogleSignIn}>
+        <button
+          className={style.btnSesion}
+          onClick={handleGoogleSignIn}
+        >
           <div className={style.imglogo}>
-            <GmailLogo sx={{ width: "16px", height: "16px" }} />
+            <GmailLogo sx={{ width: '16px', height: '16px' }} />
           </div>
           <p>Continuá con Google</p>
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default TarjetaInicioSesion;
 

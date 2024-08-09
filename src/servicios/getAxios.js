@@ -1,50 +1,83 @@
 import axiosInstance from "../utilidades/axios.config";
 
-// http://localhost:8080/proveedores/buscar?proveedorNombre=lavanda
-
-//localhost:8080/proveedores/categoria?nombre=bienestar
+const endpointsProductoServicios = {
+  revision_inicial: '/admin/producto-servicio/estado/revision-inicial',
+  aprobado: '/admin/producto-servicio/estado/aceptado',
+  denegado: '/admin/producto-servicio/estado/denegado',
+  en_revision:
+    '/admin/producto-servicio/estado/requiere-cambios@/admin/producto-servicio/estado/cambios-realizados'
+}
 
 export async function obtenerProveedoresPorNombreAxios(nombre) {
   try {
     const { data } = await axiosInstance(
-      `/producto-servicio/activo/aceptado/buscar?nombre=${nombre}`
-    );
-    console.log(data);
-    return data;
+      `/producto-servicio/buscar?nombre=${nombre}`
+    )
+    return data
   } catch (err) {
     throw new Error(err.message);
   }
 }
 
-export async function obtenerProveedoresPorCategoriaAxios(nombre) {
-  try {
-    const { data } = await axiosInstance(
-      `/producto-servicio/activo/aceptado/categoria?nombre=${nombre}`
-    );
-    return data;
-  } catch (err) {
-    throw new Error(err.message);
-  }
+export async function obtenerProveedoresPorCategoriaAxios (nombre) {
+
+    try {
+        const { data } = await axiosInstance(
+          `/producto-servicio/categoria?nombre=${nombre}`
+        )
+        return data
+    } catch(err) {
+        throw new Error(err.message)
+    }
+
 }
 
-// Obtener categorías
+export async function obtenerProveedoresPorEstado (estado) {
+
+  const endpoint = endpointsProductoServicios[estado]
+  if(estado === 'en_revision') {
+    const arrEnpoints = endpoint.split('@')
+    const [requiereCambiosEndpoint, cambiosRealizadosEndpoint] = arrEnpoints
+    try {
+      const [resp1, resp2] = Promise.all[axiosInstance(requiereCambiosEndpoint), axiosInstance(cambiosRealizadosEndpoint)]
+      const { data1 } = resp1
+      const { data2 } = resp2
+      const data = [...data1, ...data2]
+      console.log(data)
+      return data
+    } catch (err) {
+      throw new Error(err.message)      
+    }
+  } else {
+    try {
+        const { data } = await axiosInstance(endpoint)
+        return data
+    } catch(err) {
+        throw new Error(err.message)
+    }
+
+  }
+
+
+} 
+
 export async function getCategorias() {
   try {
-    const response = await axiosInstance.get("/categorias");
+    const response = await axiosInstance.get('/categorias')
 
-    return response;
+    return response
   } catch (err) {
-    console.error(err.message);
+    console.error(err.message)
   }
 }
 
 //Todos los proveedores
 export async function getProvedores() {
   try {
-    const data = await axiosInstance.get("/producto-servicio/activo/aceptado");
-    return data;
+    const data = await axiosInstance.get('/producto-servicio/activo/aceptado')
+    return data
   } catch (err) {
-    throw new Error(err.message);
+    throw new Error(err.message)
   }
 }
 
@@ -53,20 +86,19 @@ export async function getProvedoresByUser(userId) {
   try {
     const data = await axiosInstance.get(
       `/producto-servicio/activo/aceptado/${userId}`
-    );
-    console.log(data);
-    return data;
+    )
+    console.log(data)
+    return data
   } catch (err) {
-    console.log(err);
-    throw new Error(err.message);
+    console.log(err)
+    throw new Error(err.message)
   }
 }
 
 //FUNCION PARA REGISTRO Y LOGIN
 export const login = async (idToken) => {
   try {
-    console.log(idToken);
-    const res = await axiosInstance.get("/login", {
+    const res = await axiosInstance.get('/login', {
       headers: {
         Authorization: `Bearer ${idToken}`,
       },
