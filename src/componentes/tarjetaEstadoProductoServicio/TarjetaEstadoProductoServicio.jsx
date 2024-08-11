@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 
 import styles from "./TarjetaEstadoProductoServicio.module.css";
 
-// PENDIENTE: Revisar estados. Según Figma, son solamente 4.
+// PENDIENTE: Ajustar nombre de estados con el Back
 const coloresCirculo = {
   REVISION_INICIAL: "grisOscuro",
   ACEPTADO: "verdeExito",
@@ -31,8 +31,7 @@ const textosTarjeta2 = {
     "Tu Producto/Servicio está incluído dentro de nuestra Red de Impacto.",
 };
 
-function TarjetaEstadoProductoServicio({ titulo, estado, explicacion,id }) {
-  
+function TarjetaEstadoProductoServicio({ titulo, estado, explicacion, id }) {
   return (
     <Box className={styles.contenedor}>
       <Card
@@ -52,7 +51,6 @@ function TarjetaEstadoProductoServicio({ titulo, estado, explicacion,id }) {
           >
             {titulo}
           </Typography>
-          {/* PENDIENTE: Obtener ID de Producto/Servicio. */}
           <Link to={`/editar/${id}`}>
             <Button
               endIcon={<ChevronRightIcon />}

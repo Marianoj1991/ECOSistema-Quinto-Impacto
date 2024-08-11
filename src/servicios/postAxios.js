@@ -11,6 +11,6 @@ export const postProductoServicio = async (body) => {
 
     return response;
   } catch (error) {
-    console.error(error.message);
+    throw new Error();
   }
 };
