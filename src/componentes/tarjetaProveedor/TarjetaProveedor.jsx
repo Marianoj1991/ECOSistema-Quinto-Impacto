@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-// import CarruselImagenes from "../carruselImagenes/CarruselImagenes";
+import CarruselImagenes from "../carruselImagenes/CarruselImagenes";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -63,12 +63,7 @@ function TarjetaProveedor({
             {categoria}
           </Typography>
         </Box>
-        {/* <CarruselImagenes imagenes={imagenes} /> */}
-
-        {/* ESTE DIV ES TEMPORAL */}
-        <div className={styles.contenedorImagen}>
-          <img src={imagenes} className={styles.imagen} />
-        </div>
+        <CarruselImagenes imagenes={imagenes} />
         <CardContent className={styles.contenedorContenido1}>
           <Typography
             color="negro.main"

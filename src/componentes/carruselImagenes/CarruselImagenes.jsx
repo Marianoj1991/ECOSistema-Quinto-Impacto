@@ -21,13 +21,14 @@ function CarruselImagenes({ imagenes }) {
           },
         }}
       >
-        {imagenes.map((imagen) => (
+        {/* PENDIENTE: El back debe devolver el ID de las imágenes */}
+        {imagenes.map((imagen, index) => (
           <CardMedia
             component="img"
             image={imagen.url}
             alt={imagen.alt}
             className={styles.imagen}
-            key={imagen.id}
+            key={index}
           />
         ))}
       </Carousel>

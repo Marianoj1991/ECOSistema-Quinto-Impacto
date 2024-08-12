@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Alerta from "../../componentes/alerta/Alerta";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
@@ -20,6 +20,7 @@ import productServiceSchema from "../../validations/productService";
 import supportedImageFormats from "../../conf/supportedImageFormats";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+
 import styles from "./CargarProductoServicio.module.css";
 
 function CargarProductoServicio() {
@@ -39,9 +40,9 @@ function CargarProductoServicio() {
 
   const getCategoriesCountries = async () => {
     const categories = await getCategorias();
-    setCategories(categories.data);
-
     const countries = await getPaises();
+
+    setCategories(categories.data);
     setCountries(countries.data);
   };
 
@@ -65,7 +66,7 @@ function CargarProductoServicio() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // resolver: zodResolver(productServiceSchema),
+    resolver: zodResolver(productServiceSchema),
   });
 
   const handleAccept = () => {
@@ -85,12 +86,14 @@ function CargarProductoServicio() {
   };
 
   const addImages = (e) => {
-    const iterableImages = e.target.files;
+    const fileListImages = e.target.files;
 
-    if (!iterableImages.length) return;
+    if (!fileListImages.length) return;
 
-    const arrayImages = Array.from(iterableImages);
+    // Convertir interfaz FileList (similar a un objeto) en Array, para modificar la longitud del Array en la siguiente línea de código
+    const arrayImages = Array.from(fileListImages);
 
+    // Si el usuario quiere cargar por primera vez más de las 3 imágenes permitidas, o si ya ha cargado imágenes y quiere cargar más del total de 3 imágenes permitidas; únicamente se toman las 3 primeras imágenes dentro del Array (primera vez) o la cantidad de imágenes que falten para completar 3 imágenes (segunda vez en adelante)
     if (arrayImages.length > 3 - images.length)
       arrayImages.length = 3 - images.length;
 
@@ -112,6 +115,7 @@ function CargarProductoServicio() {
     for (const image of arrayImages) {
       newImages.push(image);
 
+      // Crear una URL para representar la imagen y poder mostrarla en vista previa antes de la carga en el backend
       const imageUrl = URL.createObjectURL(image);
       newImagesUrl.push(imageUrl);
     }
@@ -128,6 +132,7 @@ function CargarProductoServicio() {
     imagesCopy.splice(index, 1);
     const deletedImageUrl = imagesUrlCopy.splice(index, 1);
 
+    // Eliminar la referencia en el navegador a la URL de la imagen borrada en vista previa
     URL.revokeObjectURL(deletedImageUrl);
 
     setImages(imagesCopy);
@@ -135,34 +140,34 @@ function CargarProductoServicio() {
   };
 
   const submit = async (data) => {
-    // if (!images.length) {
-    //   setErrorImages("Subí al menos una imagen");
-    //   return;
-    // }
+    if (!images.length) {
+      setErrorImages("Subí al menos una imagen");
+      return;
+    }
 
     const formData = new FormData();
 
-    formData.append("nombre", data.nombre || "string");
-    formData.append("descripcionCorta", data.descripcionCorta || "string");
-    formData.append("descripcionLarga", data.descripcionLarga || "string");
-    formData.append("telefono", data.telefono || "string");
-    formData.append("email", data.email || "string");
-    formData.append("facebook", data.facebook || "string");
-    formData.append("instagram", data.instagram || "string");
-    formData.append("pais", data.pais || "Colombia");
-    formData.append("provincia", data.provincia || "Antioquia");
-    formData.append("ciudad", data.ciudad || "string");
-    formData.append("categoria", data.categoria || "Bienestar");
+    formData.append("nombre", data.nombre);
+    formData.append("descripcionCorta", data.descripcionCorta);
+    formData.append("descripcionLarga", data.descripcionLarga);
+    formData.append("telefono", data.telefono);
+    formData.append("email", data.email);
+    formData.append("facebook", data.facebook);
+    formData.append("instagram", data.instagram);
+    formData.append("pais", data.pais);
+    formData.append("provincia", data.provincia);
+    formData.append("ciudad", data.ciudad);
+    formData.append("categoria", data.categoria);
 
     for (const i in images) {
       formData.append(`imagen${Number(i) + 1}`, images[i]);
     }
 
-    const response = await postProductoServicio(formData);
+    try {
+      await postProductoServicio(formData);
 
-    if (response.status === 201) {
       setOpenSuccessAlert(true);
-    } else {
+    } catch (error) {
       setOpenErrorAlert(true);
     }
   };
@@ -256,9 +261,9 @@ function CargarProductoServicio() {
             margin="dense"
             fullWidth
           >
-            {categories.map((categorie, index) => (
-              <MenuItem value={categorie.nombre} key={index}>
-                {categorie.nombre}
+            {categories.map((category) => (
+              <MenuItem value={category.nombre} key={category.id}>
+                {category.nombre}
               </MenuItem>
             ))}
           </TextField>
@@ -359,13 +364,13 @@ function CargarProductoServicio() {
             margin="dense"
             fullWidth
           >
-            {countries.map((country, index) => (
+            {countries.map((country) => (
               <MenuItem
                 value={country.nombre}
                 onClick={() => {
                   setSelectedCountry(country.nombre);
                 }}
-                key={index}
+                key={country.id}
               >
                 {country.nombre}
               </MenuItem>
@@ -392,8 +397,8 @@ function CargarProductoServicio() {
             margin="dense"
             fullWidth
           >
-            {states.map((state, index) => (
-              <MenuItem value={state.nombre} key={index}>
+            {states.map((state) => (
+              <MenuItem value={state.nombre} key={state.id}>
                 {state.nombre}
               </MenuItem>
             ))}

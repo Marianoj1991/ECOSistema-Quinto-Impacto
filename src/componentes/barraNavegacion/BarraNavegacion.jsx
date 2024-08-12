@@ -1,136 +1,138 @@
-import { useState, useEffect } from 'react'
-import { styled, useTheme } from '@mui/material/styles'
-import { Link, useNavigate } from 'react-router-dom'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import CloseIcon from '@mui/icons-material/Close'
-import CssBaseline from '@mui/material/CssBaseline'
-import Drawer from '@mui/material/Drawer'
-import IconButton from '@mui/material/IconButton'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import Avatar from '@mui/material/Avatar'
-import Logo from '@/estaticos/icon/Logo'
-import MenuIcon from '@mui/icons-material/Menu'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import styles from './BarraNavegacion.module.css'
+import { useState, useEffect } from "react";
+import { styled, useTheme } from "@mui/material/styles";
+import { Link, useNavigate } from "react-router-dom";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CloseIcon from "@mui/icons-material/Close";
+import CssBaseline from "@mui/material/CssBaseline";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Avatar from "@mui/material/Avatar";
+import Logo from "@/estaticos/icon/Logo";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import styles from "./BarraNavegacion.module.css";
 
-const drawerWidth = 240
-const drawerHeight = '56px'
+const drawerWidth = 240;
+const drawerHeight = "56px";
 
-const Main = styled('main')(({ theme, open }) => ({
+const Main = styled("main")(({ theme, open }) => ({
   flexGrow: 1,
-  transition: theme.transitions.create('margin', {
+  transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
+    duration: theme.transitions.duration.leavingScreen,
   }),
   marginLeft: `-${drawerWidth}px`,
   ...(open && {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0
-  })
-}))
+    marginLeft: 0,
+  }),
+}));
 
 const CustomAppBar = styled(AppBar)(({ theme }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
-  })
-}))
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+}));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
-  backgroundColor: 'transparent'
-}))
+  justifyContent: "flex-end",
+  backgroundColor: "transparent",
+}));
 
 export default function BarraNavegacion({ hideUserIcon }) {
-  const theme = useTheme()
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [user, setUser] = useState(null)
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUser = sessionStorage.getItem('user')
+    const storedUser = sessionStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser))
+      setUser(JSON.parse(storedUser));
     }
-  }, [])
+  }, []);
 
   const handleDrawerOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleDrawerClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   const handleLogout = () => {
-    sessionStorage.removeItem('user')
-    localStorage.removeItem('token')
-    setUser(null)
-    handleClose()
-    navigate('/')
-  }
+    sessionStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    handleClose();
+    navigate("/");
+  };
 
   const getInitials = (name, surname, rol) => {
-    if (rol === 'admin') return 'AD'
-    if (!name || !surname) return ''
-    return `${name.charAt(0)}${surname.charAt(0)}`
-  }
+    if (rol === "admin") return "AD";
+    if (!name || !surname) return "";
+    return `${name.charAt(0)}${surname.charAt(0)}`;
+  };
 
-  const menuItems = user?.rol === 'ADMIN'
+  const menuItems =
+    user?.rol === "ADMIN"
       ? [
-          { text: 'Dashboard Administrador', link: '/admin', rol: 'ADMIN' },
-          { text: 'Proveedores', link: '/admin/proveedores' },
-          { text: 'Publicaciones', link: '/publicaciones' }
+          { text: "Dashboard Administrador", link: "/admin", rol: "ADMIN" },
+          { text: "Proveedores", link: "/admin/proveedores" },
+          { text: "Publicaciones", link: "/publicaciones" },
         ]
-      : user?.rol === 'USUARIO'
+      : user?.rol === "USUARIO"
       ? [
-          { text: 'Inicio', link: '/' },
-          { text: 'Proveedores', link: '/proveedores' },
-          { text: 'Publicaciones', link: '/publicaciones' }
+          { text: "Inicio", link: "/" },
+          { text: "Perfil", link: "/perfil" },
+          { text: "Proveedores", link: "/proveedores" },
+          { text: "Publicaciones", link: "/publicaciones" },
         ]
       : [
-          { text: 'Inicio', link: '/' },
-          { text: 'Proveedores', link: '/proveedores' },
-          { text: 'Publicaciones', link: '/publicaciones' },
-          { text: 'Inicia Sesión', link: '/login' }
-        ]
+          { text: "Inicio", link: "/" },
+          { text: "Proveedores", link: "/proveedores" },
+          { text: "Publicaciones", link: "/publicaciones" },
+          { text: "Inicia Sesión", link: "/login" },
+        ];
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <CustomAppBar position='fixed'>
+      <CustomAppBar position="fixed">
         <Toolbar
           className={styles.header}
-          sx={{ justifyContent: 'space-between' }}
+          sx={{ justifyContent: "space-between" }}
         >
           <IconButton
-            color='inherit'
-            aria-label='open drawer'
+            color="inherit"
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
-            edge='start'
+            edge="start"
             sx={{ mr: 2 }}
           >
             {open ? (
@@ -140,32 +142,32 @@ export default function BarraNavegacion({ hideUserIcon }) {
             )}
           </IconButton>
           <Link
-            to='/'
+            to="/"
             className={`${styles.logoContainer} ${
-              !hideUserIcon ? '' : styles.centerLogo
+              !hideUserIcon ? "" : styles.centerLogo
             }`}
           >
             <Logo
-              alt='Logo'
+              alt="Logo"
               className={styles.logoHeader}
-              sx={{ width: '152px', height: '56px' }}
+              sx={{ width: "152px", height: "56px" }}
             />
           </Link>
           {user ? (
             <div>
               <IconButton
-                size='large'
-                aria-label='account of current user'
-                aria-controls='menu-appbar'
-                aria-haspopup='true'
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
                 onClick={handleMenu}
-                color='inherit'
+                color="inherit"
                 className={styles.iconContainer}
               >
                 <Avatar
                   sx={{
                     color: `${theme.palette.blanco.main} !important`,
-                    bgcolor: theme.palette.negro.main
+                    bgcolor: theme.palette.negro.main,
                   }}
                   className={styles.icon}
                 >
@@ -173,42 +175,42 @@ export default function BarraNavegacion({ hideUserIcon }) {
                 </Avatar>
               </IconButton>
               <Menu
-                id='menu-appbar'
+                id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {user.rol !== 'ADMIN' && (
+                {user.rol !== "ADMIN" && (
                   <MenuItem onClick={handleClose}>
                     <AccountCircleOutlinedIcon sx={{ width: 32, height: 32 }} />
                     <div>
                       <Typography
-                        variant='body1'
+                        variant="body1"
                         sx={{
-                          fontSize: '16px',
-                          lineHeight: '25px',
+                          fontSize: "16px",
+                          lineHeight: "25px",
                           color: theme.palette.negro.main,
-                          marginLeft: 1
+                          marginLeft: 1,
                         }}
                       >
                         {user.nombre} {user.apellido}
                       </Typography>
                       <Typography
-                        variant='body2'
+                        variant="body2"
                         sx={{
-                          fontSize: '14px',
-                          lineHeight: '25px',
+                          fontSize: "14px",
+                          lineHeight: "25px",
                           color: theme.palette.negro.main,
-                          marginLeft: 1
+                          marginLeft: 1,
                         }}
                       >
                         {user.sub}
@@ -216,17 +218,17 @@ export default function BarraNavegacion({ hideUserIcon }) {
                     </div>
                   </MenuItem>
                 )}
-                {user.rol !== 'ADMIN' && (
+                {user.rol !== "ADMIN" && (
                   <MenuItem
                     component={Link}
-                    to='/perfil'
+                    to="/perfil"
                     onClick={handleClose}
                     sx={{
-                      fontSize: '16px',
-                      lineHeight: '25px',
+                      fontSize: "16px",
+                      lineHeight: "25px",
                       fontWeight: 900,
                       color: theme.palette.violeta.main,
-                      marginLeft: 5
+                      marginLeft: 5,
                     }}
                   >
                     Mi Perfil
@@ -235,9 +237,9 @@ export default function BarraNavegacion({ hideUserIcon }) {
                 <MenuItem
                   onClick={handleLogout}
                   sx={{
-                    fontSize: '14px',
-                    lineHeight: '25px',
-                    color: theme.palette.negro.main
+                    fontSize: "14px",
+                    lineHeight: "25px",
+                    color: theme.palette.negro.main,
                   }}
                 >
                   Cerrar Sesión
@@ -245,26 +247,20 @@ export default function BarraNavegacion({ hideUserIcon }) {
               </Menu>
             </div>
           ) : (
-            !['/login', '/registro'].includes(location.pathname) && (
+            !["/login", "/registro"].includes(location.pathname) && (
               <div>
-                <Link
-                  to='/login'
-                  className={styles.iconLink}
-                >
+                <Link to="/login" className={styles.iconLink}>
                   <IconButton
-                    size='large'
-                    aria-label='account of current user'
-                    aria-controls='menu-appbar'
-                    aria-haspopup='true'
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
                     onClick={handleMenu}
-                    color='inherit'
+                    color="inherit"
                     className={styles.iconContainer}
                   >
                     <AccountCircleOutlinedIcon className={styles.icon} />
-                    <Typography
-                      component='p'
-                      className={styles.inicioSesion}
-                    >
+                    <Typography component="p" className={styles.inicioSesion}>
                       Ingresá
                     </Typography>
                   </IconButton>
@@ -278,31 +274,28 @@ export default function BarraNavegacion({ hideUserIcon }) {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
             marginTop: drawerHeight,
-            backgroundColor: 'violeta.main',
-            color: 'blanco.main'
-          }
+            backgroundColor: "violeta.main",
+            color: "blanco.main",
+          },
         }}
-        variant='temporary'
-        anchor='left'
+        variant="temporary"
+        anchor="left"
         open={open}
         onClose={handleDrawerClose}
       >
         <List>
-          {user && user.rol === 'ADMIN' && (
+          {user && user.rol === "ADMIN" && (
             <ListItem>
-              <ListItemText primary='ADMINISTRADOR' />
+              <ListItemText primary="ADMINISTRADOR" />
             </ListItem>
           )}
           {menuItems.map(
             ({ text, link, rol }) =>
               (!rol || user?.rol === rol) && (
-                <ListItem
-                  key={text}
-                  disablePadding
-                >
+                <ListItem key={text} disablePadding>
                   <ListItemButton
                     component={Link}
                     to={link}
@@ -317,17 +310,17 @@ export default function BarraNavegacion({ hideUserIcon }) {
             <>
               <ListItem disablePadding>
                 <ListItemText
-                  primary='¿Querés formar parte de la Red de impacto ECO como Proveedor?'
+                  primary="¿Querés formar parte de la Red de impacto ECO como Proveedor?"
                   sx={{ marginLeft: 2 }}
                 />
               </ListItem>
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
-                  to='/registro'
+                  to="/registro"
                   onClick={handleDrawerClose}
                 >
-                  <ListItemText primary='Registrate' />
+                  <ListItemText primary="Registrate" />
                 </ListItemButton>
               </ListItem>
             </>
@@ -336,5 +329,5 @@ export default function BarraNavegacion({ hideUserIcon }) {
       </Drawer>
       <DrawerHeader />
     </Box>
-  )
+  );
 }

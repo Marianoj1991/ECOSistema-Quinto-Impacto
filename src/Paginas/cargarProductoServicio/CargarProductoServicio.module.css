@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+.containerHelperTextAndErrors {
+  display: flex;
+  justify-content: space-between;
+}
+
 .helperTextAndErrors {
   margin-top: 0px;
   margin-right: 10px;
@@ -26,12 +31,6 @@
   font-size: 12px;
   line-height: 1.66;
   text-align: left;
-}
-
-.containerHelperTextAndErrors {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
 }
 
 .containerImages {

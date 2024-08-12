@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const productServiceSchema = z.object({
   nombre: z.string().min(1, { message: "Campo requerido" }),
-  "descripcion-corta": z
+  descripcionCorta: z
     .string()
     .min(1, { message: "Campo requerido" })
     .max(50, { message: "Máximo 50 caracteres" }),
@@ -32,7 +32,7 @@ const productServiceSchema = z.object({
   pais: z.string().min(1, { message: "Seleccioná un país" }),
   provincia: z.string().min(1, { message: "Seleccioná una provincia/estado" }),
   ciudad: z.string().min(1, { message: "Campo requerido" }),
-  "descripcion-larga": z
+  descripcionLarga: z
     .string()
     .min(1, { message: "Campo requerido" })
     .max(300, { message: "Máximo 300 caracteres" }),
