@@ -1,40 +1,51 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
-// import SeleccionEstadoProveedor from '@/componentes/seleccionEstadoProveedor/SeleccionEstadoProveedor.jsx';
 import TarjetaEstadoProveedor from '@/componentes/tarjetaEstadoProveedor/TarjetaEstadoProveedor.jsx';
 import BarraNavegacion from '../../componentes/barraNavegacion/BarraNavegacion';
 import { Box, Typography } from '@mui/material';
-
-import styles from './ProveedoresAdmin.module.css'
-import { obtenerProveedoresPorEstado, obtenerProveedoresPorNombreAxios } from '../../servicios/getAxios';
-import SinResultados from '../../componentes/sinResultados/SinResultados';
+import {
+  getProductoByIdAdmin,
+  obtenerProveedoresPorEstado
+} from '../../servicios/getAxios'
 import SeleccionEstadoProveedor from '../../componentes/seleccionEstadoProveedor/SeleccionEstadoProveedor';
 
+
+import styles from './ProveedoresAdmin.module.css'
+
+const estadoInicial = 'revision_inicial'
+
 export default function ProveedoresAdmin() {
-  const [estado, setEstado] = useState('revision_inicial');
+  const [estado, setEstado] = useState(estadoInicial);
   const [ proveedores, setProveedores ] = useState([])
-  const [error, setError] = useState(false)
   const [editando, setEditando] = useState(false)
+  const [proveedor, setProveedor] = useState(null)
+
+  const proveedoresPorEstado = async (estado) => {
+    try {
+      const provs = await obtenerProveedoresPorEstado(estado)
+      setProveedores(provs)
+    } catch (err) {
+      setProveedores([])
+    } finally {
+      setEditando(false)
+    }
+  }
 
   useEffect(() => {
-    const proveedoresPorEstado = async (estado) => {
-      try{
-        const provs = await obtenerProveedoresPorEstado(estado)
-        setProveedores(provs)
-      } catch (err) {
-        setProveedores([])
-        setError(true)
-      }
-    }
     proveedoresPorEstado(estado)
   }, [estado])
 
-  const handleClick = async (nombre) => {
+  useEffect(() => {
+    if (!editando) {
+      proveedoresPorEstado(estado)
+    }
+  }, [editando])
+
+  const handleClick = async (id) => {
     try{
-      const prov = await obtenerProveedoresPorNombreAxios(nombre)
-      setProveedores(prov)
+      const prov = await getProductoByIdAdmin(id)
+      setProveedor(prov)
     } catch(err){
       setEditando(false)
     } finally{
@@ -46,6 +57,10 @@ export default function ProveedoresAdmin() {
   const handleChange = (event, newValue) => {
     setEstado(newValue);
   };
+
+  const handleEditando = () => {
+    setEditando(false)
+  }
 
   return (
     <>
@@ -84,32 +99,38 @@ export default function ProveedoresAdmin() {
         />
         <Tab
           label='Aprobados'
-          value='aprobado'
+          value='aprobados'
         />
         <Tab
           label='En revisión'
           value='en_revision'
         />
         <Tab
+          label='Cambios realizados'
+          value='cambios_realizados'
+        />
+        <Tab
           label='Denegados'
-          value='denegado'
+          value='denegados'
         />
       </Tabs>
-      {
-      !editando 
-        ?
-          proveedores.map((prov) =>(
-            <TarjetaEstadoProveedor key={prov.id} nombre={prov.nombre} descripcion={prov.descripcionCorta} handleClick={handleClick} />
-          ))
-        :
-          proveedores.map(() => {
-            <SeleccionEstadoProveedor />
-          })
-      }
-
+      {!editando ? (
+        proveedores.map((prov) => (
+          <TarjetaEstadoProveedor
+            key={prov.id}
+            nombre={prov.nombre}
+            descripcion={prov.descripcionCorta}
+            handleClick={handleClick}
+            id={prov.id}
+            estado={prov.estado}
+          />
+        ))
+      ) : (
+        <SeleccionEstadoProveedor
+          {...proveedor}
+          handleEditando={handleEditando}
+        />
+      )}
     </>
   )
 }
-
-
-

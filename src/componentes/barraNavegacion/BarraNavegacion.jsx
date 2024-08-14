@@ -112,7 +112,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
           { text: "Inicio", link: "/" },
           { text: "Perfil", link: "/perfil" },
           { text: "Proveedores", link: "/proveedores" },
-          { text: "Publicaciones", link: "/publicaciones" },
+          { text: "Publicaciones", link: "/visitantes/publicaciones" },
         ]
       : [
           { text: "Inicio", link: "/" },

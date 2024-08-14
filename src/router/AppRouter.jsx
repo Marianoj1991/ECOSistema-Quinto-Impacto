@@ -10,6 +10,7 @@ import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Perfil from "../Paginas/perfil/Perfil";
 import Registro from "../Paginas/registro/Registro";
 import ProveedoresAdmin from "../paginas/proveedoresAdmin/ProveedoresAdmin";
+import BarraNavegacion from "../componentes/barraNavegacion/BarraNavegacion";
 
 const router = createBrowserRouter([
   {
@@ -63,8 +64,14 @@ const router = createBrowserRouter([
     error: <ErrorPage />,
   },
   {
-    path: "/dashboard",
-    element: <h1>ADMIN DASHBOARD</h1>,
+    path: "/admin/dashboard",
+    element: (
+      <>
+        <BarraNavegacion/>
+        <h1>ADMIN DASHBOARD</h1>
+      </>
+    )
+    ,
     error: <ErrorPage />,
   },
 ]);
