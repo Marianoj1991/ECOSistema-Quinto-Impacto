@@ -50,8 +50,8 @@ export default function ProveedoresAdmin() {
       setEditando(false)
     } finally{
       setEditando(true)
+      
     }
-
   }
 
   const handleChange = (event, newValue) => {

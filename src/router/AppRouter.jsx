@@ -14,67 +14,66 @@ import BarraNavegacion from "../componentes/barraNavegacion/BarraNavegacion";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Inicio />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/login",
+    path: '/login',
     element: <InicioSesion />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/registro",
+    path: '/registro',
     element: <Registro />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/visitantes/publicaciones",
+    path: '/visitantes/publicaciones',
     element: <Publicaciones />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/busquedas",
+    path: '/busquedas',
     element: <Busquedas />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/categorias",
+    path: '/visitantes/proveedores',
     element: <CategoriasPagina />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/perfil",
+    path: '/perfil',
     element: <Perfil />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/cargar",
+    path: '/cargar',
     element: <CargarProductoServicio />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/editar/:id",
+    path: '/editar/:id',
     element: <EditarProductoServicio />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/admin/proveedores",
+    path: '/admin/proveedores',
     element: <ProveedoresAdmin />,
-    error: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/admin/dashboard",
+    path: '/admin/dashboard',
     element: (
       <>
-        <BarraNavegacion/>
+        <BarraNavegacion />
         <h1>ADMIN DASHBOARD</h1>
       </>
-    )
-    ,
-    error: <ErrorPage />,
-  },
-]);
+    ),
+    error: <ErrorPage />
+  }
+])
 
 export default function AppRouter() {
   return <RouterProvider router={router} />;
