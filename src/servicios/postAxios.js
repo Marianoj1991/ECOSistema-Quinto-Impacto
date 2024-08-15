@@ -19,7 +19,7 @@ export const postProductoServicio = async (body) => {
 export const postPublicacion = async (data) => {
   console.log(data)
   try {
-    const response = await axiosInstance.post('/publicaciones', data, {
+    const response = await axiosInstance.post('admin/publicacion', data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

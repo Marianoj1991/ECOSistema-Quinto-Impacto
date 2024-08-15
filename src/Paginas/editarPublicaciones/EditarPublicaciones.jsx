@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { putPublicaciones } from "@/servicios/putAxios";
-import { getPublicacionById } from "@/servicios/getAxios";
+import { getPublicacionAdminById } from "@/servicios/getAxios";
 
 
 const EditarPublicaciones = () => {
@@ -35,7 +35,7 @@ const EditarPublicaciones = () => {
       // Obtener todos los datos necesarios para que el formulario se cargue correctamente con los valores actuales del Producto/Servicio
   const getInitialData = async () => {
  
-    const publicacionId = await getPublicacionById(publiId);
+    const publicacionId = await getPublicacionAdminById(publiId);
   
     setPublicacion(publicacionId.data);
 

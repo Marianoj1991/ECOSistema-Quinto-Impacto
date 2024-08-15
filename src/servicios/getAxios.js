@@ -1,18 +1,18 @@
 import axiosInstance from "../utilidades/axios.config";
 
 const endpointsProductoServicios = {
-  revision_inicial: "/admin/producto-servicio/estado/revision-inicial",
-  aprobado: "/admin/producto-servicio/estado/aceptado",
-  denegado: "/admin/producto-servicio/estado/denegado",
-  en_revision:
-    "/admin/producto-servicio/estado/requiere-cambios@/admin/producto-servicio/estado/cambios-realizados",
-};
+  revision_inicial: '/admin/producto-servicio/estado/revision-inicial',
+  aprobados: '/admin/producto-servicio/estado/aceptado',
+  denegados: '/admin/producto-servicio/estado/denegado',
+  en_revision: '/admin/producto-servicio/estado/requiere-cambios',
+  cambios_realizados: '/admin/producto-servicio/estado/cambios-realizados'
+}
 
 export async function obtenerProveedoresPorNombreAxios(nombre) {
   try {
     const { data } = await axiosInstance(
-      `/producto-servicio/buscar?nombre=${nombre}`
-    );
+      `/inicio/producto-servicio/buscar?nombre=${nombre}`
+    )
     return data;
   } catch (err) {
     throw new Error(err.message);
@@ -22,8 +22,8 @@ export async function obtenerProveedoresPorNombreAxios(nombre) {
 export async function obtenerProveedoresPorCategoriaAxios(nombre) {
   try {
     const { data } = await axiosInstance(
-      `/producto-servicio/categoria?nombre=${nombre}`
-    );
+      `/inicio/producto-servicio/categoria?nombre=${nombre}`
+    )
     return data;
   } catch (err) {
     throw new Error(err.message);
@@ -32,39 +32,20 @@ export async function obtenerProveedoresPorCategoriaAxios(nombre) {
 
 export async function obtenerProveedoresPorEstado(estado) {
   const endpoint = endpointsProductoServicios[estado];
-  if (estado === "en_revision") {
-    const arrEnpoints = endpoint.split("@");
-    const [requiereCambiosEndpoint, cambiosRealizadosEndpoint] = arrEnpoints;
-    try {
-      const [resp1, resp2] =
-        Promise.all[
-          (axiosInstance(requiereCambiosEndpoint),
-          axiosInstance(cambiosRealizadosEndpoint))
-        ];
-      const { data1 } = resp1;
-      const { data2 } = resp2;
-      const data = [...data1, ...data2];
-      console.log(data);
-      return data;
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  } else {
-    try {
-      const { data } = await axiosInstance(endpoint);
-      return data;
-    } catch (err) {
-      throw new Error(err.message);
-    }
+  try {
+    const { data } = await axiosInstance.get(endpoint);
+    return data;
+  } catch (err) {
+    throw new Error(err.message);
   }
 }
 
 export async function getCategorias() {
   try {
     const response = await axiosInstance.get("/categorias");
-
     return response;
   } catch (err) {
+    console.log('AQUI')
     console.error(err.message);
   }
 }
@@ -142,6 +123,19 @@ export const getProductoById = async (id) => {
   }
 };
 
+// Obtener Producto/Servicio por ID
+export const getProductoByIdAdmin = async (id) => {
+  try {
+    const {data} = await axiosInstance.get(
+      `/admin/producto-servicio/${id}`
+    )
+
+    return data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 // Obtener paises
 export const getPaises = async () => {
   try {
@@ -166,11 +160,11 @@ export const getProvincias = async (country) => {
   }
 };
 
-// Obtener publicaciones
-export const getPublicaciones = async () => {
+// Obtener publicaciones Administradores
+export const getPublicacionesAdmin = async () => {
   try {
     const response = await axiosInstance.get(
-      '/publicaciones'
+      'admin/publicacion'
     );
 
     return response;
@@ -179,11 +173,36 @@ export const getPublicaciones = async () => {
   }
 };
 
-// Obtener Publicaciones por ID
-export const getPublicacionById = async (id) => {
+// Obtener publicaciones usuarios
+export const getPublicacionesUser = async () => {
   try {
     const response = await axiosInstance.get(
-      `/publicaciones/${id}`
+      'inicio/publicacion'
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+// Obtener Publicaciones por ID admin
+export const getPublicacionAdminById = async (id) => {
+  try {
+    const response = await axiosInstance.get(
+      `admin/publicacion/${id}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const getPublicacionUsuarioById = async (id) => {
+  try {
+    const response = await axiosInstance.get(
+      `inicio/publicacion/${id}`
     );
 
     return response;

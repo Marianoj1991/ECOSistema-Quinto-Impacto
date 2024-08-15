@@ -5,11 +5,10 @@ import styles from "./PublicacionesAdmin.module.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import PilaPublicaciones from "@/componentes/pilaPublicaciones/pilaPublicaciones"
-import {getPublicaciones} from '@/servicios/getAxios'
+import PilaPublicaciones from "@/componentes/pilaPublicaciones/pilaPublicaciones";
+import { getPublicacionesAdmin } from "@/servicios/getAxios";
+import { hidePublicacion, showPublicacion } from "@/servicios/putAxios";
 import Alerta from "@/componentes/alerta/Alerta";
-
-
 
 const PublicacionesAdmin = () => {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -21,7 +20,7 @@ const PublicacionesAdmin = () => {
 
   const getPublicacionesLista = async () => {
     try {
-      const publicacionesAdmin = await getPublicaciones();
+      const publicacionesAdmin = await getPublicacionesAdmin();
       setPublicaciones(publicacionesAdmin.data);
     } catch (error) {
       console.error("Error al obtener las publicaciones:", error);
@@ -81,52 +80,55 @@ const PublicacionesAdmin = () => {
     }
   };
 
+  return (
+    <>
+      <BarraNavegacion />
+      <Box className={styles.contenedor}>
+        <Typography color="negro.main" component="h1" className={styles.titulo}>
+          Publicaciones
+        </Typography>
+        <Link to="/crear-publicacion">
+          <Button
+            variant="contained"
+            color="violeta"
+            sx={{ color: "blanco.main" }}
+            className={styles.boton}
+            disableElevation
+            fullWidth
+          >
+            Crear publicación
+          </Button>
+        </Link>
+        <Typography
+          color="negro.main"
+          component="h2"
+          className={styles.subtitulo}
+        >
+          Publicaciones cargadas
+        </Typography>
+      </Box>
+      <PilaPublicaciones
+        publicaciones={publicaciones}
+        onHide={handleHide}
+        onShow={handleShow}
+      />
+      <Alerta
+        type="success"
+        mainMessage={alertMessage}
+        openAlert={openSuccessAlert}
+        handleAccept={handleAccept}
+      />
 
-  
-    return (
-        <>
-          <BarraNavegacion />
-          <Box className={styles.contenedor}>
-            <Typography color="negro.main" component="h1" className={styles.titulo}>
-              Publicaciones
-            </Typography>
-            <Link to="/crear-publicacion">
-              <Button
-                variant="contained"
-                color="violeta"
-                sx={{ color: "blanco.main" }}
-                className={styles.boton}
-                disableElevation
-                fullWidth
-              >
-                Crear publicación
-              </Button>
-            </Link>
-            <Typography color="negro.main" component="h2" className={styles.subtitulo}>
-              Publicaciones cargadas
-            </Typography>
-          </Box>
-            <PilaPublicaciones   publicaciones={publicaciones} onHide={handleHide} onShow={handleShow}/>
-            <Alerta
-    type="success"
-    mainMessage={alertMessage}
-    openAlert={openSuccessAlert}
-    handleAccept={handleAccept}
-/>
+      <Alerta
+        type="error"
+        mainMessage={alertMessage}
+        minorMessage="Por favor, volvé a intentarlo."
+        openAlert={openErrorAlert}
+        handleCancel={handleCancel}
+        handleRetry={handleRetry}
+      />
+    </>
+  );
+};
 
-
-<Alerta
-      type="error"
-      mainMessage={alertMessage}
-      minorMessage="Por favor, volvé a intentarlo."
-      openAlert={openErrorAlert}
-      handleCancel={handleCancel}
-      handleRetry={handleRetry}
-    />
-
-        </>
-      );
-    }
-
-
-export default PublicacionesAdmin
+export default PublicacionesAdmin;

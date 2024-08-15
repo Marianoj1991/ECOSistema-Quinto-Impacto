@@ -41,7 +41,7 @@ const TarjetaInicioSesion = () => {
       const rol = decodedToken?.rol;
       console.log(rol);
 
-      navigate(rol === 'ADMIN' ? '/dashboard' : '/');
+      navigate(rol === 'ADMIN' ? '/admin/dashboard' : '/');
 
     } catch (error) {
       console.error('Error al iniciar sesión con Google: ', error)

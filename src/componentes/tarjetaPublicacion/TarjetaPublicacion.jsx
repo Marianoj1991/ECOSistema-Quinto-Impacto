@@ -48,6 +48,7 @@ const handleHide = () => {
 
 const handleShow = ()=>{
   onShow(id);
+  handleClose();
 }
 
 
@@ -101,7 +102,7 @@ const hasMenu = location.pathname === "/admin/publicaciones";
                   
                 >
                   <MenuItem onClick={handleEdit}>Editar</MenuItem>
-                  { state === 0 ? (<MenuItem onClick={handleHide}>Ocultar</MenuItem>):
+                  { state === false ? (<MenuItem onClick={handleHide}>Ocultar</MenuItem>):
                   (<MenuItem onClick={handleShow}>Mostrar</MenuItem>)}
                 </Menu>
               </>

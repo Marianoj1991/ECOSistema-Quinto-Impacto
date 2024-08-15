@@ -10,61 +10,70 @@ import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
 import Perfil from "../Paginas/perfil/Perfil";
 import Registro from "../Paginas/registro/Registro";
 import ProveedoresAdmin from "../paginas/proveedoresAdmin/ProveedoresAdmin";
+import BarraNavegacion from "../componentes/barraNavegacion/BarraNavegacion";
 import PublicacionesAdmin from "../Paginas/publicacionesAdmin/PublicacionesAdmin";
 import CrearPublicacion from "@/Paginas/crearPublicacion/CrearPublicacion"
 import EditarPublicaciones from "@/Paginas/editarPublicaciones/EditarPublicaciones"
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Inicio />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/login",
+    path: '/login',
     element: <InicioSesion />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/registro",
+    path: '/registro',
     element: <Registro />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/publicaciones",
     element: <Publicaciones />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
+
   },
 
   {
-    path: "/busquedas",
+    path: '/busquedas',
     element: <Busquedas />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
+  // {
+  //   path: '/visitantes/publicaciones',
+  //   element: <Publicaciones />,
+  //   errorElement: <ErrorPage />
+  // },
   {
-    path: "/categorias",
+    path: '/proveedores',
     element: <CategoriasPagina />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/perfil",
+    path: '/perfil',
     element: <Perfil />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/cargar",
+    path: '/cargar',
     element: <CargarProductoServicio />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/editar/:id",
+    path: '/editar/:id',
     element: <EditarProductoServicio />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
+
+  //RUTAS SOLO ADMINISTRADOR
   {
-    path: "/admin/proveedores",
+    path: '/admin/proveedores',
     element: <ProveedoresAdmin />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/admin/publicaciones",
@@ -80,11 +89,16 @@ const router = createBrowserRouter([
   errorElement: <ErrorPage />,
 },
   {
-    path: "/dashboard",
-    element: <h1>ADMIN DASHBOARD</h1>,
-    errorElement: <ErrorPage />,
-  },
-]);
+    path: '/admin/dashboard',
+    element: (
+      <>
+        <BarraNavegacion />
+        <h1>ADMIN DASHBOARD</h1>
+      </>
+    ),
+    error: <ErrorPage />
+  }
+])
 
 export default function AppRouter() {
   return <RouterProvider router={router} />;

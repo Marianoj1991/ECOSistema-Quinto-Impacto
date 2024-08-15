@@ -13,7 +13,7 @@ function PilaPublicaciones({ publicaciones, onHide, onShow }) {
           imagenes={publicacion.imagenes}
           key={publicacion.id}
           id={publicacion.id}
-          state={publicacion.state}
+          state={publicacion.estaOculto}
           onHide={onHide}
           onShow={onShow}
         />

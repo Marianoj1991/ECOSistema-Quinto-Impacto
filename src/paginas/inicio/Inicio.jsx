@@ -11,7 +11,7 @@ import proveedores from "../../datosPrueba/proveedores";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Typography from "@mui/material/Typography";
 import  { useState, useEffect } from 'react';
-import {getPublicaciones} from '@/servicios/getAxios'
+import {getPublicacionesUser} from '@/servicios/getAxios'
 // Estilos CSS
 import styles from "./Inicio.module.css";
 
@@ -22,9 +22,8 @@ export function Inicio() {
   const [publicaciones, setPublicaciones] =useState([])
 
 const getPublicacionesLista= async() => {
-    const publicacionesAdmin = await getPublicaciones();
+    const publicacionesAdmin = await getPublicacionesUser();
     setPublicaciones(publicacionesAdmin.data);
-    console.log(publicacionesAdmin.data)
   };
 
 

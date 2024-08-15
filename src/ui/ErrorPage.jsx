@@ -18,7 +18,6 @@ export const ErrorPage = () => {
           A inicio
         </Link>
       </div>
-      </div>
-      
+    </div>
   )
 }
