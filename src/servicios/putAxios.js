@@ -14,3 +14,18 @@ export const putProductoServicio = async (id, body) => {
     throw new Error();
   }
 };
+
+// Editar Publicaciones
+export const putPublicaciones = async (publicaionId, body) => {
+  try {
+    const response = await axiosInstance.put(`/publicaciones/${publicaionId}`, body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return response;
+  } catch (error) {
+    throw new Error();
+  }
+};

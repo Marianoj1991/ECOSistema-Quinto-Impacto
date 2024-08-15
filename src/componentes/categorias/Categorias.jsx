@@ -33,7 +33,7 @@ export function Categorias() {
 
       <Grid item sx={{ padding: 1 }}>
         <Grid container rowSpacing={2} columnSpacing={2}>
-          {nombresCategorias.slice(0,8).map((dato) => (
+          {nombresCategorias?.slice(0,8).map((dato) => (
             <BotonCategoria
               key={dato.id}
               icono={dato.icono}

@@ -1,0 +1,106 @@
+.container {
+    margin: 40px 20px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+  
+  .subtitle {
+    margin: 30px 0px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+  }
+
+  .textField{
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  .containerHelperTextAndErrors {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .helperTextAndErrors {
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.66;
+    text-align: left;
+  }
+  
+  .containerImages {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+  }
+  
+  .containerImage {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .buttonClose {
+    background-color: #22222299;
+    position: absolute;
+    right: 0;
+    padding: 4px;
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+  
+  .images {
+    width: 100vh;
+    max-width: 328px;
+    height: 112px;
+    margin: 0px 2px;
+    border-radius: 4%;
+    object-fit: cover;
+  }
+  
+  .sectionButtonUpload {
+    display: flex;
+    justify-content: end;
+  }
+  
+  .containerButtonUpload {
+    width: 150px;
+  }
+  
+  .uploadButton {
+    margin-top: 30px;
+    height: 40px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: none;
+  }
+  
+  .textUploadConditions {
+    margin-top: 5px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+  }
+  
+  .buttonUpload {
+    margin-top: 30px;
+    height: 40px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 30px;
+    text-transform: none;
+  }

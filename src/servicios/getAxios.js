@@ -165,3 +165,29 @@ export const getProvincias = async (country) => {
     console.error(error.message);
   }
 };
+
+// Obtener publicaciones
+export const getPublicaciones = async () => {
+  try {
+    const response = await axiosInstance.get(
+      '/publicaciones'
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+// Obtener Publicaciones por ID
+export const getPublicacionById = async (id) => {
+  try {
+    const response = await axiosInstance.get(
+      `/publicaciones/${id}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

@@ -105,7 +105,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
       ? [
           { text: "Dashboard Administrador", link: "/admin", rol: "ADMIN" },
           { text: "Proveedores", link: "/admin/proveedores" },
-          { text: "Publicaciones", link: "/publicaciones" },
+          { text: "Publicaciones", link: "/admin/publicaciones" },
         ]
       : user?.rol === "USUARIO"
       ? [

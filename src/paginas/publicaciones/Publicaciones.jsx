@@ -12,6 +12,7 @@ import styles from "./Publicaciones.module.css";
 const { categoria, texto, titulo, imagen } = info;
 
 export function Publicaciones() {
+ 
   return (
     <>
       <BarraNavegacion />

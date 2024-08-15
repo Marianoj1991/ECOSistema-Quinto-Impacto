@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
+import BarraNavegacion from "@/componentes/barraNavegacion/BarraNavegacion";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import PilaProductosServicios from "../../componentes/pilaProductosServicios/PilaProductosServicios";
-import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
+import PilaProductosServicios from "@/componentes/pilaProductosServicios/PilaProductosServicios";
+import PilaProveedores from "@/componentes/pilaProveedores/PilaProveedores";
 import Typography from "@mui/material/Typography";
 import { getStoredUser } from "@/utilidades/getUserSession";
 import { getProvedores } from "@/servicios/getAxios";
