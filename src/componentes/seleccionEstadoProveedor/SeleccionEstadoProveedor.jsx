@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { actualizarFeedbackEstado } from '../../servicios/putAxios'
+
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
+// import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import CircleIcon from '@mui/icons-material/Circle'
@@ -16,17 +18,80 @@ import Button from '@mui/material/Button'
 import { alpha } from '@mui/material/styles'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import Alerta from '../alerta/Alerta'
 
-const SeleccionEstadoProveedor = () => {
+const mensajesAlertaObj = {
+  aprobado: 'Producto/Servicio aprobado con éxito.',
+  revision: 'El Producto/Servicio require cambios',
+  denegado: 'Producto/Servicio denegado'
+}
+
+
+const SeleccionEstadoProveedor = ({
+  categoria,
+  email,
+  telefono,
+  instagram,
+  pais,
+  provincia,
+  ciudad,
+  descripcionLarga,
+  imagenes,
+  id,
+  handleEditando
+}) => {
   const [estado, setEstado] = useState('')
   const [open, setOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(0)
   const [devolucion, setDevolucion] = useState('')
-  const images = [
-    'https://via.placeholder.com/800x600', // Reemplaza estas URLs con tus imágenes
-    'https://via.placeholder.com/800x600',
-    'https://via.placeholder.com/800x600'
-  ]
+  const [openSuccessAlert, setOpenSuccessAlert] = useState(false)
+  const [openErrorAlert, setOpenErrorAlert] = useState(false)
+  const [mensajesAlerta, setMensajesAlerta] = useState('')
+
+
+  const aprobarProductoServicio = async () => {
+    const data = {
+      feedback: 'Producto/servicio aprobado.',
+      estado: 'ACEPTADO'
+    }
+    try {
+      const resp = await actualizarFeedbackEstado(id, data)
+      setMensajesAlerta(mensajesAlertaObj[estado])
+      setOpenSuccessAlert(true)
+    } catch (err) {
+      setOpenErrorAlert(true)
+    } finally {
+      setEstado('')
+    }
+  }
+
+  useEffect(() => {
+    if (estado === 'aprobado') {
+      aprobarProductoServicio()
+    }
+  }, [estado])
+
+   const handleSubmit = async () => {
+     if (devolucion.length > 0) {
+       // Aquí iría la lógica para enviar la devolución
+       const data = {
+         feedback: devolucion,
+         estado: estado === 'revision' ? 'REQUIERE_CAMBIOS' : 'DENEGADO'
+       }
+       try {
+         const resp = await actualizarFeedbackEstado(id, data)
+         setMensajesAlerta(mensajesAlertaObj[estado])
+         setOpenSuccessAlert(true)
+       } catch (err) {
+         console.log('Hubo un error')
+         setOpenErrorAlert(true)
+       } finally {
+         setDevolucion('')
+         setEstado('')
+       }
+     }
+     // alert('Devolución enviada: ' + devolucion)
+   }
 
   const handleChange = (event) => {
     setEstado(event.target.value)
@@ -45,12 +110,19 @@ const SeleccionEstadoProveedor = () => {
     setDevolucion(event.target.value)
   }
 
-  const handleSubmit = () => {
-    if (devolucion.length > 0) {
-      // Aquí iría la lógica para enviar la devolución
-      alert('Devolución enviada: ' + devolucion)
-      setDevolucion('')
-    }
+  const handleAccept = () => {
+    setOpenSuccessAlert(false)
+    handleEditando()
+  }
+
+  const handleCancel = () => {
+    setOpenErrorAlert(false)
+    handleEditando()
+  }
+  
+  const handleRetry = () => {
+    setOpenErrorAlert(false)
+    handleSubmit()
   }
 
   const RenderEstado = () => {
@@ -98,6 +170,21 @@ const SeleccionEstadoProveedor = () => {
 
   return (
     <Box sx={{ pr: 1, pl: 1 }}>
+      <Alerta
+        type='success'
+        mainMessage={mensajesAlerta}
+        openAlert={openSuccessAlert}
+        handleAccept={handleAccept}
+      />
+      <Alerta
+        type='error'
+        mainMessage='Lo sentimos, el Producto/Servicio no pudo ser actualizado'
+        minorMessage='Por favor, volvé a intentarlo.'
+        openAlert={openErrorAlert}
+        handleCancel={handleCancel}
+        handleRetry={handleRetry}
+      />
+
       {estado && RenderEstado()}
       <Box sx={{ display: 'flex', justifyContent: 'end', border: 'none' }}>
         <FormControl
@@ -111,17 +198,13 @@ const SeleccionEstadoProveedor = () => {
           size='small'
         >
           <Select
-            variant='filled'
+            variant='standard'
             labelId='estado-select-label'
             id='estado-select'
             value={''}
-            onChange={handleChange}
-            renderValue={(selected) => {
-              return selected ? (
-                <div >{selected}</div>
-              ) : null
-            }}
+            onChange={(event) => handleChange(event, id)}
             sx={{
+              padding: 0.5,
               display: 'flex',
               alignItems: 'center',
               fontSize: 16,
@@ -182,8 +265,6 @@ const SeleccionEstadoProveedor = () => {
             <TextField
               fullWidth
               multiline
-              rows={4}
-              //   maxRows={4}
               value={devolucion}
               onChange={handleDevolucionChange}
               placeholder='Escribe tu mensaje aquí...'
@@ -238,6 +319,7 @@ const SeleccionEstadoProveedor = () => {
         </Box>
       ) : null}
 
+      {/* FORMULARIOS */}
       <Box
         sx={{
           overflow: 'hidden',
@@ -275,7 +357,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='Categoría'
-            defaultValue='Hello World'
+            defaultValue={categoria}
             InputProps={{
               readOnly: true
             }}
@@ -285,7 +367,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='Correo electrónico'
-            defaultValue='Hello World'
+            defaultValue={email}
             InputProps={{
               readOnly: true
             }}
@@ -295,7 +377,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='Teléfono o Whatsapp'
-            defaultValue='Hello World'
+            defaultValue={telefono}
             InputProps={{
               readOnly: true
             }}
@@ -305,7 +387,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='Instagram'
-            defaultValue='Hello World'
+            defaultValue={instagram}
             InputProps={{
               readOnly: true
             }}
@@ -315,7 +397,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='País'
-            defaultValue='Hello World'
+            defaultValue={pais}
             InputProps={{
               readOnly: true
             }}
@@ -325,7 +407,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='Provincia/Estado'
-            defaultValue='Hello World'
+            defaultValue={provincia}
             InputProps={{
               readOnly: true
             }}
@@ -335,7 +417,7 @@ const SeleccionEstadoProveedor = () => {
           <TextField
             id='outlined-read-only-input'
             label='Ciudad'
-            defaultValue='Hello World'
+            defaultValue={ciudad}
             InputProps={{
               readOnly: true
             }}
@@ -343,9 +425,11 @@ const SeleccionEstadoProveedor = () => {
         </div>
         <div>
           <TextField
+            multiline
+            rows={4}
             id='outlined-read-only-input'
             label='Descripción del Producto/Servicio*'
-            defaultValue='Hello World'
+            defaultValue={descripcionLarga}
             InputProps={{
               readOnly: true
             }}
@@ -356,7 +440,7 @@ const SeleccionEstadoProveedor = () => {
             container
             spacing={2}
           >
-            {images.map((src, index) => (
+            {imagenes?.map((img, index) => (
               <Grid
                 item
                 xs={4}
@@ -364,7 +448,7 @@ const SeleccionEstadoProveedor = () => {
               >
                 <Box sx={{ position: 'relative', width: '100%' }}>
                   <img
-                    src={src}
+                    src={img.url}
                     alt={`img-${index}`}
                     style={{ width: '100%', height: 'auto' }}
                   />
@@ -390,6 +474,8 @@ const SeleccionEstadoProveedor = () => {
         </Box>
       </Box>
 
+      {/* IMAGEN EN PANTALLA
+       */}
       <Dialog
         fullScreen
         open={open}
@@ -422,7 +508,7 @@ const SeleccionEstadoProveedor = () => {
             showThumbs={false}
             showStatus={false}
           >
-            {images.map((src, index) => (
+            {imagenes?.map((img, index) => (
               <div
                 key={index}
                 style={{
@@ -432,7 +518,7 @@ const SeleccionEstadoProveedor = () => {
                 }}
               >
                 <img
-                  src={src}
+                  src={img.url}
                   alt={`carousel-img-${index}`}
                   style={{ maxHeight: '80vh', maxWidth: '100%' }}
                 />

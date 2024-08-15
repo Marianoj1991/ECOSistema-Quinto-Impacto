@@ -65,6 +65,7 @@ function Alerta({
             >
               Cancelar
             </Button>
+            
             <Button
               color="violeta"
               onClick={handleRetry}
