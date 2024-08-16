@@ -105,14 +105,14 @@ export default function BarraNavegacion({ hideUserIcon }) {
       ? [
           { text: "Dashboard Administrador", link: "/admin", rol: "ADMIN" },
           { text: "Proveedores", link: "/admin/proveedores" },
-          { text: "Publicaciones", link: "/publicaciones" },
+          { text: "Publicaciones", link: "/admin/publicaciones" },
         ]
       : user?.rol === "USUARIO"
       ? [
           { text: "Inicio", link: "/" },
           { text: "Perfil", link: "/perfil" },
-          { text: "Proveedores", link: "/visitantes/proveedores" },
-          { text: "Publicaciones", link: "/visitantes/publicaciones" },
+          { text: "Proveedores", link: "/proveedores" },
+          { text: "Publicaciones", link: "/publicaciones" },
         ]
       : [
           { text: "Inicio", link: "/" },

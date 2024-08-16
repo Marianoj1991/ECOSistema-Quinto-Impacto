@@ -159,3 +159,54 @@ export const getProvincias = async (country) => {
     console.error(error.message);
   }
 };
+
+// Obtener publicaciones Administradores
+export const getPublicacionesAdmin = async () => {
+  try {
+    const response = await axiosInstance.get(
+      'admin/publicacion'
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+// Obtener publicaciones usuarios
+export const getPublicacionesUser = async () => {
+  try {
+    const response = await axiosInstance.get(
+      'inicio/publicacion'
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+// Obtener Publicaciones por ID admin
+export const getPublicacionAdminById = async (id) => {
+  try {
+    const response = await axiosInstance.get(
+      `admin/publicacion/${id}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const getPublicacionUsuarioById = async (id) => {
+  try {
+    const response = await axiosInstance.get(
+      `inicio/publicacion/${id}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

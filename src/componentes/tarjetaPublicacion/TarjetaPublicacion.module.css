@@ -7,9 +7,23 @@
   box-shadow: none;
 }
 
-.titulo {
+.cardHeader {
+  display: flex;
+  align-items: center;
+}
+
+.cardHeader.spaceBetween {
+  justify-content: space-between;
+}
+
+.cardHeader.centered {
+  justify-content: center;
   text-align: center;
 }
+
+/* .titulo {
+  text-align: center;
+} */
 
 .fecha {
   margin-bottom: 10px;
@@ -37,3 +51,5 @@
   line-height: 20px;
   text-transform: none;
 }
+
+

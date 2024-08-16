@@ -8,11 +8,10 @@ import InvitacionRegistro from "../../componentes/invitacionRegistro/InvitacionR
 import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
 import Proveedores from "../../componentes/arregloProveedores/ArregloProveedores";
 import proveedores from "../../datosPrueba/proveedores";
-import publicaciones from "../../datosPrueba/publicaciones";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Typography from "@mui/material/Typography";
 import  { useState, useEffect } from 'react';
-
+import {getPublicacionesUser} from '@/servicios/getAxios'
 // Estilos CSS
 import styles from "./Inicio.module.css";
 
@@ -20,8 +19,18 @@ const { categoria, titulo, imagen } = info;
 
 export function Inicio() {
   const [user, setUser] = useState(null);
+  const [publicaciones, setPublicaciones] =useState([])
+
+const getPublicacionesLista= async() => {
+    const publicacionesAdmin = await getPublicacionesUser();
+    setPublicaciones(publicacionesAdmin.data);
+  };
+
+
+
 
   useEffect(() => {
+    getPublicacionesLista();
     const userFromSession = sessionStorage.getItem('user');
     if (!userFromSession) {
       setUser(null);

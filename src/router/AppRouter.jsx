@@ -11,6 +11,9 @@ import Perfil from "../Paginas/perfil/Perfil";
 import Registro from "../Paginas/registro/Registro";
 import ProveedoresAdmin from "../paginas/proveedoresAdmin/ProveedoresAdmin";
 import BarraNavegacion from "../componentes/barraNavegacion/BarraNavegacion";
+import PublicacionesAdmin from "../Paginas/publicacionesAdmin/PublicacionesAdmin";
+import CrearPublicacion from "@/Paginas/crearPublicacion/CrearPublicacion"
+import EditarPublicaciones from "@/Paginas/editarPublicaciones/EditarPublicaciones"
 
 const router = createBrowserRouter([
   {
@@ -29,17 +32,24 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: '/visitantes/publicaciones',
+    path: "/publicaciones",
     element: <Publicaciones />,
     errorElement: <ErrorPage />
+
   },
+
   {
     path: '/busquedas',
     element: <Busquedas />,
     errorElement: <ErrorPage />
   },
+  // {
+  //   path: '/visitantes/publicaciones',
+  //   element: <Publicaciones />,
+  //   errorElement: <ErrorPage />
+  // },
   {
-    path: '/visitantes/proveedores',
+    path: '/proveedores',
     element: <CategoriasPagina />,
     errorElement: <ErrorPage />
   },
@@ -58,11 +68,26 @@ const router = createBrowserRouter([
     element: <EditarProductoServicio />,
     errorElement: <ErrorPage />
   },
+
+  //RUTAS SOLO ADMINISTRADOR
   {
     path: '/admin/proveedores',
     element: <ProveedoresAdmin />,
     errorElement: <ErrorPage />
   },
+  {
+    path: "/admin/publicaciones",
+    element: <PublicacionesAdmin />,
+    errorElement: <ErrorPage />,
+  },
+  {path: "/crear-publicacion",
+  element: <CrearPublicacion />,
+  errorElement: <ErrorPage />,
+},
+{path: "/editar-publicacion/:id",
+  element: <EditarPublicaciones />,
+  errorElement: <ErrorPage />,
+},
   {
     path: '/admin/dashboard',
     element: (

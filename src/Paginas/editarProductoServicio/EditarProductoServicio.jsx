@@ -214,7 +214,6 @@ function EditarProductoServicio() {
         minorMessage="Por favor, volvé a intentarlo."
         openAlert={openErrorAlert}
         handleCancel={handleCancel}
-        handleRetry={handleRetry}
       />
       <BarraNavegacion />
       <Box className={styles.container}>
