@@ -54,8 +54,8 @@ export async function getCategorias() {
 export async function getProvedores() {
   try {
     const response = await axiosInstance.get(
-      "/producto-servicio/mis-productos-y-servicios"
-    );
+      '/perfil/producto-servicio/mis-productos-y-servicios'
+    )
 
     return response;
   } catch (err) {
