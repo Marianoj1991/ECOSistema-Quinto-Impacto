@@ -13,6 +13,8 @@ import { getCategorias } from "../../servicios/getAxios";
 
 async function inicializacion() {
   const categorias = await getCategorias();
+
+  console.log(categorias)
   
 
   const infoBotones = [
