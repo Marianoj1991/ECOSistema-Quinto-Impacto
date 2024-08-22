@@ -11,11 +11,8 @@ import { Merchandising } from "../../estaticos/icon/Merchandising";
 import { Construccion } from "../../estaticos/icon/Construccion";
 import { getCategorias } from "../../servicios/getAxios";
 
-async function inicializacion() {
+export async function inicializacion() {
   const categorias = await getCategorias();
-
-  console.log(categorias)
-  
 
   const infoBotones = [
     { id: 1, texto: categorias.data[2]?.nombre, icono: <Construccion /> },
@@ -34,4 +31,3 @@ async function inicializacion() {
   return infoBotones;
 }
 
-export const categorias = await inicializacion();
