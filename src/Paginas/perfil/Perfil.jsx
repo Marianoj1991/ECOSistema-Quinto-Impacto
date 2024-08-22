@@ -7,7 +7,7 @@ import PilaProductosServicios from "@/componentes/pilaProductosServicios/PilaPro
 import PilaProveedores from "@/componentes/pilaProveedores/PilaProveedores";
 import Typography from "@mui/material/Typography";
 import { getStoredUser } from "@/utilidades/getUserSession";
-import { getProvedores } from "@/servicios/getAxios";
+import { getProductoSercvivioPerfil } from "@/servicios/getAxios";
 import styles from "./Perfil.module.css";
 
 function Perfil() {
@@ -16,7 +16,7 @@ function Perfil() {
   const user = getStoredUser();
 
   const getProductsServices = async () => {
-    const productsServices = await getProvedores();
+    const productsServices = await getProductoSercvivioPerfil();
     setProductsServices(productsServices.data);
   };
 
