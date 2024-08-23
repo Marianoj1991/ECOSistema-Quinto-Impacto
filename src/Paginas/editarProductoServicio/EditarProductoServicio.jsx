@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import {
-  getProductoById,
+  getProductoServicioByUser,
   getCategorias,
   getPaises,
   getProvincias,
@@ -49,7 +49,7 @@ function EditarProductoServicio() {
   const getInitialData = async () => {
     const categories = await getCategorias();
     const countries = await getPaises();
-    const productService = await getProductoById(productServiceId);
+    const productService = await getProductoServicioByUser(productServiceId);
     const states = await getProvincias(productService.data.pais);
 
     setCategories(categories.data);

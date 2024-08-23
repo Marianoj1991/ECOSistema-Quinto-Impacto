@@ -7,11 +7,12 @@ import EmpresasImpacto from "../../componentes/empresasImpacto/EmpresasImpacto";
 import InvitacionRegistro from "../../componentes/invitacionRegistro/InvitacionRegistro";
 import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
 import Proveedores from "../../componentes/arregloProveedores/ArregloProveedores";
-import proveedores from "../../datosPrueba/proveedores";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Typography from "@mui/material/Typography";
-import  { useState, useEffect } from 'react';
-import {getPublicacionesUser} from '@/servicios/getAxios'
+import { useState, useEffect } from "react";
+import { getPublicacionesUser, getProductoSercvivioInicio } from "@/servicios/getAxios";
+import { ordenarPublicacionesPorFecha } from "@/utilidades/ordenarPublicaciones";
+
 // Estilos CSS
 import styles from "./Inicio.module.css";
 
@@ -19,25 +20,42 @@ const { categoria, titulo, imagen } = info;
 
 export function Inicio() {
   const [user, setUser] = useState(null);
-  const [publicaciones, setPublicaciones] =useState([])
+  const [publicaciones, setPublicaciones] = useState([]);
+  const [productsServices, setProductsServices] = useState([]);
+  const [error, setError] = useState(null);
 
-const getPublicacionesLista= async() => {
-    const publicacionesAdmin = await getPublicacionesUser();
-    setPublicaciones(publicacionesAdmin.data);
+  const seleccionarCuatroAleatorios = (productos) => {
+    return productos.sort(() => 0.5 - Math.random()).slice(0, 4);
   };
 
-
-
-
   useEffect(() => {
-    getPublicacionesLista();
-    const userFromSession = sessionStorage.getItem('user');
+    const fetchData = async () => {
+      try {
+        // Obtener productos recomendados
+        const { data: productos } = await getProductoSercvivioInicio();
+        setProductsServices(seleccionarCuatroAleatorios(productos));
+        
+        // Obtener publicaciones recientes
+        const { data } = await getPublicacionesUser();
+        const sortedPublicaciones = ordenarPublicacionesPorFecha(data);
+        const lasTresPublicacionesRecientes = sortedPublicaciones.slice(0, 3);
+        setPublicaciones(lasTresPublicacionesRecientes);
+      } catch (error) {
+        console.error("Error al obtener productos o servicios:", error);
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+
+    const userFromSession = sessionStorage.getItem("user");
     if (!userFromSession) {
       setUser(null);
     } else {
       setUser(JSON.parse(userFromSession));
     }
   }, []);
+
   return (
     <>
       <BarraNavegacion />
@@ -46,7 +64,7 @@ const getPublicacionesLista= async() => {
       </SeccionTitulo>
       <EmpresasImpacto />
       {user ? null : <InvitacionRegistro />}
-      <Proveedores proveedores={proveedores} />
+      <Proveedores proveedores={productsServices} />
       <Categorias />
       <Box className={styles.publicaciones}>
         <Typography className={styles.titulo}>Publicaciones</Typography>

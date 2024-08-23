@@ -50,11 +50,25 @@ export async function getCategorias() {
   }
 }
 
-// Obtener todos los proveedores
-export async function getProvedores() {
+// Obtener todos los Producto Sercvivio de un usuario en perfil
+export async function getProductoSercvivioPerfil() {
   try {
     const response = await axiosInstance.get(
-      '/perfil/producto-servicio/mis-productos-y-servicios'
+      "/perfil/producto-servicio/mis-productos-y-servicios"
+    );
+
+    return response;
+  } catch (err) {
+    console.error(err.message);
+  }
+}
+
+
+// Obtener todos los Producto Sercvivio de un usuario en perfil
+export async function getProductoSercvivioInicio() {
+  try {
+    const response = await axiosInstance.get(
+      '/inicio/producto-servicio'
     )
 
     return response;
@@ -63,11 +77,11 @@ export async function getProvedores() {
   }
 }
 
-//proveedor por usuario
-export async function getProvedoresByUser(userId) {
+//Producto Sercvivio id
+export async function getProductoServicioByUser(id) {
   try {
     const data = await axiosInstance.get(
-      `/producto-servicio/activo/aceptado/${userId}`
+      `/perfil/producto-servicio/mis-productos-y-servicios/${id}`
     );
     console.log(data);
     return data;
@@ -177,8 +191,9 @@ export const getPublicacionesAdmin = async () => {
 export const getPublicacionesUser = async () => {
   try {
     const response = await axiosInstance.get(
-      'inicio/publicacion'
-    );
+      'inicio/publicacion',
+      {timeout: 0
+  });
 
     return response;
   } catch (error) {
@@ -199,14 +214,18 @@ export const getPublicacionAdminById = async (id) => {
   }
 };
 
-export const getPublicacionUsuarioById = async (id) => {
+
+
+
+// Obtener cuatro proveedores aletearios
+export async function getProvedoresAleatorios() {
   try {
     const response = await axiosInstance.get(
-      `inicio/publicacion/${id}`
+      "/producto-servicio/mis-productos-y-servicios"
     );
 
     return response;
-  } catch (error) {
-    console.error(error.message);
+  } catch (err) {
+    console.error(err.message);
   }
-};
+}

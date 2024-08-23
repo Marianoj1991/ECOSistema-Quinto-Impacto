@@ -36,7 +36,7 @@ function Proveedores({ recomendacionesLocales, proveedores }) {
                 imagenAlt={proveedor.imagenes[0].alt}
                 nombre={proveedor.nombre}
                 tipo={proveedor.tipo}
-                ubicacionCorta={proveedor.ubicacionCorta}
+                ubicacionCorta={proveedor.ciudad}
               />
             </Grid>
           ))}

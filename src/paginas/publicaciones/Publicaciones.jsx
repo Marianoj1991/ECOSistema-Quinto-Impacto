@@ -6,7 +6,7 @@ import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import PilaPublicaciones from "../../componentes/pilaPublicaciones/PilaPublicaciones";
 // import publicaciones from "../../datosPrueba/publicaciones";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
-
+import { ordenarPublicacionesPorFecha} from "@/utilidades/ordenarPublicaciones";
 // Estilos CSS
 import styles from "./Publicaciones.module.css";
 import { getPublicacionesUser } from "../../servicios/getAxios";
@@ -21,7 +21,8 @@ export function Publicaciones() {
     const obtenerPublicaciones = async () => {
       try {
         const { data } = await getPublicacionesUser()
-        setPublicaciones(data)
+                const sortedPublicaciones = ordenarPublicacionesPorFecha(data)
+                setPublicaciones(sortedPublicaciones);
       } catch(err) {
         setPublicaciones([])
       }

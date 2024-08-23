@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import {getPublicacionUsuarioById} from "@/servicios/patchAxios"
 
 function TarjetaPublicacion({
   titulo,
@@ -30,7 +31,13 @@ function TarjetaPublicacion({
   const location = useLocation()
   const navigate = useNavigate()
 
-  const manejarExpansion = () => setExpandido(!expandido)
+  const manejarExpansion =() => {
+    setExpandido(!expandido)
+    if (!expandido) {
+      // Llama a la función para aumentar por el id
+      getPublicacionUsuarioById(id)
+    }
+  }
 
   const open = Boolean(anchorEl)
 

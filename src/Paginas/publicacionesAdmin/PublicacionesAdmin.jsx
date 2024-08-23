@@ -9,6 +9,7 @@ import PilaPublicaciones from "@/componentes/pilaPublicaciones/pilaPublicaciones
 import { getPublicacionesAdmin } from "@/servicios/getAxios";
 import { hidePublicacion, showPublicacion } from "@/servicios/putAxios";
 import Alerta from "@/componentes/alerta/Alerta";
+import { ordenarPublicacionesPorFecha} from "@/utilidades/ordenarPublicaciones";
 
 const PublicacionesAdmin = () => {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -20,8 +21,9 @@ const PublicacionesAdmin = () => {
 
   const getPublicacionesLista = async () => {
     try {
-      const publicacionesAdmin = await getPublicacionesAdmin();
-      setPublicaciones(publicacionesAdmin.data);
+      const {data} = await getPublicacionesAdmin();
+      const sortedPublicaciones = ordenarPublicacionesPorFecha(data)
+      setPublicaciones(sortedPublicaciones);
     } catch (error) {
       console.error("Error al obtener las publicaciones:", error);
     }
