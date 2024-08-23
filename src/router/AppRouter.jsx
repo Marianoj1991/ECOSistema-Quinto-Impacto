@@ -1,19 +1,19 @@
-import { Busquedas } from "../paginas/busquedas/Busquedas";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ErrorPage } from "../ui/ErrorPage";
-import { Inicio } from "../paginas/inicio/Inicio";
-import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
-import CargarProductoServicio from "../Paginas/cargarProductoServicio/CargarProductoServicio";
-import CategoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
-import EditarProductoServicio from "../Paginas/editarProductoServicio/EditarProductoServicio";
-import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
-import Perfil from "../Paginas/perfil/Perfil";
-import Registro from "../Paginas/registro/Registro";
-import ProveedoresAdmin from "../paginas/proveedoresAdmin/ProveedoresAdmin";
-import BarraNavegacion from "../componentes/barraNavegacion/BarraNavegacion";
-import PublicacionesAdmin from "../Paginas/publicacionesAdmin/PublicacionesAdmin";
-import CrearPublicacion from "@/Paginas/crearPublicacion/CrearPublicacion"
-import EditarPublicaciones from "@/Paginas/editarPublicaciones/EditarPublicaciones"
+import { Busquedas } from '../paginas/busquedas/Busquedas'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { ErrorPage } from '../ui/ErrorPage'
+import { Inicio } from '../paginas/inicio/Inicio'
+import { Publicaciones } from '../paginas/publicaciones/Publicaciones'
+import CargarProductoServicio from '../Paginas/cargarProductoServicio/CargarProductoServicio'
+import CategoriasPagina from '../paginas/categoriasPagina/CategoriasPagina'
+import EditarProductoServicio from '../Paginas/editarProductoServicio/EditarProductoServicio'
+import InicioSesion from '../Paginas/inicioSesion/InicioSesion'
+import Perfil from '../Paginas/perfil/Perfil'
+import Registro from '../Paginas/registro/Registro'
+import ProveedoresAdmin from '../paginas/proveedoresAdmin/ProveedoresAdmin'
+import BarraNavegacion from '../componentes/barraNavegacion/BarraNavegacion'
+import PublicacionesAdmin from '../Paginas/publicacionesAdmin/PublicacionesAdmin'
+import CrearPublicacion from '@/Paginas/crearPublicacion/CrearPublicacion'
+import EditarPublicaciones from '@/Paginas/editarPublicaciones/EditarPublicaciones'
 
 const router = createBrowserRouter([
   {
@@ -32,10 +32,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/publicaciones",
+    path: '/publicaciones',
     element: <Publicaciones />,
     errorElement: <ErrorPage />
-
   },
 
   {
@@ -76,18 +75,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/admin/publicaciones",
+    path: '/admin/publicaciones',
     element: <PublicacionesAdmin />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
-  {path: "/crear-publicacion",
-  element: <CrearPublicacion />,
-  errorElement: <ErrorPage />,
-},
-{path: "/editar-publicacion/:id",
-  element: <EditarPublicaciones />,
-  errorElement: <ErrorPage />,
-},
+  {
+    path: '/crear-publicacion',
+    element: <CrearPublicacion />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/editar-publicacion/:id',
+    element: <EditarPublicaciones />,
+    errorElement: <ErrorPage />
+  },
   {
     path: '/admin/dashboard',
     element: (
@@ -101,5 +102,5 @@ const router = createBrowserRouter([
 ])
 
 export default function AppRouter() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }

@@ -68,8 +68,8 @@ export async function getProductoSercvivioPerfil() {
 export async function getProductoSercvivioInicio() {
   try {
     const response = await axiosInstance.get(
-      "/inicio/producto-servicio"
-    );
+      '/inicio/producto-servicio'
+    )
 
     return response;
   } catch (err) {
@@ -214,17 +214,6 @@ export const getPublicacionAdminById = async (id) => {
   }
 };
 
-export const getPublicacionUsuarioById = async (id) => {
-  try {
-    const response = await axiosInstance.get(
-      `inicio/publicacion/${id}`
-    );
-
-    return response;
-  } catch (error) {
-    console.error(error.message);
-  }
-};
 
 
 
