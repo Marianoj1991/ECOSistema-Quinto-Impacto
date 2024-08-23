@@ -8,7 +8,7 @@ import { info } from "./categoriasContenido";
 import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
 import SeccionTitulo from "../../componentes/seccionTitulo/SeccionTitulo";
 import Buscador from "../../componentes/buscador/Buscador";
-import { categorias as nombresCategorias } from "../../componentes/botonCategoria/botones-info";
+import { inicializacion } from "../../componentes/botonCategoria/botones-info";
 import { BotonCategoria } from "../../componentes";
 import PilaProveedores from "../../componentes/pilaProveedores/PilaProveedores";
 import SinResultados from "../../componentes/sinResultados/SinResultados";
@@ -23,6 +23,20 @@ export default function CategoriasPagina() {
   
   const [ proveedores, setProveedores ] = useState([])
   const [ searchParam ] = useSearchParams()
+  const [nombresCategorias, setNombresCategorias] = useState([])
+
+  const buscarNombresCategorias = async () => {
+    try {
+      const nombresCategorias = await inicializacion()
+      setNombresCategorias(nombresCategorias)
+    } catch (err) {
+      setNombresCategorias([])
+    }
+  }
+
+  useEffect(() => {
+    buscarNombresCategorias()
+  }, [])
 
   const categoriaParam = searchParam.get('categoria')
 
