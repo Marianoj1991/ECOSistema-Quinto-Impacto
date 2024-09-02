@@ -1,66 +1,66 @@
-import {useEffect, useState } from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import TarjetaEstadoProveedor from '@/componentes/tarjetaEstadoProveedor/TarjetaEstadoProveedor.jsx';
-import BarraNavegacion from '../../componentes/barraNavegacion/BarraNavegacion';
-import { Box, Typography } from '@mui/material';
+import { useEffect, useState } from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import TarjetaEstadoProveedor from "@/componentes/tarjetaEstadoProveedor/TarjetaEstadoProveedor.jsx";
+import BarraNavegacion from "../../componentes/barraNavegacion/BarraNavegacion";
+import { Box, Typography } from "@mui/material";
 import {
   getProductoByIdAdmin,
-  obtenerProveedoresPorEstado
-} from '../../servicios/getAxios'
-import SeleccionEstadoProveedor from '../../componentes/seleccionEstadoProveedor/SeleccionEstadoProveedor';
+  obtenerProveedoresPorEstado,
+} from "../../servicios/getAxios";
+import SeleccionEstadoProveedor from "../../componentes/seleccionEstadoProveedor/SeleccionEstadoProveedor";
 
+import styles from "./ProveedoresAdmin.module.css";
 
-import styles from './ProveedoresAdmin.module.css'
-
-const estadoInicial = 'revision_inicial'
+const estadoInicial = "revision_inicial";
 
 export default function ProveedoresAdmin() {
   const [estado, setEstado] = useState(estadoInicial);
-  const [ proveedores, setProveedores ] = useState([])
-  const [editando, setEditando] = useState(false)
-  const [proveedor, setProveedor] = useState(null)
+  const [proveedores, setProveedores] = useState([]);
+  const [editando, setEditando] = useState(false);
+  const [proveedor, setProveedor] = useState(null);
 
   const proveedoresPorEstado = async (estado) => {
     try {
-      const provs = await obtenerProveedoresPorEstado(estado)
-      setProveedores(provs)
+      const provs = await obtenerProveedoresPorEstado(estado);
+      setProveedores(provs);
     } catch (err) {
-      setProveedores([])
+      setProveedores([]);
     } finally {
-      setEditando(false)
+      setEditando(false);
     }
-  }
+  };
 
   useEffect(() => {
-    proveedoresPorEstado(estado)
-  }, [estado])
+    proveedoresPorEstado(estado);
+  }, [estado]);
 
   useEffect(() => {
     if (!editando) {
-      proveedoresPorEstado(estado)
+      proveedoresPorEstado(estado);
     }
-  }, [editando])
+  }, [editando]);
 
   const handleClick = async (id) => {
-    try{
-      const prov = await getProductoByIdAdmin(id)
-      setProveedor(prov)
-    } catch(err){
-      setEditando(false)
-    } finally{
-      setEditando(true)
-      
+    try {
+      const prov = await getProductoByIdAdmin(id);
+      setProveedor(prov);
+    } catch (err) {
+      setEditando(false);
+    } finally {
+      setEditando(true);
     }
-  }
+  };
 
   const handleChange = (event, newValue) => {
     setEstado(newValue);
   };
 
   const handleEditando = () => {
-    setEditando(false)
-  }
+    setEditando(false);
+  };
+
+  console.log(proveedores);
 
   return (
     <>
@@ -71,48 +71,33 @@ export default function ProveedoresAdmin() {
       <Tabs
         value={estado}
         onChange={handleChange}
-        variant='scrollable'
+        variant="scrollable"
         scrollButtons={false}
-        aria-label='scrollable prevent tabs example'
+        aria-label="scrollable prevent tabs example"
         sx={{
           borderBottom: 2,
-          borderColor: 'violeta.main',
-          color: 'negro.main',
-          '.MuiTab-root': {
-            textTransform: 'none',
-            color: 'grisOscuro.main',
-            fontSize: 16
+          borderColor: "violeta.main",
+          color: "negro.main",
+          ".MuiTab-root": {
+            textTransform: "none",
+            color: "grisOscuro.main",
+            fontSize: 16,
           },
-          '.Mui-selected': {
-            color: 'negro.main',
-            fontWeight: 'bold'
+          ".Mui-selected": {
+            color: "negro.main",
+            fontWeight: "bold",
           },
-          '.MuiTabs-indicator': {
-            backgroundColor: 'violeta.main',
-            color: 'negro.main'
-          }
+          ".MuiTabs-indicator": {
+            backgroundColor: "violeta.main",
+            color: "negro.main",
+          },
         }}
       >
-        <Tab
-          label='Nuevos Perfiles'
-          value='revision_inicial'
-        />
-        <Tab
-          label='Aprobados'
-          value='aprobados'
-        />
-        <Tab
-          label='En revisión'
-          value='en_revision'
-        />
-        <Tab
-          label='Cambios realizados'
-          value='cambios_realizados'
-        />
-        <Tab
-          label='Denegados'
-          value='denegados'
-        />
+        <Tab label="Nuevos Perfiles" value="revision_inicial" />
+        <Tab label="Aprobados" value="aprobados" />
+        <Tab label="En revisión" value="en_revision" />
+        <Tab label="Cambios realizados" value="cambios_realizados" />
+        <Tab label="Denegados" value="denegados" />
       </Tabs>
       {!editando ? (
         proveedores.map((prov) => (
@@ -132,5 +117,5 @@ export default function ProveedoresAdmin() {
         />
       )}
     </>
-  )
+  );
 }

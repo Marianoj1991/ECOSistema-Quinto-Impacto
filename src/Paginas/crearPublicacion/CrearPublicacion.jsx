@@ -120,11 +120,11 @@ const CrearPublicacion = () => {
     }
 
     for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
+      console.log(key, value);
+    }
 
     try {
-        console.log(data)
+      console.log(data);
       await postPublicacion(formData);
 
       setOpenSuccessAlert(true);
@@ -135,7 +135,6 @@ const CrearPublicacion = () => {
 
   return (
     <>
-
       <BarraNavegacion />
       <Box className={style.container}>
         <Typography color="negro.main" component="h1" className={style.title}>
@@ -294,7 +293,6 @@ const CrearPublicacion = () => {
           </Button>
         </Box>
       </Box>
-
 
       {/* ALERTAS */}
       <Alerta

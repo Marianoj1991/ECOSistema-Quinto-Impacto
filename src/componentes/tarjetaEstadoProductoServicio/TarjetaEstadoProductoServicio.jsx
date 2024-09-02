@@ -10,6 +10,14 @@ import Typography from "@mui/material/Typography";
 import styles from "./TarjetaEstadoProductoServicio.module.css";
 
 // PENDIENTE: Ajustar nombre de estados con el Back
+const etiquetasEstado = {
+  REVISION_INICIAL: "Postulado",
+  ACEPTADO: "Aprobado",
+  REQUIERE_CAMBIOS: "En revisión",
+  CAMBIOS_REALIZADOS: "Cambios realizados",
+  DENEGADO: "Denegado",
+};
+
 const coloresCirculo = {
   REVISION_INICIAL: "grisOscuro",
   ACEPTADO: "verdeExito",
@@ -75,7 +83,7 @@ function TarjetaEstadoProductoServicio({ titulo, estado, explicacion, id }) {
               display={"inline-block"}
               className={styles.textoEstadoPostulacion}
             >
-              {estado}
+              {etiquetasEstado[estado]}
             </Typography>
           </Box>
           <Typography

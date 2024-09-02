@@ -188,6 +188,7 @@ function CargarProductoServicio() {
         handleCancel={handleCancel}
         handleRetry={handleRetry}
       />
+
       <BarraNavegacion />
       <Box className={styles.container}>
         <Typography color="negro.main" component="h1" className={styles.title}>
