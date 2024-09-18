@@ -103,7 +103,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
   const menuItems =
     user?.rol === "ADMIN"
       ? [
-          { text: "Dashboard Administrador", link: "/admin", rol: "ADMIN" },
+          { text: "Dashboard Administrador", link: "/admin/dashboard" },
           { text: "Proveedores", link: "/admin/proveedores" },
           { text: "Publicaciones", link: "/admin/publicaciones" },
         ]
@@ -311,7 +311,7 @@ export default function BarraNavegacion({ hideUserIcon }) {
               <ListItem disablePadding>
                 <ListItemText
                   primary="¿Querés formar parte de la Red de impacto ECO como Proveedor?"
-                  sx={{ marginLeft: 2 }}
+                  sx={{ marginTop: 4, marginLeft: 2, marginRight: 2, fontStyle: "italic" }}
                 />
               </ListItem>
               <ListItem disablePadding>

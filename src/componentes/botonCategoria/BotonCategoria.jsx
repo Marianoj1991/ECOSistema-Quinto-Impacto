@@ -2,20 +2,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import styles from "./BotonCategoria.module.css";
 import { Link } from "react-router-dom";
 
-export function BotonCategoria({
-  icono,
-  texto,
-  border,
-  seccCategorias,
-}) {
+export function BotonCategoria({ icono, texto, border, seccCategorias }) {
   return (
-    <Grid
-      item
-      xs={6}
-      sx={{ padding: '0px', cursor: 'pointer' }}
-    >
+    <Grid item xs={6} sx={{ padding: "0px", cursor: "pointer" }}>
       <Link
-        to={`/categorias?categoria=${texto}`}
+        to={`/proveedores?categoria=${texto}`}
         className={styles.categoriaLink}
       >
         <Box
@@ -35,7 +26,7 @@ export function BotonCategoria({
             <div
               style={
                 border
-                  ? { width: '48px', borderBottom: '2px solid #4e169d' }
+                  ? { width: "48px", borderBottom: "2px solid #4e169d" }
                   : {}
               }
             ></div>
@@ -43,7 +34,5 @@ export function BotonCategoria({
         </Box>
       </Link>
     </Grid>
-  )
+  );
 }
-
-

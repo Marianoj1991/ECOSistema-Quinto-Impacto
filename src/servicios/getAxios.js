@@ -1,18 +1,18 @@
 import axiosInstance from "../utilidades/axios.config";
 
 const endpointsProductoServicios = {
-  revision_inicial: '/admin/producto-servicio/estado/revision-inicial',
-  aprobados: '/admin/producto-servicio/estado/aceptado',
-  denegados: '/admin/producto-servicio/estado/denegado',
-  en_revision: '/admin/producto-servicio/estado/requiere-cambios',
-  cambios_realizados: '/admin/producto-servicio/estado/cambios-realizados'
-}
+  revision_inicial: "/admin/producto-servicio/estado/revision-inicial",
+  aprobados: "/admin/producto-servicio/estado/aceptado",
+  denegados: "/admin/producto-servicio/estado/denegado",
+  en_revision: "/admin/producto-servicio/estado/requiere-cambios",
+  cambios_realizados: "/admin/producto-servicio/estado/cambios-realizados",
+};
 
 export async function obtenerProveedoresPorNombreAxios(nombre) {
   try {
     const { data } = await axiosInstance(
       `/inicio/producto-servicio/buscar?nombre=${nombre}`
-    )
+    );
     return data;
   } catch (err) {
     throw new Error(err.message);
@@ -23,7 +23,7 @@ export async function obtenerProveedoresPorCategoriaAxios(nombre) {
   try {
     const { data } = await axiosInstance(
       `/inicio/producto-servicio/categoria?nombre=${nombre}`
-    )
+    );
     return data;
   } catch (err) {
     throw new Error(err.message);
@@ -45,7 +45,7 @@ export async function getCategorias() {
     const response = await axiosInstance.get("/categorias");
     return response;
   } catch (err) {
-    console.log('AQUI')
+    console.log("AQUI");
     console.error(err.message);
   }
 }
@@ -63,13 +63,10 @@ export async function getProductoSercvivioPerfil() {
   }
 }
 
-
 // Obtener todos los Producto Sercvivio de un usuario en perfil
 export async function getProductoSercvivioInicio() {
   try {
-    const response = await axiosInstance.get(
-      '/inicio/producto-servicio'
-    )
+    const response = await axiosInstance.get("/inicio/producto-servicio");
 
     return response;
   } catch (err) {
@@ -128,7 +125,7 @@ export async function getUser(userId) {
 export const getProductoById = async (id) => {
   try {
     const response = await axiosInstance.get(
-      `/producto-servicio/mis-productos-y-servicios/${id}`
+      `/perfil/producto-servicio/mis-productos-y-servicios/${id}`
     );
 
     return response;
@@ -140,9 +137,7 @@ export const getProductoById = async (id) => {
 // Obtener Producto/Servicio por ID
 export const getProductoByIdAdmin = async (id) => {
   try {
-    const {data} = await axiosInstance.get(
-      `/admin/producto-servicio/${id}`
-    )
+    const { data } = await axiosInstance.get(`/admin/producto-servicio/${id}`);
 
     return data;
   } catch (error) {
@@ -174,12 +169,34 @@ export const getProvincias = async (country) => {
   }
 };
 
+// Obtener estadísticas de Productos/Servicios para dashboard administrativo
+export const getEstadisticasProductosServicios = async () => {
+  try {
+    const response = await axiosInstance.get(
+      "/admin/producto-servicio/dashboard"
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+// Obtener estadísticas de Publicaciones para dashboard administrativo
+export const getEstadisticasPublicaciones = async () => {
+  try {
+    const response = await axiosInstance.get("/admin/publicacion/dashboard");
+
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 // Obtener publicaciones Administradores
 export const getPublicacionesAdmin = async () => {
   try {
-    const response = await axiosInstance.get(
-      'admin/publicacion'
-    );
+    const response = await axiosInstance.get("admin/publicacion");
 
     return response;
   } catch (error) {
@@ -190,10 +207,9 @@ export const getPublicacionesAdmin = async () => {
 // Obtener publicaciones usuarios
 export const getPublicacionesUser = async () => {
   try {
-    const response = await axiosInstance.get(
-      'inicio/publicacion',
-      {timeout: 0
-  });
+    const response = await axiosInstance.get("inicio/publicacion", {
+      timeout: 0,
+    });
 
     return response;
   } catch (error) {
@@ -204,18 +220,13 @@ export const getPublicacionesUser = async () => {
 // Obtener Publicaciones por ID admin
 export const getPublicacionAdminById = async (id) => {
   try {
-    const response = await axiosInstance.get(
-      `admin/publicacion/${id}`
-    );
+    const response = await axiosInstance.get(`admin/publicacion/${id}`);
 
     return response;
   } catch (error) {
     console.error(error.message);
   }
 };
-
-
-
 
 // Obtener cuatro proveedores aletearios
 export async function getProvedoresAleatorios() {

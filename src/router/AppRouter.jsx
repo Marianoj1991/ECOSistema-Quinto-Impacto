@@ -1,46 +1,46 @@
-import { Busquedas } from '../paginas/busquedas/Busquedas'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ErrorPage } from '../ui/ErrorPage'
-import { Inicio } from '../paginas/inicio/Inicio'
-import { Publicaciones } from '../paginas/publicaciones/Publicaciones'
-import CargarProductoServicio from '../Paginas/cargarProductoServicio/CargarProductoServicio'
-import CategoriasPagina from '../paginas/categoriasPagina/CategoriasPagina'
-import EditarProductoServicio from '../Paginas/editarProductoServicio/EditarProductoServicio'
-import InicioSesion from '../Paginas/inicioSesion/InicioSesion'
-import Perfil from '../Paginas/perfil/Perfil'
-import Registro from '../Paginas/registro/Registro'
-import ProveedoresAdmin from '../paginas/proveedoresAdmin/ProveedoresAdmin'
-import BarraNavegacion from '../componentes/barraNavegacion/BarraNavegacion'
-import PublicacionesAdmin from '../Paginas/publicacionesAdmin/PublicacionesAdmin'
-import CrearPublicacion from '@/Paginas/crearPublicacion/CrearPublicacion'
-import EditarPublicaciones from '@/Paginas/editarPublicaciones/EditarPublicaciones'
+import { Busquedas } from "../paginas/busquedas/Busquedas";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ErrorPage } from "../ui/ErrorPage";
+import { Inicio } from "../paginas/inicio/Inicio";
+import { Publicaciones } from "../paginas/publicaciones/Publicaciones";
+import AdminDashboard from "../Paginas/adminDashboard/AdminDashboard";
+import CargarProductoServicio from "../Paginas/cargarProductoServicio/CargarProductoServicio";
+import CategoriasPagina from "../paginas/categoriasPagina/CategoriasPagina";
+import CrearPublicacion from "@/Paginas/crearPublicacion/CrearPublicacion";
+import EditarProductoServicio from "../Paginas/editarProductoServicio/EditarProductoServicio";
+import EditarPublicaciones from "@/Paginas/editarPublicaciones/EditarPublicaciones";
+import InicioSesion from "../Paginas/inicioSesion/InicioSesion";
+import Perfil from "../Paginas/perfil/Perfil";
+import ProveedoresAdmin from "../paginas/proveedoresAdmin/ProveedoresAdmin";
+import PublicacionesAdmin from "../Paginas/publicacionesAdmin/PublicacionesAdmin";
+import Registro from "../Paginas/registro/Registro";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Inicio />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <InicioSesion />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/registro',
+    path: "/registro",
     element: <Registro />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/publicaciones',
+    path: "/publicaciones",
     element: <Publicaciones />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
 
   {
-    path: '/busquedas',
+    path: "/busquedas",
     element: <Busquedas />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   // {
   //   path: '/visitantes/publicaciones',
@@ -48,59 +48,54 @@ const router = createBrowserRouter([
   //   errorElement: <ErrorPage />
   // },
   {
-    path: '/proveedores',
+    path: "/proveedores",
     element: <CategoriasPagina />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/perfil',
+    path: "/perfil",
     element: <Perfil />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/cargar',
+    path: "/cargar",
     element: <CargarProductoServicio />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/editar/:id',
+    path: "/editar/:id",
     element: <EditarProductoServicio />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
 
   //RUTAS SOLO ADMINISTRADOR
   {
-    path: '/admin/proveedores',
+    path: "/admin/proveedores",
     element: <ProveedoresAdmin />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/admin/publicaciones',
+    path: "/admin/publicaciones",
     element: <PublicacionesAdmin />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/crear-publicacion',
+    path: "/crear-publicacion",
     element: <CrearPublicacion />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/editar-publicacion/:id',
+    path: "/editar-publicacion/:id",
     element: <EditarPublicaciones />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/admin/dashboard',
-    element: (
-      <>
-        <BarraNavegacion />
-        <h1>ADMIN DASHBOARD</h1>
-      </>
-    ),
-    error: <ErrorPage />
-  }
-])
+    path: "/admin/dashboard",
+    element: <AdminDashboard />,
+    error: <ErrorPage />,
+  },
+]);
 
 export default function AppRouter() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
